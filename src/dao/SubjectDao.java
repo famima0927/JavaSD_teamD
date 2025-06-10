@@ -5,9 +5,15 @@ import java.util.List;
 
 import javax.security.auth.Subject;
 
+import bean.shool
+import bean.subject
+
+
+
 public class SubjectDao extends Dao {
 
 
+	//学生の一人の成績を検索して
 	public String get(String cd,school school) throws Exception{
 
 
@@ -15,7 +21,7 @@ public class SubjectDao extends Dao {
 	}
 
 
-	public List<Subject> filter() throws Exception{
+	public List<Subject> filter(school school) throws Exception{
 	    List<Subject> list = new ArrayList<>();
 
 		return list;
