@@ -5,7 +5,11 @@
 %>
 
 <jsp:include page="../base/header.jsp"></jsp:include>
-
+<style>
+  .btn-insert {
+    float: right;
+  }
+</style>
 <div class="container">
   <div class="side-bar">
     <jsp:include page="../base/base.jsp"></jsp:include>
