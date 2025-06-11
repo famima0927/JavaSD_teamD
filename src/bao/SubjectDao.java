@@ -16,13 +16,13 @@ public class SubjectDao extends Dao {
 	//学生の一人の成績を検索して
 	public subject get(String cd,school school) throws Exception{
 		subject subject = new subject;
-		
+
 		//引数をもとにデータベースから科目(subject)を返す関数
 
 		return subject;
 	}
 
-
+	//schoolをもとに科目の一覧を返す
 	public List<Subject> filter(school school) throws Exception{
 	    List<Subject> list = new ArrayList<>();
 
@@ -30,13 +30,18 @@ public class SubjectDao extends Dao {
 	}
 
 
-	public boolean save(subject subject){
+	//科目(subject)の保存を行う
+	public boolean save(subject subject) throws Exception{
+		boolean isSave = false;
 
+		return isSave
 	}
 
 
 	public boolean delete(subject suvject) throws Exception{
+		boolean isSave = false;
 
+		return isSave
 	}
 }
 
