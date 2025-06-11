@@ -12,6 +12,7 @@
   </div>
 
   <div class="main">
+  <div class="menu-header">科目一覧</div>
     <!-- 一覧表のテーブル（見出し） -->
     <a href="<%= request.getContextPath() %>/main/Insert">新規登録</a>
 
