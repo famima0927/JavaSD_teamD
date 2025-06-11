@@ -3,6 +3,7 @@
 <%
   request.setAttribute("bodyClass", "menu-body");
 %>
+
 <jsp:include page="../base/header.jsp"></jsp:include>
 	<div class = "container">
 		<div class = "side-bar">
@@ -20,7 +21,7 @@
 			      <a href="#">成績参照</a>
 			    </div>
 			    <div class="menu-box blue">
-			      <a href="#">科目管理</a>
+			      <a href="/servlet/SBJM001">科目管理</a>
 			    </div>
 			  </div>
 		</div>
