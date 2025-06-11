@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+a
   <meta charset="UTF-8">
   <title>得点管理システム</title>
   <link rel="stylesheet" href="<%= request.getContextPath() %>/base/css/styles.css">
