@@ -3,12 +3,8 @@ package dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.security.auth.Subject;
-
 //bean名前違ったら変えて～
 import bean.School;
-
-//ここのエラー分からん      ・小森谷
 import bean.Subject;
 
 
