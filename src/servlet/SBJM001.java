@@ -14,7 +14,7 @@ import javax.sql.DataSource;
 
 import bean.Subject;
 import tool.CommonServlet;
-@WebServlet(urlPatterns={"/servlet/SBJM001.java"})
+@WebServlet(urlPatterns={"/SBJM001"})
 public class SBJM001 extends CommonServlet  {
 @Override
     protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
@@ -30,6 +30,8 @@ public class SBJM001 extends CommonServlet  {
 		ResultSet rs=st.executeQuery();
 		List<Subject> subjects = new ArrayList<>();
 
+
+
 		while (rs.next()) {
 		    Subject subject = new Subject();
 		    subject.setCd(rs.getString("cd"));
@@ -42,7 +44,7 @@ public class SBJM001 extends CommonServlet  {
 		con.close();
 
 		// JSPへ渡す
-		req.setAttribute("Subjects", subjects);
+		req.setAttribute("subjects", subjects);
 		req.getRequestDispatcher("/main/SBJM001.jsp").forward(req, resp);
 
 	 } catch (Exception e) {
