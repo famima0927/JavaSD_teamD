@@ -21,7 +21,7 @@
 			      <a href="#">成績参照</a>
 			    </div>
 			    <div class="menu-box blue">
-			      <a href="/maim/SBJM001">科目管理</a>
+			      <a href="/servlet/SBJM001">科目管理</a>
 			    </div>
 			  </div>
 		</div>
