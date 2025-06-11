@@ -3,6 +3,7 @@
     <%
   request.setAttribute("bodyClass", "login-body");
 %>
+a
 <jsp:include page="../base/header.jsp"></jsp:include>
 
 		    <div class="login-container">
