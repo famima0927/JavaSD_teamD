@@ -3,8 +3,11 @@ package dao;
 import java.util.ArrayList;
 import java.util.List;
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> branch 'master' of https://github.com/famima0927/JavaSD_teamD.git
 //bean名前違ったら変えて～
 import bean.School;
 import bean.Subject;
