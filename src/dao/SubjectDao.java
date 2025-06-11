@@ -14,7 +14,7 @@ public class SubjectDao extends Dao {
 
 
 	//学生の一人の成績を検索して
-	public subject get(String cd,school school) throws Exception{
+	public aubject get(String cd,school school) throws Exception{
 		subject subject = new subject;
 
 		//引数をもとにデータベースから科目(subject)を返す関数
