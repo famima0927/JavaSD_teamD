@@ -124,12 +124,17 @@
 
 
 /*-----ログイン-----*/
+
 .login-body {
     font-family: sans-serif;
     background-color: #f9f9f9;
+    display: flex;
     justify-content: center;
     align-items: center;
+
+    height: 100vh; /* 画面中央に配置するために必要 */
 }
+
 
 .login-container {
     background-color: #fff;
@@ -187,6 +192,17 @@
     margin-bottom: 15px;
     font-size: 14px;
     text-align: center;
+}
+
+.login-body .main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* 画面の高さを使って垂直中央に */
+}
+
+.login-body .login-container {
+    margin: 0; /* 中央揃えのとき不要な余白除去 */
 }
 
 /*-----ログイン-----*/
