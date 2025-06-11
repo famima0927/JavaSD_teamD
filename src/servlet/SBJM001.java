@@ -14,7 +14,7 @@ import javax.sql.DataSource;
 
 import bean.Subject;
 import tool.CommonServlet;
-@WebServlet(urlPatterns={"/SBJM001"})
+@WebServlet("/SubjectServlet")
 public class SBJM001 extends CommonServlet  {
 @Override
     protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {

@@ -21,7 +21,7 @@
 			      <a href="#">成績参照</a>
 			    </div>
 			    <div class="menu-box blue">
-			      <a href="/SBJM001">科目管理</a>
+			      <a href="${pageContext.request.contextPath}/SubjectServlet">科目管理</a>
 			    </div>
 			  </div>
 		</div>
