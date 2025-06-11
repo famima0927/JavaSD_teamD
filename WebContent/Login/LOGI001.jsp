@@ -4,24 +4,20 @@
   request.setAttribute("bodyClass", "login-body");
 %>
 <jsp:include page="../base/header.jsp"></jsp:include>
-	<div class = "container">
-		<div class = "side-bar">
-			<jsp:include page="../base/base.jsp"></jsp:include>
-		</div>
-		<div class = "main">
+
 		    <div class="login-container">
 		        <h2>ログイン</h2>
 
-			        <% String error = (String) request.getAttribute("errorMessage"); %>
-					<% if (error != null) { %>
-					    <div class="error-message"><%= error %></div>
+					<!-- エラー処理 -->
+			        <% if ("true".equals(request.getParameter("error"))) { %>
+   					 <div class="error-message">IDまたはパスワードが間違っています。</div>
 					<% } %>
 
 
 					<!-- LoginServlet名前変更予定 -->
-		        <form action="LoginServlet" method="post">
+		        <form action="${pageContext.request.contextPath}/LoginServlet" method="post">
 		            <div class="form-group">
-		                <input type="text" name="username" value="admin" placeholder="ID">
+		                <input type="text" name="id" value="admin" placeholder="ID">
 		            </div>
 		            <div class="form-group">
 		                <input type="password" name="password" value="*****" placeholder="パスワード">
@@ -41,6 +37,5 @@
 		            passwordField.type = this.checked ? "text" : "password";
 		        });
 		    </script>
-		</div>
-	</div>
+
 <jsp:include page="../base/footer.html"></jsp:include>
