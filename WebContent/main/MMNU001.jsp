@@ -3,6 +3,7 @@
 <%
   request.setAttribute("bodyClass", "menu-body");
 %>
+a
 <jsp:include page="../base/header.jsp"></jsp:include>
 	<div class = "container">
 		<div class = "side-bar">
