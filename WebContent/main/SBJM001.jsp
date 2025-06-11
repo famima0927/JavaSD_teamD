@@ -5,16 +5,18 @@
 %>
 
 <jsp:include page="../base/header.jsp"></jsp:include>
-
+<style>
+  .btn-insert {
+    float: right;
+  }
+</style>
 <div class="container">
   <div class="side-bar">
     <jsp:include page="../base/base.jsp"></jsp:include>
   </div>
-
+<a href="<%= request.getContextPath() %>/main/Insert">新規登録</a>
   <div class="main">
     <!-- 一覧表のテーブル（見出し） -->
-    <a href="<%= request.getContextPath() %>/main/Insert">新規登録</a>
-
     <table>
       <thead>
         <tr>
