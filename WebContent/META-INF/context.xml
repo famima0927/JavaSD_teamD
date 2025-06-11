@@ -3,12 +3,25 @@
 <!-- 上記はEclipseの警告を消すための記述です。 -->
 
 <Context reloadable="true">
+	<!-- postgres SQLと接続するための設定 -->
+<!--
 	<Resource
-		name="jdbc/kouka"
+		name="jdbc/book"
+		auth="Container"
+		type="javax.sql.DataSource"
+		driverClassName="org.postgresql.Driver"
+		url="jdbc:postgresql://localhost:5432/book"
+		username="postgres"
+		password="pass"
+	/>
+-->
+	<!-- H2データベースと接続する設置 -->
+	<Resource
+		name="jdbc/JavaSDDB"
 		auth="Container"
 		type="javax.sql.DataSource"
 		driverClassName="org.h2.Driver"
-		url="jdbc:h2:tcp://localhost/~/kouka"
+		url="jdbc:h2:tcp://localhost/~/JavaSDDB"
 		username="sa"
 		password=""
 	/>
