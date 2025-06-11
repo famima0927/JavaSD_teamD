@@ -38,9 +38,9 @@ public class SubjectDao extends Dao {
 
 
 	public boolean delete(Subject suvject) throws Exception{
-		boolean isSave = false;
+		boolean isDelete = false;
 
-		return isSave;
+		return isDelete;
 	}
 }
 
