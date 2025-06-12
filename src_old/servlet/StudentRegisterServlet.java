@@ -43,10 +43,10 @@ public class StudentRegisterServlet extends HttpServlet {
         } else {
             // 学生番号重複チェック
             StudentDao dao = new StudentDao();
-//            if (dao.findByNo(no) != null) {
-//                hasError = true;
-//                request.setAttribute("noDuplicateError", "その学生番号は既に使われています。");
-//            }
+            if (dao.findByNo(no) != null) {
+                hasError = true;
+                request.setAttribute("noDuplicateError", "その学生番号は既に使われています。");
+            }
         }
 
         // 氏名未入力チェック
@@ -73,18 +73,18 @@ public class StudentRegisterServlet extends HttpServlet {
         student.setName(name);
         student.setEntYear(entYear);
         student.setClassNum(classNum);
-//        student.setAttend(false);
+        student.setAttend(false);
         student.setSchool(null); // 学校情報がフォームに無いのでnull
 
         // 登録処理
         StudentDao dao = new StudentDao();
-//        boolean success = dao.insert(student);
+        boolean success = dao.insert(student);
 
-//        if (success) {
-//            request.setAttribute("message", "学生情報を登録しました。");
-//        } else {
-//            request.setAttribute("message", "登録に失敗しました。");
-//        }
+        if (success) {
+            request.setAttribute("message", "学生情報を登録しました。");
+        } else {
+            request.setAttribute("message", "登録に失敗しました。");
+        }
 
         RequestDispatcher rd = request.getRequestDispatcher("/registerResult.jsp");
         rd.forward(request, response);
