@@ -14,7 +14,7 @@ import javax.sql.DataSource;
 
 import bean.Subject;
 import tool.CommonServlet;
-@WebServlet("/SubjectServlet")
+@WebServlet(urlPatterns={"/SBJM001"})
 public class SBJM001 extends CommonServlet  {
 @Override
     protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
@@ -45,7 +45,7 @@ public class SBJM001 extends CommonServlet  {
 
 		// JSPへ渡す
 		req.setAttribute("subjects", subjects);
-		req.getRequestDispatcher("${pageContext.request.contextPath}/main/SBJM001.jsp").forward(req, resp);
+		req.getRequestDispatcher("/main/SBJM001.jsp").forward(req, resp);
 
 	 } catch (Exception e) {
 		   //エラー時
