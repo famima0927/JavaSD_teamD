@@ -29,7 +29,6 @@
           <th>科目コード</th>
           <th>科目名</th>
         </tr>
-        <hr>
       </thead>
 
       <tbody>
@@ -45,8 +44,7 @@
       </tbody>
     </table>
 
-    <!-- topページ -->
-    <a href="<%= request.getContextPath() %>/main/index">Topページへ</a>
+
   </div>
 </div>
 
