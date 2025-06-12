@@ -20,4 +20,6 @@
 	 TestDaoの型作成
 	 記述者　小森谷
 
-6/
+6/12 ClassNumDao.javaの作成
+	 SchoolDao.javaの作成
+	 StudentDao.javaの作成

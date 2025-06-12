@@ -14,8 +14,9 @@
   <div class="side-bar">
     <jsp:include page="../base/base.jsp"></jsp:include>
   </div>
-<a href="<%= request.getContextPath() %>/main/Insert">新規登録</a>
+
   <div class="main">
+  <a href="<%= request.getContextPath() %>/main/Insert">新規登録</a>
     <!-- 一覧表のテーブル（見出し） -->
     <table>
       <thead>

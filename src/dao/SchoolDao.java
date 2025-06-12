@@ -8,7 +8,7 @@ import bean.School;
 
 public class SchoolDao extends Dao{
 
-	/**
+	/***
      * 学校コード（cd）をもとに SCHOOL テーブルから1件取得し、Schoolオブジェクトとして返す
      */
 	public School get(String no)throws Exception{
