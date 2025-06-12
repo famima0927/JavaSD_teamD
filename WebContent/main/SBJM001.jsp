@@ -29,16 +29,18 @@
           <th>科目コード</th>
           <th>科目名</th>
         </tr>
+        <hr>
       </thead>
+
       <tbody>
          <c:forEach items="${subjects}" var="subj" varStatus="st">
       <tr>
-
         <td>${subj.cd}</td>
         <td>${subj.name}</td>
         <td><a href="<%= request.getContextPath() %>/main/index">変更</a></td>
         <td><a href="<%= request.getContextPath() %>/main/index">削除</a></td>
       </tr>
+      <hr>
     </c:forEach>
       </tbody>
     </table>
