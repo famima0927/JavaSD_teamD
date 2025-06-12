@@ -45,7 +45,7 @@ public class SBJM001 extends CommonServlet  {
 
 		// JSPへ渡す
 		req.setAttribute("subjects", subjects);
-		req.getRequestDispatcher("/main/SBJM001.jsp").forward(req, resp);
+		req.getRequestDispatcher("${pageContext.request.contextPath}/main/SBJM001.jsp").forward(req, resp);
 
 	 } catch (Exception e) {
 		   //エラー時
