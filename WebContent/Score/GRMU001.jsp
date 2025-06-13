@@ -16,7 +16,7 @@
             <div class="menu-header">成績管理</div>
             <div class="content-box">
                 <%-- ① 検索フォーム --%>
-                <form action="TestList.action" method="get" class="search-form">
+                <form action="TestRegistController" method="post" class="search-form">
                     <table>
                         <thead>
                             <tr>
