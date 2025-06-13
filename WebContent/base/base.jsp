@@ -13,7 +13,7 @@
 
 
 
-		<a href = "">メニュー</a><br><br>
+		<a href = "${pageContext.request.contextPath}/main/MMNU001.jsp">メニュー</a><br><br>
 		<a href = "">学生管理</a>
 		<br>
 
@@ -21,10 +21,10 @@
 		<ul>
 
 			<li><a href = "">成績登録</a></li>
-			<li><a href = "">成績参照</a></li>
+			<li><a href = "${pageContext.request.contextPath}/servlet/TestListController">成績参照</a></li>
 		</ul>
 
-		<a href = "">科目管理</a>
+		<a href = "${pageContext.request.contextPath}/SubjectListServlet">科目管理</a>
 
 	</body>
 </html>

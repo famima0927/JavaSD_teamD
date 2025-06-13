@@ -13,7 +13,8 @@ import dao.TeacherDao;
 import tool.CommonServlet;
 @WebServlet("/LoginServlet")
 public class LoginExecuteController extends CommonServlet {
-
+	protected void get(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {}
     protected void post(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -23,11 +24,11 @@ public class LoginExecuteController extends CommonServlet {
         try {
             TeacherDao dao = new TeacherDao();
             Teacher teacher = dao.login(id, password); // loginメソッドを呼び出す
-
+            System.out.println(teacher);
             if (teacher != null) {
                 // ログイン成功
                 HttpSession session = request.getSession();
-                session.setAttribute("teacherID", teacher.getId());
+                session.setAttribute("teacherName", teacher.getName());
              // 2. ★★★その保管庫に "user" という名前で先生の情報を預ける★★★
                 session.setAttribute("user", teacher);
                 response.sendRedirect(request.getContextPath() + "/main/MMNU001.jsp");
@@ -44,7 +45,5 @@ public class LoginExecuteController extends CommonServlet {
             response.sendRedirect(request.getContextPath() + "/Login/LoginError.jsp");
         }
         }
-        protected void get(HttpServletRequest request, HttpServletResponse response)
-                throws ServletException, IOException {
-    }
+
 }

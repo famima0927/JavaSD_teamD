@@ -1,8 +1,9 @@
 package servlet;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Enumeration;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -13,68 +14,105 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bean.School;
-import bean.Student;
 import bean.Subject;
 import bean.Teacher;
-import bean.Test;
-import dao.TestDao;
+import bean.TestListSubject;
+import dao.ClassNumDao;
+import dao.SubjectDao;
+import dao.TestListSubjectDao;
 
 @WebServlet(urlPatterns = {"/servlet/TestRegistController"})
 public class TestRegistController extends HttpServlet {
 
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
+	        throws ServletException, IOException {
 
-        request.setCharacterEncoding("UTF-8");
-        HttpSession session = request.getSession();
-        Teacher teacher = (Teacher) session.getAttribute("user");
-        School school = teacher.getSchool();
+	    // セッションを取得
+	    HttpSession session = request.getSession();
+	    // ログイン中の教員情報を取得
+	    Teacher teacher = (Teacher) session.getAttribute("user");
 
-        TestDao testDao = new TestDao();
+	    // ログインしていない場合はログインページにリダイレクト
+	    if (teacher == null) {
+	        response.sendRedirect(request.getContextPath() + "/Login/LOGI001.jsp");
+	        return;
+	    }
 
-        // --- リクエストパラメータを取得 ---
-        String subjectCd = request.getParameter("subject_cd");
-        String testNoStr = request.getParameter("test_no");
-        int testNo = Integer.parseInt(testNoStr);
+	    // DAOをインスタンス化
+	    ClassNumDao classNumDao = new ClassNumDao();
+	    SubjectDao subjectDao = new SubjectDao();
+	    TestListSubjectDao testListSubjectDao = new TestListSubjectDao();
 
-        List<Test> testsToSave = new ArrayList<>();
-        Enumeration<String> parameterNames = request.getParameterNames();
+	    School school = teacher.getSchool();
 
-        // --- 全てのパラメータを走査し、点数データを抽出 ---
-        while (parameterNames.hasMoreElements()) {
-            String paramName = parameterNames.nextElement();
-            if (paramName.startsWith("point_")) {
-                String studentNo = paramName.substring("point_".length());
-                String pointStr = request.getParameter(paramName);
-                if (pointStr != null && !pointStr.isEmpty()) {
-                    int point = Integer.parseInt(pointStr);
+	    // --- ドロップダウンリスト用のデータを準備 ---
+	    List<String> classList = new ArrayList<>();
+	    List<Subject> subjectList = new ArrayList<>();
+	    try {
+	        classList = classNumDao.filter(school);
+	        subjectList = subjectDao.filter(school);
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    List<Integer> yearList = new ArrayList<>();
+	    int currentYear = LocalDate.now().getYear();
+	    for (int i = currentYear; i > currentYear - 10; i--) {
+	        yearList.add(i);
+	    }
+	    List<Integer> numList = Arrays.asList(1, 2);
 
-                    Test test = new Test();
-                    Student student = new Student();
-                    student.setNo(studentNo);
+	    // --- リクエストパラメータ（検索条件）を取得 ---
+	    String entYearStr = request.getParameter("f1_ent_year");
+	    String classNum = request.getParameter("f2_class_num");
+	    String subjectCd = request.getParameter("f3_subject");
 
-                    Subject subject = new Subject();
-                    subject.setCd(subjectCd);
+	    // ★★★★★★★★★★★★★★★★★★
+	    // ★★★ 以前のコードで欠けていた部分 ★★★
+	    String testNoStr = request.getParameter("f4_test_no"); // ①「回数」のパラメータを取得
+	    int testNo = 0; // ② testNo変数を宣言
+	    int entYear = 0;
 
-                    test.setStudent(student);
-                    test.setSubject(subject);
-                    test.setSchool(school);
-                    test.setNo(testNo);
-                    test.setPoint(point);
+	    if (entYearStr != null && !entYearStr.isEmpty()) {
+	        entYear = Integer.parseInt(entYearStr);
+	    }
+	    if (testNoStr != null && !testNoStr.isEmpty()) {
+	        testNo = Integer.parseInt(testNoStr); // ③ 回数が選択されていれば、数値に変換
+	    }
+	    // ★★★★★★★★★★★★★★★★★★
 
-                    testsToSave.add(test);
-                }
-            }
-        }
+	    List<TestListSubject> testList = null;
 
-        // --- DAOを呼び出してDBに保存 ---
-        try {
-            testDao.save(testsToSave);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+	    // --- 検索条件が指定されていればDAOを呼び出す ---
+	    if (entYear != 0 && classNum != null && !classNum.equals("0") && subjectCd != null && !subjectCd.equals("0")) {
+	        Subject subject = new Subject();
+	        subject.setCd(subjectCd);
+	        try {
+	            testList = testListSubjectDao.filter(entYear, classNum, subject, school);
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	    }
 
-        // --- 完了ページにフォワード ---
-        request.getRequestDispatcher("/Score/GRMU002.jsp").forward(request, response);
-    }
+	    // --- JSPに渡すデータをリクエストスコープにセット ---
+	    request.setAttribute("ent_year_set", yearList);
+	    request.setAttribute("class_num_set", classList);
+	    request.setAttribute("subjects", subjectList);
+	    request.setAttribute("test_no_set", numList);
+
+	    request.setAttribute("ent_year", entYear);
+	    request.setAttribute("class_num", classNum);
+	    request.setAttribute("subject_cd", subjectCd);
+
+	    // ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+	    // ★★★ ④ 宣言したtestNo変数をJSPに渡す ★★★
+	    request.setAttribute("test_no", testNo);
+	    // ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+
+	    if (testList != null) {
+	        request.setAttribute("test_list", testList);
+	    }
+
+	    // --- JSPにフォワード ---
+	    request.getRequestDispatcher("/Score/GRMU001.jsp").forward(request, response);
+	}
 }

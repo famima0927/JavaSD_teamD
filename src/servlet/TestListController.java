@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,6 +25,29 @@ import dao.TestListSubjectDao;
 
 @WebServlet(urlPatterns = {"/servlet/TestListController"})
 public class TestListController extends HttpServlet {
+   // ... 他のフィールド ...
+
+    // ↓↓↓ この行を修正します ↓↓↓
+
+    // 修正前（おそらくこうなっている）:
+    // private Map<Integer, Integer> points;
+
+    // 修正後:
+    private Map<Integer, Integer> points = new HashMap<>(); // ★ `= new HashMap<>();` を追加
+
+    // ... (ゲッター/セッターは変更なし) ...
+
+    public Map<Integer, Integer> getPoints() {
+        return points;
+    }
+    public void setPoints(Map<Integer, Integer> points) {
+        this.points = points;
+    }
+    public void putPoint(int key, int value) {
+        // pointsが初期化されているので、ここでエラーは起きなくなる
+        this.points.put(key, value);
+    }
+
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -66,6 +91,8 @@ public class TestListController extends HttpServlet {
         String entYearStr = request.getParameter("f1_ent_year");
         String classNum = request.getParameter("f2_class_num");
         String subjectCd = request.getParameter("f3_subject");
+        String testNoStr = request.getParameter("f4_test_no"); // 「回数」のパラメータを取得
+        int testNo = 0; // testNo変数を宣言し、初期値を0に設定
 
         int entYear = 0;
         if (entYearStr != null && !entYearStr.isEmpty()) {
@@ -94,6 +121,7 @@ public class TestListController extends HttpServlet {
         request.setAttribute("ent_year", entYear);
         request.setAttribute("class_num", classNum);
         request.setAttribute("subject_cd", subjectCd);
+        request.setAttribute("test_no", testNo); // 検索された「回数」もJSPに渡す
 
         if (testList != null) {
             request.setAttribute("test_list", testList);

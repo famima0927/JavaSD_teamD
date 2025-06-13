@@ -13,12 +13,21 @@
 			<div class="menu-header">メニュー</div>
 			  <div class="menu-container">
 			    <div class="menu-box red">
+<<<<<<< HEAD
 			      <a href="${pageContext.request.contextPath}/StudentList">学生管理</a>
+=======
+			      <a href="">学生管理</a>
+>>>>>>> branch 'master' of https://github.com/famima0927/JavaSD_teamD.git
 			    </div>
 			    <div class="menu-box green">
 			      <div>成績管理</div>
+<<<<<<< HEAD
 			      <a href="#">成績登録</a><br>
 			      <a href="#">成績参照</a>
+=======
+			      <a href="${pageContext.request.contextPath}/servlet/StudentRegister">成績登録</a><br>
+			      <a href="${pageContext.request.contextPath}/servlet/TestListController">成績参照</a>
+>>>>>>> branch 'master' of https://github.com/famima0927/JavaSD_teamD.git
 			    </div>
 			    <div class="menu-box blue">
 			      <a href="${pageContext.request.contextPath}/SubjectServlet">科目管理</a>
