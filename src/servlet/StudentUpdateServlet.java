@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,50 +9,55 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/StudentUpdate")
+import bean.Student;
+import dao.ClassNumDao;
+import dao.StudentDao;
+
+/**
+ * 学生情報変更ページを表示するためのサーブレット
+ */
+// ↓↓↓ これがURLとこのプログラムを結びつける最も重要な部分です！ ↓↓↓
+@WebServlet("/StudentUpdate.action")
 public class StudentUpdateServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-//        StudentDAO studentDao = new StudentDAO();
-//        ClassNumDAO classNumDao = new ClassNumDAO();
-//
-//        String studentNo = request.getParameter("no");
-//
-//        Student student = studentDao.get(studentNo);
-//
-//        List<String> classList = classNumDao.getFilterBySchoolCd("oom");
-//
-//        request.setAttribute("student", student);
-//        request.setAttribute("classList", classList);
+        // DAOをインスタンス化
+        StudentDao studentDao = new StudentDao();
+        ClassNumDao classNumDao = new ClassNumDao();
 
-        request.getRequestDispatcher("student_update.jsp").forward(request, response);
-    }
+        // JSPに渡すための変数
+        Student student = null;
+        List<String> classNumSet = null;
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+        try {
+            // 1. リクエストパラメータから学生番号を取得
+            String no = request.getParameter("no");
 
-        request.setCharacterEncoding("UTF-8");
+            // 2. 学生番号を基にデータベースから学生情報を取得
+            student = studentDao.get(no);
 
-//        StudentDAO studentDao = new StudentDAO();
-//        Student student = new Student();
-//
-//        String studentNo = request.getParameter("no");
-//        String studentName = request.getParameter("name");
-//        String classNum = request.getParameter("class_num");
-//        String isAttendStr = request.getParameter("is_attend");
-//        boolean isAttend = (isAttendStr != null && isAttendStr.equals("on"));
-//
-//        student.setNo(studentNo);
-//        student.setName(studentName);
-//        student.setClassNum(classNum);
-//        student.setAttend(isAttend);
-//
-//        studentDao.update(student);
+            // 3. 学生が所属する学校のクラス一覧を取得
+            //    (student.getSchool()で学校情報を取得できることを想定)
+            if (student != null) {
+                classNumSet = classNumDao.filter(student.getSchool());
+            }
 
-        request.getRequestDispatcher("student_update_done.jsp").forward(request, response);
+            // 4. JSPに渡すために、取得した情報をリクエストスコープにセット
+            request.setAttribute("student", student);
+            request.setAttribute("class_num_set", classNumSet);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            // エラーが発生した場合、エラーページにフォワードするなどの処理
+            request.setAttribute("error", "学生情報の取得中にエラーが発生しました。");
+            request.getRequestDispatcher("/error.jsp").forward(request, response);
+            return; // 以降の処理を中断
+        }
+
+        // 5. 学生情報変更ページ (student_update.jsp) にフォワード
+        request.getRequestDispatcher("/student/student_update.jsp").forward(request, response);
     }
 }

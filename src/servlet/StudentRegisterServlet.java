@@ -4,89 +4,99 @@ import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.School;
 import bean.Student;
 import dao.StudentDao;
 
+@WebServlet("/StudentRegister.action")
 public class StudentRegisterServlet extends HttpServlet {
+
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         request.setCharacterEncoding("UTF-8");
 
-        // パラメータ取得
+        boolean hasError = false;
+        String entYearStr = request.getParameter("ent_year");
         String no = request.getParameter("no");
         String name = request.getParameter("name");
-        String entYearStr = request.getParameter("entYear");
-        String classNum = request.getParameter("classNum");
-
-        // エラーフラグ & メッセージ
-        boolean hasError = false;
-        StringBuilder errorMessage = new StringBuilder();
-
-        // 入学年度チェック（未選択＝空欄 or null）
+        String classNum = request.getParameter("class_num");
         int entYear = 0;
+
         if (entYearStr == null || entYearStr.isEmpty()) {
             hasError = true;
             request.setAttribute("entYearError", "入学年度を選択してください。");
         } else {
-            entYear = Integer.parseInt(entYearStr);
+            try {
+                entYear = Integer.parseInt(entYearStr);
+            } catch (NumberFormatException e) {
+                hasError = true;
+                request.setAttribute("entYearError", "入学年度が不正です。");
+            }
         }
 
-        // 学生番号未入力チェック
         if (no == null || no.isEmpty()) {
             hasError = true;
             request.setAttribute("noError", "学生番号を入力してください。");
         } else {
-            // 学生番号重複チェック
             StudentDao dao = new StudentDao();
-//            if (dao.findByNo(no) != null) {
-//                hasError = true;
-//                request.setAttribute("noDuplicateError", "その学生番号は既に使われています。");
-//            }
+            try {
+                if (dao.get(no) != null) {
+                    hasError = true;
+                    request.setAttribute("noDuplicateError", "その学生番号は既に使われています。");
+                }
+            } catch (Exception e) {
+                hasError = true;
+                request.setAttribute("noDuplicateError", "データベースエラーが発生しました。");
+                e.printStackTrace();
+            }
         }
 
-        // 氏名未入力チェック
         if (name == null || name.isEmpty()) {
             hasError = true;
             request.setAttribute("nameError", "氏名を入力してください。");
         }
 
-        // エラーがある場合、フォームへ戻す
         if (hasError) {
             request.setAttribute("no", no);
             request.setAttribute("name", name);
-            request.setAttribute("entYear", entYearStr);
+            request.setAttribute("entYearStr", entYearStr);
             request.setAttribute("classNum", classNum);
 
-            RequestDispatcher rd = request.getRequestDispatcher("/registerForm.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/student/student_register.jsp");
             rd.forward(request, response);
             return;
         }
 
-        // 学生オブジェクト作成
-        Student student = new Student();
-        student.setNo(no);
-        student.setName(name);
-        student.setEntYear(entYear);
-        student.setClassNum(classNum);
-//        student.setAttend(false);
-        student.setSchool(null); // 学校情報がフォームに無いのでnull
+        try {
+            Student student = new Student();
+            student.setNo(no);
+            student.setName(name);
+            student.setEntYear(entYear);
+            student.setClassNum(classNum);
+            student.setIsAttend(true);
 
-        // 登録処理
-        StudentDao dao = new StudentDao();
-//        boolean success = dao.insert(student);
+            School school = new School();
+            school.setCd("oom");
+            student.setSchool(school);
 
-//        if (success) {
-//            request.setAttribute("message", "学生情報を登録しました。");
-//        } else {
-//            request.setAttribute("message", "登録に失敗しました。");
-//        }
+            StudentDao dao = new StudentDao();
+            dao.save(student);
 
-        RequestDispatcher rd = request.getRequestDispatcher("/registerResult.jsp");
-        rd.forward(request, response);
+            // ★★★ ここを修正 ★★★
+            // リダイレクト先を "/StudentList" に統一
+            response.sendRedirect("StudentList");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            request.setAttribute("error", "データの保存中にエラーが発生しました。");
+            request.getRequestDispatcher("/error.jsp").forward(request, response);
+        }
     }
 }
