@@ -43,7 +43,7 @@
       </tr>
       <hr>
     </c:forEach>
-      </tbody>s
+      </tbody>
     </table>
 
 
