@@ -24,11 +24,11 @@ public class LoginExecuteController extends CommonServlet {
         try {
             TeacherDao dao = new TeacherDao();
             Teacher teacher = dao.login(id, password); // loginメソッドを呼び出す
-
+            System.out.println(teacher);
             if (teacher != null) {
                 // ログイン成功
                 HttpSession session = request.getSession();
-                session.setAttribute("teacherID", teacher.getId());
+                session.setAttribute("teacherName", teacher.getName());
              // 2. ★★★その保管庫に "user" という名前で先生の情報を預ける★★★
                 session.setAttribute("user", teacher);
                 response.sendRedirect(request.getContextPath() + "/main/MMNU001.jsp");

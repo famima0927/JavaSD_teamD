@@ -16,7 +16,7 @@
 		    HttpSession UserSession = request.getSession(false); // セッションがあれば取得、なければnull
 		    String teacherID = null;
 		    if (session != null) {
-		        teacherID = (String) session.getAttribute("teacherID");
+		        teacherID = (String) session.getAttribute("teacherName");
 		    }
 		%>
 
