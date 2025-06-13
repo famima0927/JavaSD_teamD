@@ -13,7 +13,7 @@
 
 
 
-		<a href = "">メニュー</a><br><br>
+		<a href = "${pageContext.request.contextPath}/main/MMNU001.jsp">メニュー</a><br><br>
 		<a href = "">学生管理</a>
 		<br>
 
