@@ -15,7 +15,7 @@ public class TestListSubject implements Serializable {
     private String classNum;
 
     // ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
-    // ★★★ この行で必ず new HashMap<>() による初期化が必要です ★★★
+    // ★★★ この行で `= new HashMap<>();` を付けて宣言と同時に初期化します ★★★
     private Map<Integer, Integer> points = new HashMap<>();
     // ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
 
@@ -54,6 +54,7 @@ public class TestListSubject implements Serializable {
 
     // pointsに値を追加するための便利なメソッド
     public void putPoint(int key, int value) {
+        // この時点で this.points は空のHashMapとして存在するため、エラーにならない
         this.points.put(key, value);
     }
 }

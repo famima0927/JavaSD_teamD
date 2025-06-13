@@ -16,7 +16,7 @@
             <div class="menu-header">成績管理</div>
             <div class="content-box">
                 <%-- ① 検索フォーム --%>
-                <form action="TestRegistController" method="post" class="search-form">
+                <form action="TestRegistController" method="get" class="search-form">
                     <table>
                         <thead>
                             <tr>
@@ -72,7 +72,7 @@
                 <%-- ② 検索結果表示 & 成績入力フォーム --%>
                 <%-- test_listが空でない場合にのみ表示 --%>
                 <c:if test="${not empty test_list}">
-                    <form action="TestRegist.action" method="post" class="result-form">
+                    <form action="TestRegistController" method="post" class="result-form">
 
                         <%-- どの科目のどの回に対する成績かをコントローラーに伝えるための隠しフィールド --%>
                         <input type="hidden" name="subject_cd" value="${subject_cd}">
