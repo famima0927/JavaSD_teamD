@@ -13,7 +13,7 @@ import bean.Subject;
 import tool.CommonServlet;
 import tool.Page;
 
-@WebServlet(urlPatterns = {"/SubjectRegisterServlet"})
+@WebServlet("/SubjectRegisterServlet")
 public class SubjectRegisterServlet extends CommonServlet {
 
     /**
