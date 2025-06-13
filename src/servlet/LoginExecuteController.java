@@ -13,7 +13,8 @@ import dao.TeacherDao;
 import tool.CommonServlet;
 @WebServlet("/LoginServlet")
 public class LoginExecuteController extends CommonServlet {
-
+	protected void get(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {}
     protected void post(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -44,7 +45,5 @@ public class LoginExecuteController extends CommonServlet {
             response.sendRedirect(request.getContextPath() + "/Login/LoginError.jsp");
         }
         }
-        protected void get(HttpServletRequest request, HttpServletResponse response)
-                throws ServletException, IOException {
-    }
+
 }
