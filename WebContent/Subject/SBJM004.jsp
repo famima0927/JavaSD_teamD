@@ -20,6 +20,7 @@
 
   <div class="main">
   <div class="menu-header">科目情報変更</div>
+  <p>${subj.cd}</p>
 
   </div>
   </div>
