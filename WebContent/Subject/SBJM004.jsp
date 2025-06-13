@@ -20,7 +20,11 @@
 
   <div class="main">
   <div class="menu-header">科目情報変更</div>
- <label>${Subj.cd}</label>
+  <form action="SubjectEditServlet" method="post">
+  <label>科目コード</label>
+  <input type="text" name="name" value="${subject.cd}" required><br>
+  </form>
+
 
   </div>
   </div>
