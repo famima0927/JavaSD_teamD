@@ -1,4 +1,4 @@
-package front; // パッケージ名はプロジェクトに合わせてください
+package tool; // パッケージ名はプロジェクトに合わせてください
 
 import java.io.IOException;
 
@@ -15,16 +15,16 @@ public class FrontController extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         try {
-            // URLから対応するActionクラスを特定する
-            String path = request.getServletPath().substring(1); // 例: "/Login.action" -> "Login.action"
-            String name = path.replace(".a", "A").replace("ction", ""); // 例: "Login.action" -> "LoginAction"
+            // URLから対応するControllerクラスを特定する
+            String path = request.getServletPath().substring(1); // 例: "/Login.Controller" -> "Login.Controller"
+            String name = path.replace(".c", "C").replace("ontroller", ""); // 例: "Login.Controller" -> "LoginController"
 
-            // Actionクラスのフルネームからインスタンスを生成
-            // 例: "action.LoginAction"
-            Action action = (Action)Class.forName("action." + name).newInstance();
+            // Controllerクラスのフルネームからインスタンスを生成
+            // 例: "Controller.LoginController"
+            Controller Controller = (Controller)Class.forName("Controller." + name).newInstance();
 
-            // 特定したActionクラスのexecuteメソッドを実行
-            action.execute(request, response);
+            // 特定したControllerクラスのexecuteメソッドを実行
+            Controller.execute(request, response);
 
         } catch (Exception e) {
             // エラーハンドリング

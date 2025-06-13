@@ -4,13 +4,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * すべてのActionクラスの親となる抽象クラス。
+ * すべてのControllerクラスの親となる抽象クラス。
  * このクラスを継承するクラスは、executeメソッドを必ず実装する必要がある。
  */
-public abstract class Action {
+public abstract class Controller {
 
     /**
-     * このメソッドは、各具象Actionクラス（例: LoginAction, TestListActionなど）で
+     * このメソッドは、各具象Controllerクラス（例: LoginController, TestListControllerなど）で
      * 実際の処理を実装（オーバーライド）するためのもの。
      *
      * @param request : HttpServletRequest httpリクエスト
