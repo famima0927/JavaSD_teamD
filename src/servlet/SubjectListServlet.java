@@ -1,4 +1,4 @@
-/*package servlet;
+package servlet;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,7 +14,7 @@ import javax.sql.DataSource;
 
 import bean.Subject;
 import tool.CommonServlet;
-@WebServlet("/SubjectServlet")
+@WebServlet("/SubjectListServlet")
 public class SubjectListServlet extends CommonServlet  {
 @Override
     protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
@@ -45,7 +45,7 @@ public class SubjectListServlet extends CommonServlet  {
 
 		// JSPへ渡す
 		req.setAttribute("subjects", subjects);
-		req.getRequestDispatcher("main/SBJM001.jsp").forward(req, resp);
+		req.getRequestDispatcher("Subject/SBJM001.jsp").forward(req, resp);
 
 	 } catch (Exception e) {
 		   //エラー時
@@ -58,4 +58,3 @@ protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exc
 
 }
 }
-*/
