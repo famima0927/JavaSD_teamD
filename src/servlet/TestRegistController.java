@@ -19,7 +19,7 @@ import bean.Teacher;
 import bean.Test;
 import dao.TestDao;
 
-@WebServlet(urlPatterns = {"/servlet/TestRegist"})
+@WebServlet(urlPatterns = {"/servlet/TestRegistController"})
 public class TestRegistController extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -75,6 +75,6 @@ public class TestRegistController extends HttpServlet {
         }
 
         // --- 完了ページにフォワード ---
-        request.getRequestDispatcher("/score_management/test_regist_done.jsp").forward(request, response);
+        request.getRequestDispatcher("/Score/GRMU002.jsp").forward(request, response);
     }
 }

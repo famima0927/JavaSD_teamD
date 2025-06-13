@@ -21,7 +21,7 @@ import dao.ClassNumDao;
 import dao.SubjectDao;
 import dao.TestListSubjectDao;
 
-@WebServlet(urlPatterns = {"/servlet/TestList"})
+@WebServlet(urlPatterns = {"/servlet/TestListController"})
 public class TestListController extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -34,7 +34,7 @@ public class TestListController extends HttpServlet {
 
         // ログインしていない場合はログインページにリダイレクト
         if (teacher == null) {
-            response.sendRedirect("/application_name/login.jsp"); // TODO: アプリケーション名とパスを要確認
+        	response.sendRedirect(request.getContextPath() + "/Login/LOGI001.jsp"); // TODO: アプリケーション名とパスを要確認
             return;
         }
 
@@ -100,6 +100,6 @@ public class TestListController extends HttpServlet {
         }
 
         // --- JSPにフォワード ---
-        request.getRequestDispatcher("/score_management/grade_list.jsp").forward(request, response);
+        request.getRequestDispatcher("/Score/GRMU001.jsp").forward(request, response);
     }
 }

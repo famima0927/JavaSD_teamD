@@ -13,7 +13,7 @@
 			<div class="menu-header">メニュー</div>
 			  <div class="menu-container">
 			    <div class="menu-box red">
-			      <a href="#">学生管理</a>
+			      <a href="${pageContext.request.contextPath}/servlet/TestListController">成績管理</a>
 			    </div>
 			    <div class="menu-box green">
 			      <div>成績管理</div>
