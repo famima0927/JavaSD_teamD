@@ -1,4 +1,4 @@
-package servlet;
+/*package servlet;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,3 +23,4 @@ public class test extends CommonServlet {
 	}
 
 }
+*/

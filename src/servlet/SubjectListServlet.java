@@ -1,4 +1,4 @@
-package servlet;
+/*package servlet;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -58,3 +58,4 @@ protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exc
 
 }
 }
+*/
