@@ -21,7 +21,7 @@
   <div class="main">
   <div class="menu-header">科目一覧</div>
    <div class="right-align">
-  <a href="<%= request.getContextPath() %>/main/Insert">新規登録</a></div>
+  <a href="<%= request.getContextPath() %>/SubjectRegisterServlet">新規登録</a></div>
     <!-- 一覧表のテーブル（見出し） -->
     <table>
       <thead>
