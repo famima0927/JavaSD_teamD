@@ -14,7 +14,7 @@ import tool.CommonServlet;
 @WebServlet("/LoginServlet")
 public class LoginExecuteController extends CommonServlet {
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void post(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         String id = request.getParameter("id");
