@@ -13,15 +13,15 @@
 			<div class="menu-header">メニュー</div>
 			  <div class="menu-container">
 			    <div class="menu-box red">
-			      <a href="${pageContext.request.contextPath}/servlet/TestListController">成績管理</a>
+			      <a href="${pageContext.request.contextPath}/StudentList">学生管理</a>
 			    </div>
 			    <div class="menu-box green">
 			      <div>成績管理</div>
-			      <a href="${pageContext.request.contextPath}/RegisterServlet">成績登録</a><br>
+			      <a href="#">成績登録</a><br>
 			      <a href="#">成績参照</a>
 			    </div>
 			    <div class="menu-box blue">
-			      <a href="${pageContext.request.contextPath}/SubjectListServlet">科目管理</a>
+			      <a href="${pageContext.request.contextPath}/SubjectServlet">科目管理</a>
 			    </div>
 			  </div>
 		</div>
