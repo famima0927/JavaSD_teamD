@@ -26,4 +26,4 @@
 			  </div>
 		</div>
 	</div>
-<jsp:include page="../base/footer.html"></jsp:include>
+<jsp:include page="../base/footer.html"></jsp:include>z
