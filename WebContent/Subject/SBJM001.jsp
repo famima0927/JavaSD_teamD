@@ -36,8 +36,10 @@
       <tr>
         <td>${subj.cd}</td>
         <td>${subj.name}</td>
-        <td><a href="<%= request.getContextPath() %>/main/index">変更</a></td>
-        <td><a href="<%= request.getContextPath() %>/main/index">削除</a></td>
+        <td><a href="<%= request.getContextPath() %>/Subject/SBJM004?id=${subj.cd}">変更</a></td>
+        <td><a href="<%= request.getContextPath() %>/Subject/SBJM006?id=${subj.cd}">削除</a></td>
+
+
       </tr>
       <hr>
     </c:forEach>

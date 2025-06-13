@@ -27,7 +27,7 @@ public class SubjectRegisterServlet extends CommonServlet {
 		Page.header(out);
 
         // フォワード：ブラウザのURLは変わらず、サーバー内部でページを切り替える
-        req.getRequestDispatcher("/subject/SBJM002.jsp").forward(req, resp);}
+        req.getRequestDispatcher("/Subject/SBJM002.jsp").forward(req, resp);}
 
 
     @Override
@@ -67,7 +67,7 @@ public class SubjectRegisterServlet extends CommonServlet {
 
 			if (num >0) {
 				// 正常登録メッセージをセット
-				req.getRequestDispatcher("/subject/SBJM003.jsp").forward(req, resp);
+				req.getRequestDispatcher("/Subject/SBJM003.jsp").forward(req, resp);
 				req.setAttribute("message", "登録されました。");
 
 			} else {
@@ -82,12 +82,12 @@ public class SubjectRegisterServlet extends CommonServlet {
 			System.out.println("cd = " + req.getParameter("cd"));
 			System.out.println("cd = " + req.getParameter("cd"));
 			System.out.println("name = " + req.getParameter("name"));
-			req.getRequestDispatcher("/subject/SBJM002.jsp").forward(req, resp);
+			req.getRequestDispatcher("/Subject/SBJM002.jsp").forward(req, resp);
 		}
 
 
     // フォワード：ブラウザのURLは変わらず、サーバー内部でページを切り替える
-    req.getRequestDispatcher("/subject/SBJM002.jsp").forward(req, resp);}}
+    req.getRequestDispatcher("/Subject/SBJM002.jsp").forward(req, resp);}}
 
 
 
