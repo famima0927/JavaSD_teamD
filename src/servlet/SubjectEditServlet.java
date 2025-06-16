@@ -14,8 +14,8 @@ public class SubjectEditServlet extends CommonServlet  {
 
 // --- 情報の取得 ---
 	try {
-		 String cd = req.getParameter("cd");
-
+		 String cd = req.getParameter("id");
+		 System.out.println("cd = " + req.getParameter("cd"));
 		    SchoolDao schD = new SchoolDao();
 		    SubjectDao subD = new SubjectDao();
 		    School sch = schD.get("oom"); // 学校IDを固定で取得
