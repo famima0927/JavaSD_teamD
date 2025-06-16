@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
 import bean.School;
-import bean.Subject;
 import dao.SchoolDao;
 import dao.SubjectDao;
 import tool.CommonServlet;
@@ -40,15 +39,13 @@ public class SubjectDeleteServlet extends CommonServlet  {
 protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 
 	try {
-		// --- ① フォーム入力から学生情報を取得 ---
-		Subject Subject = new Subject();
-		Subject.setCd(req.getParameter("cd"));
-		Subject.setName(req.getParameter("name"));
-		System.out.println("cd = " + req.getParameter("cd"));
-		System.out.println("name = " + req.getParameter("name"));
+		// --- ① フォーム情報を取得 ---
 
+		String CD=req.getParameter("cd");
 
-		// --- ② 学生情報をDBに登録 ---
+		System.out.println("cd = " + CD);
+
+		// --- ② DBに登録 ---
 
 		InitialContext ic=new InitialContext();
 		DataSource ds=(DataSource)ic.lookup(
@@ -56,7 +53,7 @@ protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exc
 		Connection con=ds.getConnection();
 		//SQL文の準備
 		 PreparedStatement st = con.prepareStatement("DELETE FROM SUBJECT WHERE CD = ?");
-		    st.setString(1, Subject.getCd());
+		    st.setString(1,CD);
 
 		    // SQL文の実行（DBから削除）
 		    int num = st.executeUpdate();
@@ -66,12 +63,12 @@ protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exc
 		con.close();
 
 		if (num >0) {
-			// 正常登録メッセージをセット
-			req.getRequestDispatcher("/Subject/SBJM005.jsp").forward(req, resp);
+			// 正常削除メッセージをセット
+			req.getRequestDispatcher("/Subject/SBJM007.jsp").forward(req, resp);
 
 
 		} else {
-			// 学生登録に失敗した場合のメッセージ
+			// 削除に失敗した場合のメッセージ
 			req.setAttribute("error", "登録に失敗しました。");
 		}
 
@@ -80,14 +77,13 @@ protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exc
 		e.printStackTrace();
 		req.setAttribute("error", "入力内容が不正です：" + e.getMessage());
 		System.out.println("cd = " + req.getParameter("cd"));
-		System.out.println("cd = " + req.getParameter("cd"));
 		System.out.println("name = " + req.getParameter("name"));
-		req.getRequestDispatcher("/Subject/SBJM004.jsp").forward(req, resp);
+		req.getRequestDispatcher("/Subject/SBJM006.jsp").forward(req, resp);
 	}
 
 
 // フォワード：ブラウザのURLは変わらず、サーバー内部でページを切り替える
-req.getRequestDispatcher("/Subject/SBJM004.jsp").forward(req, resp);
+req.getRequestDispatcher("/Subject/SBJM006.jsp").forward(req, resp);
 
 
 }
