@@ -21,18 +21,16 @@
   <div class="main">
   <div class="menu-header">科目情報変更</div>
   <form action="SubjectEditServlet" method="post">
-  <label>科目コード</label>
-  <input type="text" name="cd" value="${subject.cd}"readonly ><br>
+  <label>科目コード</label><br>
+  <input type="text" value="${subject.cd}"readonly ><br>
   <%-- コース選択（必須） --%>
-      <label>科目名：</label>
-      <input type="text" name="name" required><br>
+      <label>科目名：</label><br>
+      <input type="text" name="name" Value="${subject.name}"required><br>
       <%-- 送信ボタン --%>
       <input type="submit" value="変更">
   </form>
 
- <c:if test="${not empty error}">
-      <p style="color: red">${error}</p>
-    </c:if>
+
 
   </div>
   </div>
