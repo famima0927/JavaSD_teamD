@@ -17,21 +17,22 @@ public class TestDao extends Dao {
     /**
      * [private] PKを指定してTestを1件取得する。privateなsave/deleteから利用される。
      */
-    private Test get(Student student, Subject subject, int no, Connection connection) throws Exception {
+	// privateなgetメソッドは、schoolも引数で受け取るように変更
+    private Test get(Student student, Subject subject, School school, int no, Connection connection) throws Exception { // ★修正点1
         Test test = null;
         String sql = "SELECT * FROM TEST WHERE STUDENT_NO = ? AND SUBJECT_CD = ? AND SCHOOL_CD = ? AND NO = ?";
 
         try (PreparedStatement st = connection.prepareStatement(sql)) {
             st.setString(1, student.getNo());
             st.setString(2, subject.getCd());
-            st.setString(3, student.getSchool().getCd());
+            st.setString(3, school.getCd()); // ★修正点2: 引数のschoolを直接使う
             st.setInt(4, no);
             try (ResultSet rs = st.executeQuery()) {
                 if (rs.next()) {
                     test = new Test();
                     test.setStudent(student);
                     test.setSubject(subject);
-                    test.setSchool(student.getSchool());
+                    test.setSchool(school);
                     test.setNo(no);
                     test.setPoint(rs.getInt("POINT"));
                     test.setClassNum(rs.getString("CLASS_NUM"));
@@ -41,16 +42,12 @@ public class TestDao extends Dao {
         return test;
     }
 
-    /**
-     * [参照] TestのPKを指定して1件取得する
-     */
+    // publicなgetメソッドは変更なし
     public Test get(Student student, Subject subject, School school, int no) throws Exception {
         try (Connection con = getConnection()) {
-            // privateのgetメソッドを呼び出す
-            return get(student, subject, no, con);
+            return get(student, subject, school, no, con);
         }
     }
-
     /**
      * [private] ResultSetをTestリストに変換するヘルパーメソッド
      */
@@ -108,18 +105,16 @@ public class TestDao extends Dao {
      */
     public boolean save(List<Test> list) throws Exception {
         try (Connection con = getConnection()) {
-            // トランザクションを開始
             con.setAutoCommit(false);
             try {
                 for (Test test : list) {
                     save(test, con);
                 }
-                con.commit(); // 全て成功したらコミット
+                con.commit();
                 return true;
             } catch (Exception e) {
-                con.rollback(); // エラーが発生したらロールバック
-                e.printStackTrace();
-                return false;
+                con.rollback();
+                throw e; // エラーを再スローして呼び出し元に伝える
             }
         }
     }
@@ -128,8 +123,9 @@ public class TestDao extends Dao {
      * [private] 1件の成績データを保存するヘルパーメソッド
      */
     private boolean save(Test test, Connection connection) throws Exception {
-        // 既存データをチェック
-        Test old = get(test.getStudent(), test.getSubject(), test.getNo(), connection);
+        // 既存データをチェックするためにgetを呼び出す
+        // ★修正点3: testオブジェクトが持つschool情報をgetに渡す
+        Test old = get(test.getStudent(), test.getSubject(), test.getSchool(), test.getNo(), connection);
         int count = 0;
 
         if (old == null) {
@@ -141,7 +137,7 @@ public class TestDao extends Dao {
                 st.setString(3, test.getSchool().getCd());
                 st.setInt(4, test.getNo());
                 st.setInt(5, test.getPoint());
-                st.setString(6, test.getStudent().getClassNum());
+                st.setString(6, test.getStudent().getClassNum()); // getStudent()のClassNumはControllerでセットされていないので注意
                 count = st.executeUpdate();
             }
         } else {
@@ -158,7 +154,6 @@ public class TestDao extends Dao {
         }
         return count > 0;
     }
-
     /**
      * [削除] 複数の成績データをまとめて削除する（トランザクション処理）
      */
