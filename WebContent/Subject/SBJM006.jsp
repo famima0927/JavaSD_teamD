@@ -20,15 +20,15 @@
 
   <div class="main">
   <div class="menu-header">科目情報削除</div>
-  <form action="SubjectEditServlet" method="post">
-  <label>「"${subject.name}"（"${subject.cd}"）を削除してもよろしいでしょうか」</label><br>
-  <input type="text" value="${subject.cd}"readonly ><br>
-  <%-- コース選択（必須） --%>
-      <label>科目名：</label><br>
-      <input type="text" name="name" Value="${subject.name}"required><br>
-      <%-- 送信ボタン --%>
-      <input type="submit" value="変更">
-  </form>
+   <form action="SubjectDeleteServlet" method="post">
+      <label>「<strong>${subject.name}</strong>」（<strong>${subject.cd}</strong>）を削除してもよろしいでしょうか？</label>
+
+      <!-- 削除対象CDをhiddenで送信 -->
+      <input type="hidden" name="cd" value="${subject.cd}">
+
+      <!-- 送信ボタン -->
+      <input type="submit" value="削除">
+    </form>
 
 
 
