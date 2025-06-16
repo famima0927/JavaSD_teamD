@@ -12,25 +12,23 @@
 		<div class = "main">
 			<div class="menu-header">メニュー</div>
 			  <div class="menu-container">
-			  <%--学生管理 登録・変更が可能 --%>
 			    <div class="menu-box red">
 			      <a href="${pageContext.request.contextPath}/StudentList">学生管理</a>
+			      <a href="">学生管理</a>
 
 			    </div>
-			    <%--
-			    成績管理 成績の登録・変更・削除が可能
-			    成績参照ができる
-			     --%>
 			    <div class="menu-box green">
 			      <div>成績管理</div>
+
+			      <a href="#">成績登録</a><br>
+			      <a href="#">成績参照</a>
 
 			      <a href="${pageContext.request.contextPath}/servlet/StudentRegister">成績登録</a><br>
 			      <a href="${pageContext.request.contextPath}/servlet/TestListController">成績参照</a>
 
 			    </div>
-			    <%-- 科目管理 科目の登録・変更・削除が可能--%>
 			    <div class="menu-box blue">
-			      <a href="${pageContext.request.contextPath}/SubjectListServlet">科目管理</a>
+			      <a href="${pageContext.request.contextPath}/SubjectServlet">科目管理</a>
 			    </div>
 			  </div>
 		</div>
