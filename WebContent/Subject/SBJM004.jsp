@@ -30,7 +30,9 @@
       <input type="submit" value="変更">
   </form>
 
-
+ <c:if test="${not empty error}">
+      <p style="color: red">${error}</p>
+    </c:if>
 
   </div>
   </div>
