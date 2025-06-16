@@ -5,48 +5,32 @@
 %>
 
 <jsp:include page="../base/header.jsp"></jsp:include>
-	<div class = "container">
-		<div class = "side-bar">
-			<jsp:include page="../base/base.jsp"></jsp:include>
-		</div>
-		<div class = "main">
-			<div class="menu-header">メニュー</div>
-			  <div class="menu-container">
-<<<<<<< HEAD
-<<<<<<< HEAD
-			    <div class="menu-box red">
-<<<<<<< HEAD
-			      <a href="${pageContext.request.contextPath}/StudentList">学生管理</a>
-=======
-			      <a href="${pageContext.request.contextPath}/StudentList">学生管理</a>
->>>>>>> branch 'master' of https://github.com/famima0927/JavaSD_teamD.git
-=======
-			  <%--学生管理 登録・変更が可能 --%>
-			    <div class="menu-box red">
-			      <a href="${pageContext.request.contextPath}/StudentList">学生管理</a>
+    <div class = "container">
+        <div class = "side-bar">
+             <jsp:include page="../base/base.jsp"></jsp:include>
+    </div>
+    <div class = "main">
+         <div class="menu-header">メニュー</div>
+               <div class="menu-container">
+                  <div class="menu-box red">
+                      <a href="${pageContext.request.contextPath}/StudentList">学生管理</a>
+                      <a href="">学生管理</a>
 
->>>>>>> branch 'master' of https://github.com/famima0927/JavaSD_teamD.git
-=======
-			    <div class="menu-box red">
-			      <a href="${pageContext.request.contextPath}/StudentList">学生管理</a>
-			      <a href="">学生管理</a>
+		   	      </div>
+                  <div class="menu-box green">
+                    <div>成績管理</div>
 
->>>>>>> branch 'master' of https://github.com/famima0927/JavaSD_teamD.git
-			    </div>
-			    <div class="menu-box green">
-			      <div>成績管理</div>
+			        <a href="#">成績登録</a><br>
+                    <a href="#">成績参照</a>
 
-			      <a href="#">成績登録</a><br>
-			      <a href="#">成績参照</a>
-
-			      <a href="${pageContext.request.contextPath}/servlet/StudentRegister">成績登録</a><br>
-			      <a href="${pageContext.request.contextPath}/servlet/TestListController">成績参照</a>
+			        <a href="${pageContext.request.contextPath}/servlet/StudentRegister">成績登録</a><br>
+                    <a href="${pageContext.request.contextPath}/servlet/TestListController">成績参照</a>
 
 			    </div>
-			    <div class="menu-box blue">
-			      <a href="${pageContext.request.contextPath}/SubjectServlet">科目管理</a>
-			    </div>
-			  </div>
-		</div>
-	</div>
+                <div class="menu-box blue">
+                   <a href="${pageContext.request.contextPath}/SubjectServlet">科目管理</a>
+                </div>
+              </div>
+       </div>
+   </div>
 <jsp:include page="../base/footer.html"></jsp:include>
