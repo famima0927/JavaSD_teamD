@@ -37,7 +37,7 @@
         <td>${subj.cd}</td>
         <td>${subj.name}</td>
         <td><a href="<%= request.getContextPath() %>/SubjectEditServlet?id=${subj.cd}">変更</a></td>
-        <td><a href="<%= request.getContextPath() %>/Subject/SBJM006.jsp?id=${subj.cd}">削除</a></td>
+        <td><a href="<%= request.getContextPath() %>/SubjectDeleteServlet?id=${subj.cd}">削除</a></td>
 
 
 

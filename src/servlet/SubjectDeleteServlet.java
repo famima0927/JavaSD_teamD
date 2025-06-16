@@ -20,13 +20,14 @@ public class SubjectDeleteServlet extends CommonServlet  {
 // --- 情報の取得 ---
 	try {
 		 String cd = req.getParameter("id");
-		 System.out.println("cd = " + req.getParameter("cd"));
+		 System.out.println("cd = " + req.getParameter(cd));
 		    SchoolDao schD = new SchoolDao();
 		    SubjectDao subD = new SubjectDao();
 		    School sch = schD.get("oom"); // 学校IDを固定で取得
 
 		    req.setAttribute("subject", subD.get(cd, sch));
 		    System.out.println("cd = " + req.getParameter("cd"));
+			System.out.println("name = " + req.getParameter("name"));
 		    req.getRequestDispatcher("/Subject/SBJM006.jsp").forward(req, resp);
 
 	 } catch (Exception e) {
