@@ -22,8 +22,14 @@
   <div class="menu-header">科目情報変更</div>
   <form action="SubjectEditServlet" method="post">
   <label>科目コード</label>
-  <input type="text" name="name" value="${subject.cd}" required><br>
+  <input type="text" name="cd" value="${subject.cd}"readonly ><br>
+  <%-- コース選択（必須） --%>
+      <label>科目名：</label>
+      <input type="text" name="name" required><br>
+      <%-- 送信ボタン --%>
+      <input type="submit" value="変更">
   </form>
+
 
 
   </div>
