@@ -14,14 +14,10 @@
 			  <div class="menu-container">
 			    <div class="menu-box red">
 			      <a href="${pageContext.request.contextPath}/StudentList">学生管理</a>
-			      <a href="">学生管理</a>
 
 			    </div>
 			    <div class="menu-box green">
 			      <div>成績管理</div>
-
-			      <a href="#">成績登録</a><br>
-			      <a href="#">成績参照</a>
 
 			      <a href="${pageContext.request.contextPath}/servlet/StudentRegister">成績登録</a><br>
 			      <a href="${pageContext.request.contextPath}/servlet/TestListController">成績参照</a>
