@@ -29,6 +29,7 @@
       <!-- 送信ボタン -->
       <input type="submit" value="削除">
     </form>
+    <a href="${pageContext.request.contextPath}/SubjectListServlet">科目一覧</a>
 
 <c:if test="${not empty error}">
       <p style="color: red">${error}</p>

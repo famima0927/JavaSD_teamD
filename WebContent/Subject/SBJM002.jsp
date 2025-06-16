@@ -32,6 +32,7 @@
       <%-- 送信ボタン --%>
       <input type="submit" value="登録">
   </form>
+  <a href="${pageContext.request.contextPath}/SubjectListServlet">科目一覧</a>
 
 
     <%--
