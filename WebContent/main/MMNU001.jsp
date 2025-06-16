@@ -19,14 +19,12 @@
 			    <div class="menu-box green">
 			      <div>成績管理</div>
 
-
-<<<<<<< HEAD
 			      <a href="${pageContext.request.contextPath}/servlet/StudentRegister">成績登録</a><br>
 			      <a href="${pageContext.request.contextPath}/servlet/TestRegistController">成績参照</a>
-=======
+
 			      <a href="${pageContext.request.contextPath}/servlet/StudentListController">成績登録</a><br>
 			      <a href="${pageContext.request.contextPath}/servlet/TestListController">成績参照</a>
->>>>>>> branch 'master' of https://github.com/famima0927/JavaSD_teamD.git
+
 
 			    </div>
 			    <div class="menu-box blue">
