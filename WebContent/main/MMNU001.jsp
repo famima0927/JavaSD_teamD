@@ -25,7 +25,7 @@
 
 			    </div>
 			    <div class="menu-box blue">
-			      <a href="${pageContext.request.contextPath}/SubjectServlet">科目管理</a>
+			      <a href="${pageContext.request.contextPath}/SubjectListServlet">科目管理</a>
 			    </div>
 			  </div>
 		</div>
