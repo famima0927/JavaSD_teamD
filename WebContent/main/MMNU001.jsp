@@ -16,7 +16,7 @@
 <<<<<<< HEAD
 			      <a href="${pageContext.request.contextPath}/StudentList">学生管理</a>
 =======
-			      <a href="">学生管理</a>
+			      <a href="${pageContext.request.contextPath}/StudentList">学生管理</a>
 >>>>>>> branch 'master' of https://github.com/famima0927/JavaSD_teamD.git
 			    </div>
 			    <div class="menu-box green">
