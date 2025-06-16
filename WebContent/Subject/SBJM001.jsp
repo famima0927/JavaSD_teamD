@@ -4,6 +4,21 @@
   request.setAttribute("bodyClass", "menu-body");
 %>
 <style>
+    .table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+    .th, .td {
+    border: 1px solid #ccc; /* セルに線を引く */
+    padding: 8px;
+    text-align: left;
+  }
+
+    .thead {
+    background-color: #f2f2f2; /* ヘッダーの背景色 */
+  }
+
     .right-align {
       text-align: right; /* テキストを右寄せ */
     }

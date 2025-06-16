@@ -24,13 +24,13 @@
    <form action="${pageContext.request.contextPath}/SubjectRegisterServlet" method="post" >
 <%-- 学生番号 --%>
       <%-- 学生名の入力（必須） --%>
-      <label>科目コード：</label>
+      <label>科目コード</label><br>
       <input type="text" name="cd" required><br>
       <%-- コース選択（必須） --%>
-      <label>科目名：</label>
+      <label>科目名</label><br>
       <input type="text" name="name" required><br>
-      <%-- 送信ボタン --%>
-      <input type="submit" value="登録">
+      <%-- 送信ボタン --%><br>
+      <button type="submit">登録</button>
   </form>
   <a href="${pageContext.request.contextPath}/SubjectListServlet">戻る</a>
 
