@@ -74,6 +74,12 @@
                 <c:if test="${not empty test_list}">
                     <form action="TestRegistController" method="post" class="result-form">
 
+
+
+						<input type="hidden" name="ent_year" value="${ent_year}">
+       					<input type="hidden" name="class_num" value="${class_num}">
+
+
                         <%-- どの科目のどの回に対する成績かをコントローラーに伝えるための隠しフィールド --%>
                         <input type="hidden" name="subject_cd" value="${subject_cd}">
                         <input type="hidden" name="test_no" value="${test_no}">
@@ -93,13 +99,21 @@
                                 <c:forEach var="student" items="${test_list}">
                                     <tr>
                                         <td>${student.entYear}</td>
-                                        <td>${student.classNum}</td>
-                                        <td>${student.studentNo}</td>
-                                        <td>${student.studentName}</td>
-                                        <td>
-                                            <%-- 各生徒の点数入力欄。name属性が重要 --%>
-                                            <input type="number" name="point_${student.studentNo}" value="${student.points[test_no]}" min="0" max="100">
-                                        </td>
+				                        <td>${student.classNum}</td>
+				                        <td>${student.studentNo}</td>
+				                        <td>${student.studentName}</td>
+				                        <td>
+				                            <%-- ★ value属性を修正 ★ --%>
+				                            <%-- エラーがあった場合は入力値を、なければDBの値を表示 --%>
+				                            <input type="text" name="point_${student.studentNo}"
+				                                   value="${not empty originalPoints ? originalPoints[student.studentNo] : student.points[test_no]}"
+				                                   maxlength="3">
+
+				                            <%-- ★ エラーメッセージ表示部分を追加 ★ --%>
+				                            <c:if test="${not empty errors[student.studentNo]}">
+				                                <span class="error-message">${errors[student.studentNo]}</span>
+				                            </c:if>
+				                        </td>
                                     </tr>
                                 </c:forEach>
                             </tbody>

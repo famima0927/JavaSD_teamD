@@ -24,7 +24,7 @@
 			      <a href="#">成績参照</a>
 
 			      <a href="${pageContext.request.contextPath}/servlet/StudentRegister">成績登録</a><br>
-			      <a href="${pageContext.request.contextPath}/servlet/TestListController">成績参照</a>
+			      <a href="${pageContext.request.contextPath}/servlet/TestRegistController">成績参照</a>
 
 			    </div>
 			    <div class="menu-box blue">
