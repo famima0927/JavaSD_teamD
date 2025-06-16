@@ -68,7 +68,7 @@ public class SubjectRegisterServlet extends CommonServlet {
 			if (num >0) {
 				// 正常登録メッセージをセット
 				req.getRequestDispatcher("/Subject/SBJM003.jsp").forward(req, resp);
-				req.setAttribute("message", "登録されました。");
+
 
 			} else {
 				// 学生登録に失敗した場合のメッセージ
