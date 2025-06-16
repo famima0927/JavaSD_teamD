@@ -13,6 +13,7 @@
 			<div class="menu-header">メニュー</div>
 			  <div class="menu-container">
 <<<<<<< HEAD
+<<<<<<< HEAD
 			    <div class="menu-box red">
 <<<<<<< HEAD
 			      <a href="${pageContext.request.contextPath}/StudentList">学生管理</a>
@@ -25,11 +26,13 @@
 			      <a href="${pageContext.request.contextPath}/StudentList">学生管理</a>
 
 >>>>>>> branch 'master' of https://github.com/famima0927/JavaSD_teamD.git
+=======
+			    <div class="menu-box red">
+			      <a href="${pageContext.request.contextPath}/StudentList">学生管理</a>
+
+
+>>>>>>> branch 'master' of https://github.com/famima0927/JavaSD_teamD.git
 			    </div>
-			    <%--
-			    成績管理 成績の登録・変更・削除が可能
-			    成績参照ができる
-			     --%>
 			    <div class="menu-box green">
 			      <div>成績管理</div>
 
@@ -37,9 +40,8 @@
 			      <a href="${pageContext.request.contextPath}/servlet/TestListController">成績参照</a>
 
 			    </div>
-			    <%-- 科目管理 科目の登録・変更・削除が可能--%>
 			    <div class="menu-box blue">
-			      <a href="${pageContext.request.contextPath}/SubjectListServlet">科目管理</a>
+			      <a href="${pageContext.request.contextPath}/SubjectServlet">科目管理</a>
 			    </div>
 			  </div>
 		</div>
