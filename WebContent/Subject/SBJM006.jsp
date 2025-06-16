@@ -19,21 +19,21 @@
   </div>
 
   <div class="main">
-  <div class="menu-header">科目情報変更</div>
-  <form action="SubjectEditServlet" method="post">
-  <label>科目コード</label><br>
-  <input type="text" name="cd"value="${subject.cd}"readonly ><br>
-  <%-- コース選択（必須） --%>
-      <label>科目名：</label><br>
-      <input type="text" name="name" Value="${subject.name}"required><br>
-      <%-- 送信ボタン --%>
-      <input type="submit" value="変更">
-  </form>
-<a href="${pageContext.request.contextPath}/SubjectListServlet">戻る</a><%--科目一覧画面に移動 --%>
- <c:if test="${not empty error}">
+  <div class="menu-header">科目情報削除</div>
+   <form action="SubjectDeleteServlet" method="post">
+      <label>「<strong>${subject.name}</strong>」（<strong>${subject.cd}</strong>）を削除してもよろしいでしょうか？</label>
+
+      <!-- 削除対象CDをhiddenで送信 -->
+      <input type="hidden" name="cd" value="${subject.cd}">
+
+      <!-- 送信ボタン -->
+      <input type="submit" value="削除">
+    </form>
+    <a href="${pageContext.request.contextPath}/SubjectListServlet">戻る</a>
+
+<c:if test="${not empty error}">
       <p style="color: red">${error}</p>
     </c:if>
-
 
   </div>
   </div>

@@ -21,7 +21,7 @@
   <div class="main">
   <div class="menu-header">科目情報登録</div>
 
-   <form action="${pageContext.request.contextPath}/SubjectListServlet" method="post" >
+   <form action="${pageContext.request.contextPath}/SubjectRegisterServlet" method="post" >
 <%-- 学生番号 --%>
       <%-- 学生名の入力（必須） --%>
       <label>科目コード：</label>
@@ -32,6 +32,7 @@
       <%-- 送信ボタン --%>
       <input type="submit" value="登録">
   </form>
+  <a href="${pageContext.request.contextPath}/SubjectListServlet">戻る</a>
 
 
     <%--

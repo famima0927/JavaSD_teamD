@@ -15,8 +15,8 @@
 			<c:if test="${not empty success}">
 				<p class="success">${success}</p>
 			</c:if>
-		<a href="GRMU001.jsp">戻る</a><%--成績登録画面に戻る --%>
-		<a href="GRMR001.jsp">成績参照</a><%--成績参照画面に移動 --%>
+		<a href="${pageContext.request.contextPath}/Score/GRMU001.jsp">戻る</a><%--成績登録画面に戻る --%>
+		<a href="${pageContext.request.contextPath}/Score/GRMR001.jsp">成績参照</a><%--成績参照画面に移動 --%>
 
 		</div>
 	</div>

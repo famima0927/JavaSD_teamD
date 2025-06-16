@@ -13,8 +13,8 @@
 			<%-- ここに処理を書き込む --%>
 		<div class="success"><p>登録が完了しました。</p></div>
 
-		<a href="#">戻る</a><%--科目登録画面に戻る --%>
-		<a href="#">科目一覧</a><%--科目一覧画面に移動 --%>
+		<a href="${pageContext.request.contextPath}/SubjectRegisterServlet">戻る</a><%--科目登録画面に戻る --%>
+		<a href="${pageContext.request.contextPath}/SubjectListServlet">科目一覧</a><%--科目一覧画面に移動 --%>
 		</div>
 	</div>
 <jsp:include page="../base/footer.html"></jsp:include>
