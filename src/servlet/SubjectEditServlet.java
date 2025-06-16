@@ -57,8 +57,8 @@ protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exc
 		//SQL文の準備
 		PreparedStatement st = con.prepareStatement("UPDATE SUBJECT SET NAME=? WHERE CD=?");
 //school_idは必要に応じて追加
-	    st.setString(2, Subject.getName());
-		st.setString(3, Subject.getCd());
+	    st.setString(1, Subject.getName());
+		st.setString(2, Subject.getCd());
 
 		//SQL文の実行(DBの更新)
 		int num = st.executeUpdate();
