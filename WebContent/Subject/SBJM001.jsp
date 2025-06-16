@@ -40,6 +40,7 @@
         <td><a href="<%= request.getContextPath() %>/Subject/SBJM006.jsp?id=${subj.cd}">削除</a></td>
 
 
+
       </tr>
       <hr>
     </c:forEach>
