@@ -11,7 +11,8 @@ import tool.CommonServlet;
 @WebServlet("/SubjectEditServlet")
 public class SubjectEditServlet extends CommonServlet  {
 	protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-		// --- 情報の取得 ---
+
+// --- 情報の取得 ---
 	try {
 		 String cd = req.getParameter("cd");
 
@@ -20,7 +21,7 @@ public class SubjectEditServlet extends CommonServlet  {
 		    School sch = schD.get("oom"); // 学校IDを固定で取得
 
 		    req.setAttribute("subject", subD.get(cd, sch));
-
+		    System.out.println("cd = " + req.getParameter("cd"));
 		    req.getRequestDispatcher("/Subject/SBJM004.jsp").forward(req, resp);
 
 	 } catch (Exception e) {
