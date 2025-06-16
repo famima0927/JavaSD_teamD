@@ -29,7 +29,7 @@
       <%-- 送信ボタン --%>
       <input type="submit" value="変更">
   </form>
-
+<a href="${pageContext.request.contextPath}/SubjectListServlet">戻る</a><%--科目一覧画面に移動 --%>
  <c:if test="${not empty error}">
       <p style="color: red">${error}</p>
     </c:if>

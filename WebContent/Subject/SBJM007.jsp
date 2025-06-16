@@ -13,7 +13,7 @@
 			<%-- ここに処理を書き込む --%>
 		<div class="success"><p>削除が完了しました。</p></div>
 
-		<a href="${pageContext.request.contextPath}/SubjectListServlet">戻る</a><%--科目一覧画面に移動 --%>
+		<a href="${pageContext.request.contextPath}/SubjectListServlet">科目一覧</a><%--科目一覧画面に移動 --%>
 
 		</div>
 	</div>
