@@ -25,10 +25,10 @@
 <%-- 学生番号 --%>
       <%-- 学生名の入力（必須） --%>
       <label>科目コード</label><br>
-      <label><input type="text" name="cd" value="科目コードを入力してください" required></label><br>
+      <label><input type="text" name="cd" placeholder="科目コードを入力してください" required></label><br>
       <%-- コース選択（必須） --%>
       <label>科目名</label><br>
-      <label><input type="text" name="name" value="科目名を入力してください" required></label><br>
+      <label><input type="text" name="name" placeholder="科目名を入力してください" required></label><br>
       <%-- 送信ボタン --%><br>
       <button type="submit">登録</button>
 
