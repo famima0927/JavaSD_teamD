@@ -5,6 +5,9 @@
   <meta charset="UTF-8">
   <title>得点管理システム</title>
   <link rel="stylesheet" href="<%= request.getContextPath() %>/base/css/styles.css">
+	<!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
 </head>
 <body class="<%= request.getAttribute("bodyClass") != null ? request.getAttribute("bodyClass") : "" %>">
 
