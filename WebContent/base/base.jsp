@@ -20,8 +20,8 @@
 		<p>成績管理</p>
 		<ul>
 
-			<li><a href = "">成績登録</a></li>
-			<li><a href = "${pageContext.request.contextPath}/servlet/TestRegistController">成績参照</a></li>
+			<li><a href = "${pageContext.request.contextPath}/servlet/TestRegistController">成績登録</a></li>
+			<li><a href = "${pageContext.request.contextPath}/servlet/TestListController">成績参照</a></li>
 		</ul>
 
 		<a href = "${pageContext.request.contextPath}/SubjectListServlet">科目管理</a>

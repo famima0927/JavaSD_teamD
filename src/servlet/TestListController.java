@@ -24,7 +24,7 @@ import dao.SubjectDao;
 import dao.TestListStudentDao;
 import dao.TestListSubjectDao;
 
-@WebServlet(urlPatterns = {"/score_reference/list"})
+@WebServlet(urlPatterns = {"/servlet/TestListController"})
 public class TestListController extends HttpServlet {
 
     @Override
