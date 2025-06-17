@@ -1,10 +1,8 @@
 package servlet;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,13 +13,14 @@ import dao.StudentDao;
 import tool.CommonServlet;
 
 @WebServlet("/StudentUpdateExecute.action")
-public abstract class StudentUpdateExecuteServlet extends CommonServlet {
+// ★★★ 修正点1：abstract を削除 ★★★
+public class StudentUpdateExecuteServlet extends CommonServlet {
 
+    // ★★★ 修正点2：post メソッドの throws を Exception に修正 & 不要なtry-catchを削除 ★★★
     @Override
-    protected void post(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    public void post(HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
 
-        // 文字化け対策
         request.setCharacterEncoding("UTF-8");
 
         StudentDao studentDao = new StudentDao();
@@ -29,61 +28,50 @@ public abstract class StudentUpdateExecuteServlet extends CommonServlet {
 
         List<String> errors = new ArrayList<>();
 
-        // フォームからのパラメータ取得
         String no = request.getParameter("no");
         String name = request.getParameter("name");
         String classNum = request.getParameter("class_num");
         boolean isAttend = request.getParameter("is_attend") != null;
 
-        // 氏名が空かどうかのバリデーション
         if (name == null || name.trim().isEmpty()) {
             errors.add("氏名を入力してください。");
         }
 
-        // エラーリストに何か入っていれば、フォームに戻す
         if (!errors.isEmpty()) {
-            try {
-                // フォームに値を復元するために情報を再取得・設定
-                Student student = studentDao.get(no);
-                student.setName(name);
-                student.setClassNum(classNum);
-                student.setIsAttend(isAttend);
+            // エラーがあった場合、フォームに値を復元して戻す
+            // DBアクセスでエラーが起きてもCommonServletがcatchしてくれる
+            Student student = studentDao.get(no);
+            student.setName(name);
+            student.setClassNum(classNum);
+            student.setIsAttend(isAttend);
 
-                List<String> classNumSet = classNumDao.filter(student.getSchool());
+            List<String> classNumSet = classNumDao.filter(student.getSchool());
 
-                request.setAttribute("errors", errors);
-                request.setAttribute("student", student);
-                request.setAttribute("class_num_set", classNumSet);
+            request.setAttribute("errors", errors);
+            request.setAttribute("student", student);
+            request.setAttribute("class_num_set", classNumSet);
 
-                // 変更ページにフォワードで戻る
-                request.getRequestDispatcher("/student/student_update.jsp").forward(request, response);
+            request.getRequestDispatcher("/student/student_update.jsp").forward(request, response);
 
-            } catch (Exception e) {
-                // 予期せぬエラーはエラーページへ
-                e.printStackTrace();
-                request.setAttribute("error", "エラーが発生しました。");
-                request.getRequestDispatcher("/error.jsp").forward(request, response);
-            }
         } else {
             // エラーがなければ、データベースを更新
-            try {
-                Student studentToUpdate = new Student();
-                studentToUpdate.setNo(no);
-                studentToUpdate.setName(name);
-                studentToUpdate.setClassNum(classNum);
-                studentToUpdate.setIsAttend(isAttend);
+            Student studentToUpdate = new Student();
+            studentToUpdate.setNo(no);
+            studentToUpdate.setName(name);
+            studentToUpdate.setClassNum(classNum);
+            studentToUpdate.setIsAttend(isAttend);
 
-                studentDao.save(studentToUpdate);
+            studentDao.save(studentToUpdate);
 
-                // 処理完了後、完了ページにリダイレクト
-                response.sendRedirect("StudentUpdateDone.action");
-
-            } catch (Exception e) {
-                // データベース更新中のエラーはエラーページへ
-                e.printStackTrace();
-                request.setAttribute("error", "データベースの更新中にエラーが発生しました。");
-                request.getRequestDispatcher("/error.jsp").forward(request, response);
-            }
+            // 処理完了後、完了ページにリダイレクト
+            response.sendRedirect("StudentUpdateDone.action");
         }
+    }
+
+    // ★★★ 修正点3：get メソッドを空で実装 ★★★
+    @Override
+    public void get(HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+        // このサーブレットは更新処理専用なので、GETの処理は不要
     }
 }

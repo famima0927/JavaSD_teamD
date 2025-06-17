@@ -1,8 +1,5 @@
 package servlet;
 
-import java.io.IOException;
-
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,13 +7,22 @@ import javax.servlet.http.HttpServletResponse;
 import tool.CommonServlet;
 
 @WebServlet("/StudentUpdateDone.action")
-public abstract class StudentUpdateDoneServlet extends CommonServlet {
+// ★★★ 修正点1：abstract を削除 ★★★
+public class StudentUpdateDoneServlet extends CommonServlet {
 
+    // ★★★ 修正点2：get メソッドの throws を Exception に修正 ★★★
     @Override
-    protected void get(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    public void get(HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
 
-        // ★★★ JSPファイルの場所を実際のファイル構成に合わせて修正 ★★★
-        request.getRequestDispatcher("/main/student_update_done.jsp").forward(request, response);
+        // 完了ページ (student_update_done.jsp) にフォワード
+        request.getRequestDispatcher("/student/student_update_done.jsp").forward(request, response);
+    }
+
+    // ★★★ 修正点3：post メソッドを空で実装 ★★★
+    @Override
+    public void post(HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+        // このサーブレットは完了ページを表示するだけなので、POSTの処理は不要
     }
 }
