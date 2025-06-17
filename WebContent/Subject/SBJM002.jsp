@@ -25,12 +25,13 @@
 <%-- 学生番号 --%>
       <%-- 学生名の入力（必須） --%>
       <label>科目コード</label><br>
-      <input type="text" name="cd" required><br>
+      <label><input type="text" name="cd" value="科目コードを入力してください" required></label><br>
       <%-- コース選択（必須） --%>
       <label>科目名</label><br>
-      <input type="text" name="name" required><br>
+      <label><input type="text" name="name" value="科目名を入力してください" required></label><br>
       <%-- 送信ボタン --%><br>
       <button type="submit">登録</button>
+
   </form>
   <a href="${pageContext.request.contextPath}/SubjectListServlet">戻る</a>
 
