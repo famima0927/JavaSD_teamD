@@ -52,6 +52,10 @@ public class TestListSubject implements Serializable {
         this.points = points;
     }
 
+    public Integer getScore(int testNo) {
+        return this.points.get(testNo);
+    }
+
     // pointsに値を追加するための便利なメソッド
     public void putPoint(int key, int value) {
         // この時点で this.points は空のHashMapとして存在するため、エラーにならない

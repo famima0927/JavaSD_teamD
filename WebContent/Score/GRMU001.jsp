@@ -30,7 +30,7 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <select name="f1_ent_year">
+                                    <select name="ent_year">
                                         <option value="0">--------</option>
                                         <c:forEach var="year" items="${ent_year_set}">
                                             <option value="${year}" <c:if test="${year == ent_year}">selected</c:if>>${year}</option>
@@ -38,7 +38,7 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <select name="f2_class_num">
+                                    <select name="class_num">
                                         <option value="0">--------</option>
                                         <c:forEach var="classNum" items="${class_num_set}">
                                             <option value="${classNum}" <c:if test="${classNum == class_num}">selected</c:if>>${classNum}</option>
@@ -46,7 +46,7 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <select name="f3_subject">
+                                    <select name="subject_cd">
                                         <option value="0">--------</option>
                                         <c:forEach var="subject" items="${subjects}">
                                             <option value="${subject.cd}" <c:if test="${subject.cd == subject_cd}">selected</c:if>>${subject.name}</option>
@@ -54,7 +54,7 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <select name="f4_test_no">
+                                    <select name="test_no">
                                         <option value="0">--------</option>
                                         <c:forEach var="no" items="${test_no_set}">
                                             <option value="${no}" <c:if test="${no == test_no}">selected</c:if>>${no}</option>

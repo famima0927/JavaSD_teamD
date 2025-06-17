@@ -22,40 +22,56 @@ public class TestListSubjectDao extends Dao {
      * @return List<TestListSubject> 科目別の成績リスト
      * @throws Exception
      */
-    private List<TestListSubject> postFilter(ResultSet rSet) throws Exception {
-        // 学生番号をキーにTestListSubjectオブジェクトを管理するマップ
-        Map<String, TestListSubject> map = new HashMap<>();
-        // 最終的に返すリスト
-        List<TestListSubject> list = new ArrayList<>();
+	private List<TestListSubject> postFilter(ResultSet rSet) throws Exception {
+	    Map<String, TestListSubject> map = new HashMap<>();
+	    List<TestListSubject> list = new ArrayList<>();
 
-        try {
-            while (rSet.next()) {
-                String studentNo = rSet.getString("student_no");
-                TestListSubject tls = map.get(studentNo);
+	    System.out.println("--- DAO: postFilter 開始 ---"); // デバッグ開始
 
-                // マップにまだ学生が存在しない場合、新しいオブジェクトを作成してマップとリストに追加
-                if (tls == null) {
-                    tls = new TestListSubject();
-                    tls.setEntYear(rSet.getInt("ent_year"));
-                    tls.setStudentNo(studentNo);
-                    tls.setStudentName(rSet.getString("student_name"));
-                    tls.setClassNum(rSet.getString("class_num"));
-                    map.put(studentNo, tls);
-                    list.add(tls);
-                }
+	    try {
+	        int rowNum = 1;
+	        while (rSet.next()) {
+	            System.out.println("--- " + (rowNum++) + "行目のデータ ---"); // 何行目のデータか表示
 
-                // LEFT JOINのため、TESTのレコードが存在しない学生は点数がNULLになる
-                // 点数がNULLでない場合のみ、Mapに成績をセットする
-                if (rSet.getObject("point") != null) {
-                    tls.putPoint(rSet.getInt("test_no"), rSet.getInt("point"));
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw e;
-        }
-        return list;
-    }
+	            String studentNo = rSet.getString("student_no");
+	            System.out.println("student_no: " + studentNo);
+
+	            // pointカラムの実際の値（生データ）を表示
+	            Object pointObj = rSet.getObject("point");
+	            System.out.println("point (Object): " + pointObj);
+
+	            // test_noカラムの実際の値（生データ）を表示
+	            Object testNoObj = rSet.getObject("test_no");
+	            System.out.println("test_no (Object): " + testNoObj);
+
+
+	            TestListSubject tls = map.get(studentNo);
+	            if (tls == null) {
+	                tls = new TestListSubject();
+	                tls.setEntYear(rSet.getInt("ent_year"));
+	                tls.setStudentNo(studentNo);
+	                tls.setStudentName(rSet.getString("student_name"));
+	                tls.setClassNum(rSet.getString("class_num"));
+	                map.put(studentNo, tls);
+	                list.add(tls);
+	                System.out.println("   -> 新しい学生オブジェクトを作成しました。");
+	            }
+
+	            if (pointObj != null) {
+	                System.out.println("   -> 点数が見つかりました。putPointを呼び出します。");
+	                tls.putPoint(rSet.getInt("test_no"), rSet.getInt("point"));
+	            } else {
+	                System.out.println("   -> 点数が見つかりませんでした。putPointは呼び出しません。");
+	            }
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        throw e;
+	    }
+
+	    System.out.println("--- DAO: postFilter 終了 ---"); // デバッグ終了
+	    return list;
+	}
 
     /**
      * [検索] 学生の所属情報と科目を指定して、クラスの成績一覧を取得する

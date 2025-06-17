@@ -67,10 +67,14 @@ public class TestRegistController extends HttpServlet {
         }
 
         // 検索条件を取得
-        String entYearStr = request.getParameter("f1_ent_year");
-        String classNum = request.getParameter("f2_class_num");
-        String subjectCd = request.getParameter("f3_subject");
-        String testNoStr = request.getParameter("f4_test_no");
+	     // "f1_ent_year" から "ent_year" に変更
+	     String entYearStr = request.getParameter("ent_year");
+	     // "f2_class_num" から "class_num" に変更
+	     String classNum = request.getParameter("class_num");
+	     // "f3_subject" から "subject_cd" に変更
+	     String subjectCd = request.getParameter("subject_cd");
+	     // "f4_test_no" から "test_no" に変更
+	     String testNoStr = request.getParameter("test_no");
         int entYear = 0;
         int testNo = 0;
 

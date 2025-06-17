@@ -13,7 +13,7 @@
 			<div class="menu-header">成績参照</div>
 
     			<!-- 科目情報での検索フォーム -->
-    			<form action="list" method="get" class="search-form">
+    			<form action="TestListController" method="get" class="search-form">
         		<!-- ② 科目情報 (このセクション全体) -->
         		<!-- ⑮ 科目情報識別コード -->
         		<input type="hidden" name="f" value="sj">
@@ -63,7 +63,7 @@
 			<%-- ② 学生番号検索フォーム --%>
             <div class="content-box">
                 <h4>学生番号で検索</h4>
-                <form action="list" method="get" class="search-form">
+                <form action="TestListController" method="get" class="search-form">
                     <table>
                         <thead><tr><th>学生番号</th><th></th></tr></thead>
                         <tbody><tr>
@@ -80,26 +80,27 @@
 			<hr>
 
 			<%-- ★★★ 科目検索の結果表示エリア ★★★ --%>
-            <c:if test="${not empty subject_search_results}">
-                <div class="content-box">
-                    <h4>検索結果：科目別成績</h4>
-                    <table class="result-table">
-                        <thead><tr><th>入学年度</th><th>クラス</th><th>学生番号</th><th>氏名</th><th>1回目</th><th>2回目</th></tr></thead>
-                        <tbody>
-                            <c:forEach var="student" items="${subject_search_results}">
-                                <tr>
-                                    <td>${student.entYear}</td>
-                                    <td>${student.classNum}</td>
-                                    <td>${student.studentNo}</td>
-                                    <td>${student.studentName}</td>
-                                    <td>${student.points[1] != null ? student.points[1] : '-'}</td>
-                                    <td>${student.points[2] != null ? student.points[2] : '-'}</td>
-                                </tr>
-                            </c:forEach>
-                        </tbody>
-                    </table>
-                </div>
-            </c:if>
+			<c:if test="${not empty subject_search_results}">
+			    <div class="content-box">
+			        <h4>検索結果：科目別成績</h4>
+			        <table class="result-table">
+			            <thead><tr><th>入学年度</th><th>クラス</th><th>学生番号</th><th>氏名</th><th>1回目</th><th>2回目</th></tr></thead>
+			            <tbody>
+			                <c:forEach var="student" items="${subject_search_results}">
+			                    <tr>
+			                        <td>${student.entYear}</td>
+			                        <td>${student.classNum}</td>
+			                        <td>${student.studentNo}</td>
+			                        <td>${student.studentName}</td>
+
+			                        <td>${student.getScore(1) != null ? student.getScore(1) : '-'}</td>
+			                        <td>${student.getScore(2) != null ? student.getScore(2) : '-'}</td>
+			                    </tr>
+			                </c:forEach>
+			            </tbody>
+			        </table>
+			    </div>
+			</c:if>
 
             <%-- ★★★ 学生番号検索の結果表示エリア ★★★ --%>
             <c:if test="${not empty student_search_results}">
