@@ -6,19 +6,19 @@ import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.Student;
 import dao.ClassNumDao;
 import dao.StudentDao;
+import tool.CommonServlet;
 
 @WebServlet("/StudentUpdateExecute.action")
-public class StudentUpdateExecuteServlet extends HttpServlet {
+public abstract class StudentUpdateExecuteServlet extends CommonServlet {
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void post(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         // 文字化け対策

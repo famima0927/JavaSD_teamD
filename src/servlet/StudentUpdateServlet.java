@@ -5,23 +5,23 @@ import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.Student;
 import dao.ClassNumDao;
 import dao.StudentDao;
+import tool.CommonServlet;
 
 /**
  * 学生情報変更ページを表示するためのサーブレット
  */
 // ↓↓↓ これがURLとこのプログラムを結びつける最も重要な部分です！ ↓↓↓
 @WebServlet("/StudentUpdate.action")
-public class StudentUpdateServlet extends HttpServlet {
+public abstract class StudentUpdateServlet extends CommonServlet {
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void get(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         // DAOをインスタンス化

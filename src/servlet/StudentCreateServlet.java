@@ -7,18 +7,18 @@ import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.School;
 import dao.ClassNumDao;
+import tool.CommonServlet;
 
 @WebServlet("/StudentCreate.action")
-public class StudentCreateServlet extends HttpServlet {
+public abstract class StudentCreateServlet extends CommonServlet {
 //新規登録のやつ
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void get(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         // DAOをインスタンス化

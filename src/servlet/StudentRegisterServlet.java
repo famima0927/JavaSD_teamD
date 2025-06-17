@@ -5,19 +5,19 @@ import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.School;
 import bean.Student;
 import dao.StudentDao;
+import tool.CommonServlet;
 
 @WebServlet("/StudentRegister.action")
-public class StudentRegisterServlet extends HttpServlet {
+public abstract class StudentRegisterServlet extends CommonServlet {
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void post(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         request.setCharacterEncoding("UTF-8");
