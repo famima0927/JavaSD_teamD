@@ -21,7 +21,7 @@
   <div class="main">
   <div class="menu-header">科目情報削除</div>
    <form action="SubjectDeleteServlet" method="post">
-      <label>「<strong>${subject.name}</strong>」（<strong>${subject.cd}</strong>）を削除してもよろしいでしょうか？</label>
+      <label>「<strong>${subject.name}</strong>」（<strong>${subject.cd}</strong>）を削除してもよろしいでしょうか？</label><br>
 
       <!-- 削除対象CDをhiddenで送信 -->
       <input type="hidden" name="cd" value="${subject.cd}">

@@ -4,20 +4,21 @@
   request.setAttribute("bodyClass", "menu-body");
 %>
 <style>
-    .table {
+
+ table {
     border-collapse: collapse;
     width: 100%;
   }
-
-    .th, .td {
-    border: 1px solid #ccc; /* セルに線を引く */
-    padding: 8px;
-    text-align: left;
+  th, td {
+      padding: 5px;
+    border: 1px solid #ccc;
+    border-left: none;
+    border-right: none;
+  }
+   th {
+    text-align: left; /* ← ここで見出しを左寄せ */
   }
 
-    .thead {
-    background-color: #f2f2f2; /* ヘッダーの背景色 */
-  }
 
     .right-align {
       text-align: right; /* テキストを右寄せ */
@@ -38,11 +39,13 @@
    <div class="right-align">
   <a href="<%= request.getContextPath() %>/SubjectRegisterServlet">新規登録</a></div>
     <!-- 一覧表のテーブル（見出し） -->
-    <table>
+    <table style="border-collapse: collapse; width: 100%;">
       <thead>
         <tr>
-          <th>科目コード</th>
-          <th>科目名</th>
+          <th style="padding: 5px;">科目コード</th>
+          <th style="padding: 5px;">科目名</th>
+           <th style="padding: 5px;"></th>
+           <th style="padding: 5px;"></th>
         </tr>
       </thead>
 
@@ -57,7 +60,6 @@
 
 
       </tr>
-      <hr>
     </c:forEach>
       </tbody>
     </table>
