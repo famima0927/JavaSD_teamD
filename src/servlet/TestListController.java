@@ -1,13 +1,10 @@
 package servlet;
 
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -23,13 +20,19 @@ import dao.StudentDao;
 import dao.SubjectDao;
 import dao.TestListStudentDao;
 import dao.TestListSubjectDao;
+import tool.CommonServlet; // ★ 継承するクラスをインポート
 
+// ★ 継承元を HttpServlet から CommonServlet に変更
 @WebServlet(urlPatterns = {"/servlet/TestListController"})
-public class TestListController extends HttpServlet {
+public class TestListController extends CommonServlet {
 
+    /**
+     * GETリクエストを処理するメソッド。
+     * CommonServletのルールに従い、doGetではなくgetメソッドに処理を記述します。
+     */
     @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    public void get(HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
 
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
@@ -46,23 +49,29 @@ public class TestListController extends HttpServlet {
         // 押されたボタンの種類を取得
         String action = request.getParameter("search_action");
 
-        try {
-            if (action != null) {
-                if (action.equals("subject_search")) {
-                    // --- ① 科目検索が実行された場合 ---
-                    handleSubjectSearch(request, teacher.getSchool());
-                } else if (action.equals("student_search")) {
-                    // --- ② 学生番号検索が実行された場合 ---
-                    handleStudentSearch(request, teacher.getSchool());
-                }
+        if (action != null) {
+            if (action.equals("subject_search")) {
+                // --- ① 科目検索が実行された場合 ---
+                handleSubjectSearch(request, teacher.getSchool());
+            } else if (action.equals("student_search")) {
+                // --- ② 学生番号検索が実行された場合 ---
+                handleStudentSearch(request, teacher.getSchool());
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-            request.setAttribute("error", "検索中にエラーが発生しました。");
         }
 
         // 最終的にJSPにフォワード
         request.getRequestDispatcher("/Score/GRMR001.jsp").forward(request, response);
+    }
+
+    /**
+     * POSTリクエストを処理するメソッド。
+     * 今回この機能ではPOSTを使わないが、CommonServletを継承する上で実装が必要。
+     * GETと同じ処理を行うようにgetメソッドを呼び出す。
+     */
+    @Override
+    public void post(HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+        get(request, response);
     }
 
     /**
@@ -100,6 +109,7 @@ public class TestListController extends HttpServlet {
             Student student = studentDao.get(studentNo);
 
             if (student != null) {
+                // TestListStudentDaoのfilterメソッドにschoolも渡すように修正
                 List<TestListStudent> list = testListStudentDao.filter(student);
                 request.setAttribute("student_search_results", list);
                 request.setAttribute("student", student);

@@ -1,6 +1,5 @@
 package servlet;
 
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,9 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -26,17 +23,19 @@ import dao.ClassNumDao;
 import dao.SubjectDao;
 import dao.TestDao;
 import dao.TestListSubjectDao;
+import tool.CommonServlet; // ★ 継承するクラスをインポート
 
+// ★ 継承元を HttpServlet から CommonServlet に変更
 @WebServlet(urlPatterns = {"/servlet/TestRegistController"})
-public class TestRegistController extends HttpServlet {
+public class TestRegistController extends CommonServlet {
 
     /**
      * GETリクエストを処理するメソッド。
-     * 主に成績一覧の初期表示と検索機能を担当します。
+     * CommonServletのルールに従い、doGetではなくgetメソッドに処理を記述します。
      */
     @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    public void get(HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
 
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
@@ -67,14 +66,10 @@ public class TestRegistController extends HttpServlet {
         }
 
         // 検索条件を取得
-	     // "f1_ent_year" から "ent_year" に変更
-	     String entYearStr = request.getParameter("ent_year");
-	     // "f2_class_num" から "class_num" に変更
-	     String classNum = request.getParameter("class_num");
-	     // "f3_subject" から "subject_cd" に変更
-	     String subjectCd = request.getParameter("subject_cd");
-	     // "f4_test_no" から "test_no" に変更
-	     String testNoStr = request.getParameter("test_no");
+        String entYearStr = request.getParameter("ent_year");
+        String classNum = request.getParameter("class_num");
+        String subjectCd = request.getParameter("subject_cd");
+        String testNoStr = request.getParameter("test_no");
         int entYear = 0;
         int testNo = 0;
 
@@ -106,11 +101,11 @@ public class TestRegistController extends HttpServlet {
 
     /**
      * POSTリクエストを処理するメソッド。
-     * 主に成績の登録機能を担当します。
+     * CommonServletのルールに従い、doPostではなくpostメソッドに処理を記述します。
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    public void post(HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
 
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
@@ -130,14 +125,12 @@ public class TestRegistController extends HttpServlet {
         List<Test> testsToSave = new ArrayList<>();
         Enumeration<String> parameterNames = request.getParameterNames();
 
-        // 点数のバリデーションチェック
         while (parameterNames.hasMoreElements()) {
             String paramName = parameterNames.nextElement();
             if (paramName.startsWith("point_")) {
                 String studentNo = paramName.substring("point_".length());
                 String pointStr = request.getParameter(paramName);
                 originalPoints.put(studentNo, pointStr);
-
                 if (pointStr != null && !pointStr.isEmpty()) {
                     try {
                         int point = Integer.parseInt(pointStr);
@@ -164,19 +157,14 @@ public class TestRegistController extends HttpServlet {
         }
 
         if (!errors.isEmpty()) {
-            // エラーがあった場合：元の画面に必要な情報をすべてセットして戻す
             request.setAttribute("errors", errors);
             request.setAttribute("originalPoints", originalPoints);
-            // doGetを呼び出して、画面表示に必要な処理を再実行させる
-            doGet(request, response);
+            // エラーがあった場合は、GETの処理を再実行して画面を再表示
+            get(request, response);
         } else {
-            // エラーがなかった場合：DBに保存して完了ページへ
-            try {
-                TestDao testDao = new TestDao();
-                testDao.save(testsToSave);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            // エラーがなかった場合はDBに保存して完了ページへ
+            TestDao testDao = new TestDao();
+            testDao.save(testsToSave);
             request.getRequestDispatcher("/Score/GRMU002.jsp").forward(request, response);
         }
     }
