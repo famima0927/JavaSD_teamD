@@ -43,7 +43,7 @@ public class TestListSubjectDao extends Dao {
                     map.put(studentNo, tls);
                     list.add(tls);
                 }
-                
+
                 // LEFT JOINのため、TESTのレコードが存在しない学生は点数がNULLになる
                 // 点数がNULLでない場合のみ、Mapに成績をセットする
                 if (rSet.getObject("point") != null) {
@@ -68,7 +68,7 @@ public class TestListSubjectDao extends Dao {
      */
     public List<TestListSubject> filter(int entYear, String classNum, Subject subject, School school) throws Exception {
         List<TestListSubject> list = new ArrayList<>();
-        
+
         // STUDENTテーブルを主軸にTESTテーブルをLEFT JOINする
         // これにより、まだ点数が登録されていない学生も一覧に表示される
         String sql = "SELECT s.ENT_YEAR, s.NO AS student_no, s.NAME AS student_name, s.CLASS_NUM, t.NO AS test_no, t.POINT " +
@@ -79,7 +79,7 @@ public class TestListSubjectDao extends Dao {
 
         try (Connection con = getConnection();
              PreparedStatement st = con.prepareStatement(sql)) {
-            
+
             // パラメータをセット
             st.setString(1, subject.getCd());
             st.setString(2, school.getCd());
