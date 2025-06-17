@@ -12,7 +12,7 @@
 		<div class = "main">
 		<div class="menu-header">成績管理</div>
 			<%-- ここに処理を書き込む --%>
-			<div class="success">登録が完了しました。</div>
+			<div class="success"><p>登録が完了しました。</p></div>
 
 		<a href="${pageContext.request.contextPath}/servlet/TestRegistController">戻る</a><%--成績登録画面に戻る --%>
 		<a href="${pageContext.request.contextPath}/servlet/TestListController">成績参照</a><%--成績参照画面に移動 --%>
