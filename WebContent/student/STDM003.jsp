@@ -12,11 +12,10 @@
 		<div class = "main">
 			<div class="menu-header">学生情報登録</div>
 			<%-- ここに処理を書き込む --%>
-			<c:if test="${not empty success}">
-				<p class="success">${success}</p>
-			</c:if>
-					<a href="#">戻る</a><%--学生登録画面に戻る --%>
-					<a href="#">学生一覧</a><%--学生一覧画面に移動 --%>
+			<div class=success>登録が完了しました。</div>
+
+					<a href="${pageContext.request.contextPath}/StudentCreate.action">戻る</a><%--学生登録画面に戻る --%>
+					<a href="${pageContext.request.contextPath}/StudentList">学生一覧</a><%--学生一覧画面に移動 --%>
 
 		</div>
 	</div>
