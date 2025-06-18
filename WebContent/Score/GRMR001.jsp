@@ -102,7 +102,7 @@
 
 			<%-- 検索結果なしエラーメッセージ表示エリア【変数変更お願いします】 --%>
 						<c:if test="${not empty no_results_error}">
-							<p class="text-danger">
+							<p>
 								${no_results_error}
 							</p>
 						</c:if>

@@ -90,7 +90,7 @@ public class TestListController extends CommonServlet {
         List<TestListSubject> list = dao.filter(Integer.parseInt(entYearStr), classNum, subject, school);
 
         if (list.isEmpty()) {
-            request.setAttribute("no_results_error", "学生情報が存在しません");
+            request.setAttribute("no_results_error", "学生情報が存在しませんでした");
         }
         request.setAttribute("subject_search_results", list);
         return true; // 正常終了
@@ -115,12 +115,12 @@ public class TestListController extends CommonServlet {
             TestListStudentDao testListStudentDao = new TestListStudentDao();
             List<TestListStudent> list = testListStudentDao.filter(student);
             if (list.isEmpty()) {
-                request.setAttribute("no_results_error", "登録されている成績情報はありません");
+            	request.setAttribute("no_results_error", "学生情報が存在しませんでした");
             }
             request.setAttribute("student_search_results", list);
             request.setAttribute("student", student);
         } else {
-            request.setAttribute("no_results_error", "指定された学生は存在しません");
+        	request.setAttribute("no_results_error", "学生情報が存在しませんでした");
         }
         return true; // 正常終了
     }
