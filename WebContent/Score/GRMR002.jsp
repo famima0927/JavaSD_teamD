@@ -11,8 +11,7 @@
 		</div>
 		<div class="main">
 			<%-- ① 成績参照 --%>
-			<div class="bg-light p-3">
-		        <h5 class="mb-0 fw-bold">成績一覧(科目)</h5>
+			<div class="bg-light border px-3 py-2 mb-3 fw-bold">成績一覧(科目)
 		    </div>
 			<%-- ⑮ 全体を囲むボックス --%>
 			<div class="card p-4 mb-4 border rounded">
