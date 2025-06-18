@@ -103,7 +103,7 @@
 			<c:if test="${not empty subject_search_results}">
 				<div class="content-box">
 					<h4>検索結果：科目別成績</h4>
-					<table class="table table-striped table-hover"> <%-- Bootstrapのテーブルクラスを適用 --%>
+					<table class="table table-hover"> <%-- Bootstrapのテーブルクラスを適用 --%>
 						<thead>
 							<tr><th>入学年度</th><th>クラス</th><th>学生番号</th><th>氏名</th><th>1回目</th><th>2回目</th></tr>
 						</thead>
@@ -127,7 +127,7 @@
 			<c:if test="${not empty student_search_results}">
 				<div class="content-box">
 					<h4>検索結果：${student.name}さんの成績</h4>
-					<table class="table table-striped table-hover"> <%-- Bootstrapのテーブルクラスを適用 --%>
+					<table class="table table-hover"> <%-- Bootstrapのテーブルクラスを適用 --%>
 						<thead>
 							<tr><th>科目コード</th><th>科目名</th><th>回数</th><th>点数</th></tr>
 						</thead>
