@@ -80,7 +80,6 @@ public class SubjectRegisterServlet extends CommonServlet {
 			e.printStackTrace();
 			req.setAttribute("error", "入力内容が不正です：" + e.getMessage());
 			System.out.println("cd = " + req.getParameter("cd"));
-			System.out.println("cd = " + req.getParameter("cd"));
 			System.out.println("name = " + req.getParameter("name"));
 			req.getRequestDispatcher("/Subject/SBJM002.jsp").forward(req, resp);
 		}

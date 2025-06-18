@@ -77,7 +77,7 @@ protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exc
 
 		} else {
 			// 削除に失敗した場合のメッセージ
-			req.setAttribute("error", "登録に失敗しました。");
+			req.setAttribute("error", "削除に失敗しました。");
 		}
 
 	     } catch (Exception e) {
