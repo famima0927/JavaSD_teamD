@@ -10,11 +10,14 @@
 			<jsp:include page="../base/base.jsp"></jsp:include>
 		</div>
 		<div class = "main">
-		<div class="menu-header">成績管理</div>
+		<div class="bg-light border px-3 py-2 mb-3 fw-bold">成績管理</div>
 			<%-- ここに処理を書き込む --%>
-			<div class="success"><p>登録が完了しました。</p></div>
+			<%-- 登録完了メッセージをBootstrapのAlertで表示 --%>
+			<div class="card shadow-sm text-center border-0 mb-4" style="width: auto; background-color: #cde3cd;">
+				登録が完了しました。
+			</div>
 
-		<a href="${pageContext.request.contextPath}/servlet/TestRegistController">戻る</a><%--成績登録画面に戻る --%>
+		<a href="${pageContext.request.contextPath}/servlet/TestRegistController" class="me-3">戻る</a><%--成績登録画面に戻る --%>
 		<a href="${pageContext.request.contextPath}/servlet/TestListController">成績参照</a><%--成績参照画面に移動 --%>
 
 		</div>

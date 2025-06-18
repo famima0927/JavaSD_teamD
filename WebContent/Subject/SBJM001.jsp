@@ -39,13 +39,14 @@
    <div class="right-align">
   <a href="<%= request.getContextPath() %>/SubjectRegisterServlet">新規登録</a></div>
     <!-- 一覧表のテーブル（見出し） -->
-    <table style="border-collapse: collapse; width: 100%;">
+    <table class="table table-hover">
       <thead>
         <tr>
-          <th style="padding: 5px;">科目コード</th>
-          <th style="padding: 5px;">科目名</th>
-           <th style="padding: 5px;"></th>
-           <th style="padding: 5px;"></th>
+           <th >科目コード</th>
+           <th>科目名</th>
+           <th></th>
+           <th></th>
+
         </tr>
       </thead>
 
