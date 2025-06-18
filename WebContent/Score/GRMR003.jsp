@@ -87,7 +87,7 @@
 						<div class="col-md-5">
 							<label for="studentNoInput" class="form-label">学生番号</label>
 							<%-- ⑫ 学生番号入力欄 --%>
-							<input id="studentNoInput" type="text" name="f5_student_no" class="form-control" placeholder="学生番号を入力" value="${f5_student_no}">
+							<input id="studentNoInput" type="text" name="f5_student_no" class="form-control" placeholder="学生番号を入力" required value="${f5_student_no}">
 						</div>
 
 						<%-- ⑬ 検索ボタン --%>
