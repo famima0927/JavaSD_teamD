@@ -24,7 +24,7 @@
 			<li><a href = "${pageContext.request.contextPath}/servlet/TestListController">成績参照</a></li>
 		</ul>
 
-		<a href = "${pageContext.request.contextPath}/SubjectListServlet">科目管理</a>
+		<a href="${pageContext.request.contextPath}/SubjectListController">科目管理</a>
 
 	</body>
 </html>

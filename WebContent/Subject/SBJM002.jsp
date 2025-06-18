@@ -33,7 +33,7 @@
       <button type="submit">登録</button>
 
   </form>
-  <a href="${pageContext.request.contextPath}/SubjectListServlet">戻る</a>
+  <a href="${pageContext.request.contextPath}/SubjectListController">戻る</a>
 
 
     <%--
