@@ -25,6 +25,7 @@
 
       <!-- 削除対象CDをhiddenで送信 -->
       <input type="hidden" name="cd" value="${subject.cd}">
+      <input type="hidden" name="name" value="${subject.name}">
 
       <!-- 送信ボタン -->
       <input type="submit" value="削除">
