@@ -67,6 +67,13 @@
 							<button type="submit" name="search_action" value="subject_search" class="btn btn-secondary">検索</button>
 						</div>
 					</div>
+
+					<%-- 検索条件不足エラーメッセージ表示エリア【変数変更お願いします】 --%>
+					<c:if test="${not empty criteria_error}">
+						<div class="text-danger mt-2">
+							${criteria_error}
+						</div>
+					</c:if>
 				</form>
 
 				<hr class="my-4">
@@ -93,6 +100,13 @@
 
 			<%-- ⑭ 利用方法案内メッセージ --%>
 			<p class="text-info">科目情報を選択または学生情報を入力して検索ボタンをクリックしてください</p>
+
+			<%-- 検索結果なしエラーメッセージ表示エリア【変数変更お願いします】 --%>
+						<c:if test="${not empty no_results_error}">
+							<p class="text-danger">
+								${no_results_error}
+							</p>
+						</c:if>
 
 			<%-- 検索結果がある場合のみ区切り線を表示 --%>
 			<c:if test="${not empty subject_search_results or not empty student_search_results}">
