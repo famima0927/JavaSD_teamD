@@ -9,30 +9,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-import bean.School;
 import bean.Subject;
-import dao.SchoolDao;
-import dao.SubjectDao;
 import tool.CommonServlet;
 @WebServlet("/SubjectEditServlet")
-public class SubjectEditServlet extends CommonServlet  {
+public class SubjectEditExecuteController extends CommonServlet  {
 	protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 
-// --- 情報の取得 ---
-	try {
-		 String cd = req.getParameter("id");
-		 System.out.println("cd = " + req.getParameter("cd"));
-		    SchoolDao schD = new SchoolDao();
-		    SubjectDao subD = new SubjectDao();
-		    School sch = schD.get("oom"); // 学校IDを固定で取得
 
-		    req.setAttribute("subject", subD.get(cd, sch));
-		    System.out.println("cd = " + req.getParameter("cd"));
-		    req.getRequestDispatcher("/Subject/SBJM004.jsp").forward(req, resp);
-
-	 } catch (Exception e) {
-		   //エラー時
-			e.printStackTrace();}
 }
 
 

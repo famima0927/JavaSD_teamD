@@ -14,7 +14,7 @@ import dao.SchoolDao;
 import dao.SubjectDao;
 import tool.CommonServlet;
 @WebServlet("/SubjectDeleteServlet")
-public class SubjectDeleteServlet extends CommonServlet  {
+public class SubjectDeleteExecuteController extends CommonServlet  {
 	protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 
 // --- 情報の取得 ---

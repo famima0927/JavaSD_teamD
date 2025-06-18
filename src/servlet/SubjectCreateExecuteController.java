@@ -1,5 +1,4 @@
 package servlet;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
@@ -11,10 +10,9 @@ import javax.sql.DataSource;
 
 import bean.Subject;
 import tool.CommonServlet;
-import tool.Page;
 
 @WebServlet("/SubjectRegisterServlet")
-public class SubjectRegisterServlet extends CommonServlet {
+public class SubjectCreateExecuteController extends CommonServlet {
 
     /**
      * GETメソッドでアクセスされたときの処理。
@@ -22,12 +20,7 @@ public class SubjectRegisterServlet extends CommonServlet {
      */
     @Override
     protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-    	resp.setContentType("text/html; charset=UTF-8");
-		PrintWriter out=resp.getWriter();
-		Page.header(out);
-
-        // フォワード：ブラウザのURLは変わらず、サーバー内部でページを切り替える
-        req.getRequestDispatcher("/Subject/SBJM002.jsp").forward(req, resp);}
+    	}
 
 
     @Override

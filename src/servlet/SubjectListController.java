@@ -15,7 +15,7 @@ import javax.sql.DataSource;
 import bean.Subject;
 import tool.CommonServlet;
 @WebServlet("/SubjectListServlet")
-public class SubjectListServlet extends CommonServlet  {
+public class SubjectListController extends CommonServlet  {
 @Override
     protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		// --- 情報の取得 ---
