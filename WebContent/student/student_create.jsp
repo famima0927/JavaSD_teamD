@@ -16,19 +16,7 @@
     <div class="main">
         <h2>学生新規登録</h2>
 
-        <%-- エラーメッセージ表示欄 --%>
-        <c:if test="${not empty errors}">
-            <div class="error-message">
-                <ul>
-                    <c:forEach var="error" items="${errors}">
-                        <li>${error}</li>
-                    </c:forEach>
-                </ul>
-            </div>
-        </c:if>
-
         <div class="form-container">
-            <%-- 送信先は StudentRegister.action に設定 --%>
             <form action="StudentRegister.action" method="post">
 
                 <div class="form-row">
@@ -51,7 +39,8 @@
                 <div class="form-row">
                     <label for="studentName">氏名</label>
                     <input type="text" id="studentName" name="name" value="${name}" required>
-                    <div class="form-error">${nameError}</div>
+                    <%-- ★★★ ここに氏名重複エラーの表示を追加 ★★★ --%>
+                    <div class="form-error">${nameError} ${nameDuplicateError}</div>
                 </div>
 
                 <div class="form-row">

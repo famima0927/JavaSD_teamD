@@ -31,29 +31,21 @@ public class StudentDao extends Dao {
                     student.setSchool(school);
                 }
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw e;
         }
         return student;
     }
 
     private List<Student> postFilter(ResultSet rSet, School school) throws Exception {
         List<Student> list = new ArrayList<>();
-        try {
-            while (rSet.next()) {
-                Student student = new Student();
-                student.setNo(rSet.getString("NO"));
-                student.setName(rSet.getString("NAME"));
-                student.setEntYear(rSet.getInt("ENT_YEAR"));
-                student.setClassNum(rSet.getString("CLASS_NUM"));
-                student.setIsAttend(rSet.getInt("IS_ATTEND") == 1);
-                student.setSchool(school);
-                list.add(student);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw e;
+        while (rSet.next()) {
+            Student student = new Student();
+            student.setNo(rSet.getString("NO"));
+            student.setName(rSet.getString("NAME"));
+            student.setEntYear(rSet.getInt("ENT_YEAR"));
+            student.setClassNum(rSet.getString("CLASS_NUM"));
+            student.setIsAttend(rSet.getInt("IS_ATTEND") == 1);
+            student.setSchool(school);
+            list.add(student);
         }
         return list;
     }
@@ -98,41 +90,68 @@ public class StudentDao extends Dao {
     public boolean save(Student student) throws Exception {
         int count = 0;
         Connection con = getConnection();
-
         Student old = this.get(student.getNo());
 
         if (old == null) {
-            // 学生が存在しない場合：INSERT
             String sql = "INSERT INTO STUDENT (NO, NAME, ENT_YEAR, CLASS_NUM, IS_ATTEND, SCHOOL_CD) VALUES (?, ?, ?, ?, ?, ?)";
             try (PreparedStatement st = con.prepareStatement(sql)) {
                 st.setString(1, student.getNo());
                 st.setString(2, student.getName());
                 st.setInt(3, student.getEntYear());
                 st.setString(4, student.getClassNum());
-                st.setBoolean(5, student.getIsAttend()); // 正しいメソッド呼び出し
+                st.setBoolean(5, student.getIsAttend());
                 st.setString(6, student.getSchool().getCd());
                 count = st.executeUpdate();
             }
         } else {
-            // 学生が存在する場合：UPDATE
             String sql = "UPDATE STUDENT SET NAME = ?, CLASS_NUM = ?, IS_ATTEND = ? WHERE NO = ?";
             try (PreparedStatement st = con.prepareStatement(sql)) {
                 st.setString(1, student.getName());
                 st.setString(2, student.getClassNum());
-                st.setBoolean(3, student.getIsAttend()); // 正しいメソッド呼び出し
+                st.setBoolean(3, student.getIsAttend());
                 st.setString(4, student.getNo());
                 count = st.executeUpdate();
             }
         }
 
         if (con != null) {
-            try {
-                con.close();
-            } catch (SQLException sqle) {
-                sqle.printStackTrace();
-            }
+            try { con.close(); } catch (SQLException sqle) { sqle.printStackTrace(); }
         }
 
         return count > 0;
+    }
+
+    /**
+     * [参照] 氏名を指定して学生情報を1件取得する (新規追加)
+     * (氏名の重複チェックで使用)
+     * @param name: String 氏名
+     * @return Student 学生オブジェクト。存在しない場合はnull。
+     * @throws Exception
+     */
+    public Student getByName(String name) throws Exception {
+        Student student = null;
+        SchoolDao schoolDao = new SchoolDao();
+        String sql = "SELECT * FROM STUDENT WHERE NAME = ?";
+
+        try (Connection con = getConnection();
+             PreparedStatement st = con.prepareStatement(sql)) {
+            st.setString(1, name);
+            try (ResultSet rs = st.executeQuery()) {
+                if (rs.next()) {
+                    student = new Student();
+                    student.setNo(rs.getString("NO"));
+                    student.setName(rs.getString("NAME"));
+                    student.setEntYear(rs.getInt("ENT_YEAR"));
+                    student.setClassNum(rs.getString("CLASS_NUM"));
+                    student.setIsAttend(rs.getInt("IS_ATTEND") == 1);
+                    School school = schoolDao.get(rs.getString("SCHOOL_CD"));
+                    student.setSchool(school);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e;
+        }
+        return student;
     }
 }

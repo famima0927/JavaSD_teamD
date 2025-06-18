@@ -11,10 +11,8 @@ import dao.StudentDao;
 import tool.CommonServlet;
 
 @WebServlet("/StudentRegister.action")
-// ★★★ 修正点1：abstract を削除 ★★★
 public class StudentRegisterServlet extends CommonServlet {
 
-    // ★★★ 修正点2：post メソッドの throws を Exception に修正 & 不要なtry-catchを削除 ★★★
     @Override
     public void post(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
@@ -46,7 +44,6 @@ public class StudentRegisterServlet extends CommonServlet {
             request.setAttribute("noError", "学生番号を入力してください。");
         } else {
             StudentDao dao = new StudentDao();
-            // DB関連のエラーは親のCommonServletがcatchしてくれる
             if (dao.get(no) != null) {
                 hasError = true;
                 request.setAttribute("noDuplicateError", "その学生番号は既に使われています。");
@@ -56,6 +53,14 @@ public class StudentRegisterServlet extends CommonServlet {
         if (name == null || name.isEmpty()) {
             hasError = true;
             request.setAttribute("nameError", "氏名を入力してください。");
+        } else {
+            // ★★★ ここから氏名重複チェックを追加 ★★★
+            StudentDao dao = new StudentDao();
+            if (dao.getByName(name) != null) {
+                hasError = true;
+                request.setAttribute("nameDuplicateError", "その氏名は既に登録されています。");
+            }
+            // ★★★ ここまで追加 ★★★
         }
 
         // ----- エラーがある場合はフォームに戻す -----
@@ -65,7 +70,7 @@ public class StudentRegisterServlet extends CommonServlet {
             request.setAttribute("entYearStr", entYearStr);
             request.setAttribute("classNum", classNum);
 
-            RequestDispatcher rd = request.getRequestDispatcher("/student/student_register.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/student/student_create.jsp");
             rd.forward(request, response);
             return;
         }
@@ -85,14 +90,13 @@ public class StudentRegisterServlet extends CommonServlet {
         StudentDao dao = new StudentDao();
         dao.save(student);
 
-        // 登録完了後、学生一覧ページにリダイレクト
         response.sendRedirect("StudentList");
     }
 
-    // ★★★ 修正点3：get メソッドを空で実装 ★★★
     @Override
     public void get(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        // このサーブレットは登録処理専用なので、GETの処理は不要
+        // GETリクエストの場合はPOSTに処理を渡す
+        post(request, response);
     }
 }
