@@ -14,7 +14,7 @@ import tool.CommonServlet;
 
 @WebServlet("/StudentUpdateExecute.action")
 // ★★★ 修正点1：abstract を削除 ★★★
-public class StudentUpdateExecuteServlet extends CommonServlet {
+public class StudentUpdateExecuteController extends CommonServlet {
 
     // ★★★ 修正点2：post メソッドの throws を Exception に修正 & 不要なtry-catchを削除 ★★★
     @Override
@@ -64,7 +64,7 @@ public class StudentUpdateExecuteServlet extends CommonServlet {
             studentDao.save(studentToUpdate);
 
             // 処理完了後、完了ページにリダイレクト
-            response.sendRedirect("StudentUpdateDone.action");
+            response.sendRedirect("");
         }
     }
 

@@ -12,7 +12,7 @@ import tool.CommonServlet;
 
 @WebServlet("/StudentRegister.action")
 // ★★★ 修正点1：abstract を削除 ★★★
-public class StudentRegisterServlet extends CommonServlet {
+public class StudentCreateExecuteController extends CommonServlet {
 
     // ★★★ 修正点2：post メソッドの throws を Exception に修正 & 不要なtry-catchを削除 ★★★
     @Override

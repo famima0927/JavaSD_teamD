@@ -18,7 +18,7 @@ import tool.CommonServlet; // 作成したCommonServletをインポート
 
 @WebServlet("/StudentList")
 // ★★★ 修正点1：HttpServletからCommonServletを継承し、abstractを削除 ★★★
-public class StudentListServlet extends CommonServlet {
+public class StudentListController extends CommonServlet {
 
     // ★★★ 修正点2：doGetではなく、CommonServletで定義された get メソッドを実装 ★★★
     @Override

@@ -18,6 +18,8 @@ public class LogoutServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+
+
         // 既存セッションを取得（なければ null）
         HttpSession session = request.getSession(false);
 
