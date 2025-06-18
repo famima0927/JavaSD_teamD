@@ -43,7 +43,7 @@ public class StudentCreateController extends CommonServlet {
         request.setAttribute("ent_year_set", entYearSet);
 
         // 登録ページ (student_create.jsp) にフォワード
-        request.getRequestDispatcher("/student/student_create.jsp").forward(request, response);
+        request.getRequestDispatcher("/student/STDM002.jsp").forward(request, response);
     }
 
     // ★★★ 修正点3：postメソッドを空で実装 ★★★
