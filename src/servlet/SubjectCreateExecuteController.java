@@ -11,7 +11,7 @@ import javax.sql.DataSource;
 import bean.Subject;
 import tool.CommonServlet;
 
-@WebServlet("/SubjectRegisterServlet")
+@WebServlet("/SubjectCreateExecute")
 public class SubjectCreateExecuteController extends CommonServlet {
 
     /**

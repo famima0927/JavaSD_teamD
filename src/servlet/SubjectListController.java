@@ -14,7 +14,7 @@ import javax.sql.DataSource;
 
 import bean.Subject;
 import tool.CommonServlet;
-@WebServlet("/SubjectListServlet")
+@WebServlet("/SubjectList")
 public class SubjectListController extends CommonServlet  {
 @Override
     protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {

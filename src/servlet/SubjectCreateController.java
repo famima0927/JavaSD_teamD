@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import tool.CommonServlet;
 import tool.Page;
 
-@WebServlet("/SubjectRegisterServlet")
+@WebServlet("/SubjectCreate")
 public class SubjectCreateController extends CommonServlet {
 
     /**

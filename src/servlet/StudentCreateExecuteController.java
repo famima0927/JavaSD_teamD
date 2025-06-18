@@ -10,7 +10,7 @@ import bean.Student;
 import dao.StudentDao;
 import tool.CommonServlet;
 
-@WebServlet("/StudentRegister.action")
+@WebServlet("/StudentCreaterExecute")
 // ★★★ 修正点1：abstract を削除 ★★★
 public class StudentCreateExecuteController extends CommonServlet {
 
@@ -65,7 +65,7 @@ public class StudentCreateExecuteController extends CommonServlet {
             request.setAttribute("entYearStr", entYearStr);
             request.setAttribute("classNum", classNum);
 
-            RequestDispatcher rd = request.getRequestDispatcher("/student/student_register.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/student/STDM002.jsp");
             rd.forward(request, response);
             return;
         }

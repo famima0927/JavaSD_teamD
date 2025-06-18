@@ -12,7 +12,7 @@ import dao.ClassNumDao;
 import dao.StudentDao;
 import tool.CommonServlet;
 
-@WebServlet("/StudentUpdateExecute.action")
+@WebServlet("/StudentUpdateExecute")
 // ★★★ 修正点1：abstract を削除 ★★★
 public class StudentUpdateExecuteController extends CommonServlet {
 
@@ -64,7 +64,7 @@ public class StudentUpdateExecuteController extends CommonServlet {
             studentDao.save(studentToUpdate);
 
             // 処理完了後、完了ページにリダイレクト
-            response.sendRedirect("${pageContext.request.contextPath}/student/student_update_done.jsp");
+            response.sendRedirect("${pageContext.request.contextPath}/student/STDM005.jsp");
         }
     }
 

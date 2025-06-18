@@ -74,7 +74,7 @@ public class StudentListController extends CommonServlet {
         request.setAttribute("f2", classNum);
         request.setAttribute("f3", isAttend);
 
-        request.getRequestDispatcher("/student/studentlist.jsp").forward(request, response);
+        request.getRequestDispatcher("/student/STDM001.jsp").forward(request, response);
     }
 
     // ★★★ 修正点3：postメソッドも実装する（中身は空でOK） ★★★

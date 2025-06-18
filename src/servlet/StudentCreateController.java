@@ -12,7 +12,7 @@ import bean.School;
 import dao.ClassNumDao;
 import tool.CommonServlet; // 作成したCommonServletをインポート
 
-@WebServlet("/StudentCreate.action")
+@WebServlet("/StudentCreate")
 // ★★★ 修正点1：HttpServletからCommonServletを継承 ★★★
 public class StudentCreateController extends CommonServlet {
 

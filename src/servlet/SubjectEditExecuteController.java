@@ -11,7 +11,7 @@ import javax.sql.DataSource;
 
 import bean.Subject;
 import tool.CommonServlet;
-@WebServlet("/SubjectEditServlet")
+@WebServlet("/SubjectEditExecute")
 public class SubjectEditExecuteController extends CommonServlet  {
 	protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 

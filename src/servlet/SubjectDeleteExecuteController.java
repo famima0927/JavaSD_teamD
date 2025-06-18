@@ -13,7 +13,7 @@ import bean.School;
 import dao.SchoolDao;
 import dao.SubjectDao;
 import tool.CommonServlet;
-@WebServlet("/SubjectDeleteServlet")
+@WebServlet("/SubjectDeleteExecute")
 public class SubjectDeleteExecuteController extends CommonServlet  {
 	protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 

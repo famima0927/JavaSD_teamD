@@ -8,7 +8,7 @@ import bean.School;
 import dao.SchoolDao;
 import dao.SubjectDao;
 import tool.CommonServlet;
-@WebServlet("/SubjectEditServlet")
+@WebServlet("/SubjectEdit")
 public class SubjectEditController extends CommonServlet  {
 	protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 
