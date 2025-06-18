@@ -43,6 +43,13 @@ protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exc
 		// --- ① フォーム情報を取得 ---
 
 		String CD=req.getParameter("cd");
+		 SchoolDao schD = new SchoolDao();
+		    SubjectDao subD = new SubjectDao();
+		    School sch = schD.get("oom"); // 学校IDを固定で取得
+
+		    req.setAttribute("subject", subD.get(CD, sch));
+
+
 
 		System.out.println("cd = " + CD);
 
