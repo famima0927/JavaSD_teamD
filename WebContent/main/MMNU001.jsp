@@ -15,7 +15,7 @@
         <li class="nav-item fw-bold">成績管理</li>
         <li class="nav-item ms-3"><a class="nav-link text-primary" href="#">成績登録</a></li>
         <li class="nav-item ms-3"><a class="nav-link text-primary" href="#">成績参照</a></li>
-        <li class="nav-item"><a class="nav-link text-primary" href="#">科目管理</a></li>
+        <li class="nav-item"><a class="nav-link text-primary" href=	"#">科目管理</a></li>
       </ul>
     </div>
 
