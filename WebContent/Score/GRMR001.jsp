@@ -107,57 +107,6 @@
 								${no_results_error}
 							</p>
 						</c:if>
-
-			<%-- 検索結果がある場合のみ区切り線を表示 --%>
-			<c:if test="${not empty subject_search_results or not empty student_search_results}">
-				<hr>
-			</c:if>
-
-			<%-- ★★★ 科目検索の結果表示エリア ★★★ --%>
-			<c:if test="${not empty subject_search_results}">
-				<div class="content-box">
-					<h4>検索結果：科目別成績</h4>
-					<table class="table table-hover"> <%-- Bootstrapのテーブルクラスを適用 --%>
-						<thead>
-							<tr><th>入学年度</th><th>クラス</th><th>学生番号</th><th>氏名</th><th>1回目</th><th>2回目</th></tr>
-						</thead>
-						<tbody>
-							<c:forEach var="student" items="${subject_search_results}">
-								<tr>
-									<td>${student.entYear}</td>
-									<td>${student.classNum}</td>
-									<td>${student.studentNo}</td>
-									<td>${student.studentName}</td>
-									<td>${student.getScore(1) != null ? student.getScore(1) : '-'}</td>
-									<td>${student.getScore(2) != null ? student.getScore(2) : '-'}</td>
-								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-				</div>
-			</c:if>
-
-			<%-- ★★★ 学生番号検索の結果表示エリア ★★★ --%>
-			<c:if test="${not empty student_search_results}">
-				<div class="content-box">
-					<h4>検索結果：${student.name}さんの成績</h4>
-					<table class="table table-hover"> <%-- Bootstrapのテーブルクラスを適用 --%>
-						<thead>
-							<tr><th>科目コード</th><th>科目名</th><th>回数</th><th>点数</th></tr>
-						</thead>
-						<tbody>
-							<c:forEach var="test" items="${student_search_results}">
-								<tr>
-									<td>${test.subjectCd}</td>
-									<td>${test.subjectName}</td>
-									<td>${test.num}</td>
-									<td>${test.point}</td>
-								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-				</div>
-			</c:if>
 		</div>
 	</div>
 <jsp:include page="../base/footer.html"></jsp:include>
