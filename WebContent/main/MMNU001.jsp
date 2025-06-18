@@ -44,7 +44,6 @@
         <div class="card shadow-sm border-0" style="width: 180px; background-color: #cfcfe7;">
           <div class="card-body text-center">
 
-            <a href="${pageContext.request.contextPath}/SubjectList" class="stretched-link fw-bold text-decoration-none text-primary">科目管理</a>
             <a href="${pageContext.request.contextPath}/SubjectListController" class="stretched-link fw-bold text-decoration-none text-primary">科目管理</a>
           </div>
         </div>
