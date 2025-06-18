@@ -43,7 +43,11 @@
         <!-- 科目管理 -->
         <div class="card shadow-sm border-0" style="width: 180px; background-color: #cfcfe7;">
           <div class="card-body text-center">
+<<<<<<< HEAD
             <a href="${pageContext.request.contextPath}/SubjectList" class="stretched-link fw-bold text-decoration-none text-primary">科目管理</a>
+=======
+            <a href="${pageContext.request.contextPath}/SubjectListController" class="stretched-link fw-bold text-decoration-none text-primary">科目管理</a>
+>>>>>>> branch 'master' of https://github.com/famima0927/JavaSD_teamD.git
           </div>
         </div>
       </div>

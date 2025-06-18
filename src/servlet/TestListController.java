@@ -20,16 +20,11 @@ import dao.StudentDao;
 import dao.SubjectDao;
 import dao.TestListStudentDao;
 import dao.TestListSubjectDao;
-import tool.CommonServlet; // ★ 継承するクラスをインポート
+import tool.CommonServlet;
 
-// ★ 継承元を HttpServlet から CommonServlet に変更
 @WebServlet(urlPatterns = {"/servlet/TestListController"})
 public class TestListController extends CommonServlet {
 
-    /**
-     * GETリクエストを処理するメソッド。
-     * CommonServletのルールに従い、doGetではなくgetメソッドに処理を記述します。
-     */
     @Override
     public void get(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
@@ -43,31 +38,28 @@ public class TestListController extends CommonServlet {
             return;
         }
 
-        // --- 常に画面に必要なデータを準備 ---
         prepareScreenData(request, teacher.getSchool());
-
-        // 押されたボタンの種類を取得
         String action = request.getParameter("search_action");
+        String forwardPath = "/Score/GRMR001.jsp"; // デフォルトの遷移先は検索ページ
 
         if (action != null) {
+            // 検索ボタンが押された場合
+            boolean isValid = true; // 入力チェックの結果を保持
+
             if (action.equals("subject_search")) {
-                // --- ① 科目検索が実行された場合 ---
-                handleSubjectSearch(request, teacher.getSchool());
+                isValid = handleSubjectSearch(request, teacher.getSchool());
+                if (isValid) forwardPath = "/Score/GRMR002.jsp"; // 入力OKなら結果ページへ
+
             } else if (action.equals("student_search")) {
-                // --- ② 学生番号検索が実行された場合 ---
-                handleStudentSearch(request, teacher.getSchool());
+                isValid = handleStudentSearch(request, teacher.getSchool());
+                if (isValid) forwardPath = "/Score/GRMR003.jsp"; // 入力OKなら結果ページへ
             }
         }
 
-        // 最終的にJSPにフォワード
-        request.getRequestDispatcher("/Score/GRMR001.jsp").forward(request, response);
+        // 最終的に決定されたパスにフォワード
+        request.getRequestDispatcher(forwardPath).forward(request, response);
     }
 
-    /**
-     * POSTリクエストを処理するメソッド。
-     * 今回この機能ではPOSTを使わないが、CommonServletを継承する上で実装が必要。
-     * GETと同じ処理を行うようにgetメソッドを呼び出す。
-     */
     @Override
     public void post(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
@@ -75,55 +67,66 @@ public class TestListController extends CommonServlet {
     }
 
     /**
-     * ① 科目検索のロジック
+     * ① 科目検索のロジック。入力が不正な場合はfalseを返す。
      */
-    private void handleSubjectSearch(HttpServletRequest request, School school) throws Exception {
-        int entYear = Integer.parseInt(request.getParameter("f1_ent_year"));
+    private boolean handleSubjectSearch(HttpServletRequest request, School school) throws Exception {
+        String entYearStr = request.getParameter("f1_ent_year");
         String classNum = request.getParameter("f2_class_num");
         String subjectCd = request.getParameter("f3_subject");
 
-        if (entYear != 0 && !classNum.equals("0") && !subjectCd.equals("0")) {
-            TestListSubjectDao dao = new TestListSubjectDao();
-            Subject subject = new Subject();
-            subject.setCd(subjectCd);
-
-            List<TestListSubject> list = dao.filter(entYear, classNum, subject, school);
-            request.setAttribute("subject_search_results", list);
-        }
-        // 検索条件をリクエストに保持
-        request.setAttribute("ent_year", entYear);
+        // 検索条件をリクエストに保持（入力エラーで戻った時に選択値を復元するため）
+        request.setAttribute("ent_year", Integer.parseInt(entYearStr));
         request.setAttribute("class_num", classNum);
         request.setAttribute("subject_cd", subjectCd);
-    }
 
-    /**
-     * ② 学生番号検索のロジック
-     */
-    private void handleStudentSearch(HttpServletRequest request, School school) throws Exception {
-        String studentNo = request.getParameter("f5_student_no");
-
-        if (studentNo != null && !studentNo.isEmpty()) {
-            StudentDao studentDao = new StudentDao();
-            TestListStudentDao testListStudentDao = new TestListStudentDao();
-
-            Student student = studentDao.get(studentNo);
-
-            if (student != null) {
-                // TestListStudentDaoのfilterメソッドにschoolも渡すように修正
-                List<TestListStudent> list = testListStudentDao.filter(student);
-                request.setAttribute("student_search_results", list);
-                request.setAttribute("student", student);
-            } else {
-                request.setAttribute("error", "指定された学生は存在しません。");
-            }
+        if (entYearStr.equals("0") || classNum.equals("0") || subjectCd.equals("0")) {
+            request.setAttribute("criteria_error", "入学年度、クラス、科目を選択してください");
+            return false; // 入力チェックエラー
         }
-        request.setAttribute("f5_student_no", studentNo);
+
+        TestListSubjectDao dao = new TestListSubjectDao();
+        Subject subject = new Subject();
+        subject.setCd(subjectCd);
+        List<TestListSubject> list = dao.filter(Integer.parseInt(entYearStr), classNum, subject, school);
+
+        if (list.isEmpty()) {
+            request.setAttribute("no_results_error", "学生情報が存在しませんでした");
+        }
+        request.setAttribute("subject_search_results", list);
+        return true; // 正常終了
     }
 
     /**
-     * ドロップダウンリスト用のデータを準備する
+     * ② 学生番号検索のロジック。入力が不正な場合はfalseを返す。
      */
+    private boolean handleStudentSearch(HttpServletRequest request, School school) throws Exception {
+        String studentNo = request.getParameter("f5_student_no");
+        request.setAttribute("f5_student_no", studentNo); // 入力値を復元するため
+
+        if (studentNo == null || studentNo.isEmpty()) {
+            request.setAttribute("criteria_error", "学生番号を入力してください");
+            return false; // 入力チェックエラー
+        }
+
+        StudentDao studentDao = new StudentDao();
+        Student student = studentDao.get(studentNo);
+
+        if (student != null) {
+            TestListStudentDao testListStudentDao = new TestListStudentDao();
+            List<TestListStudent> list = testListStudentDao.filter(student);
+            if (list.isEmpty()) {
+            	request.setAttribute("no_results_error", "学生情報が存在しませんでした");
+            }
+            request.setAttribute("student_search_results", list);
+            request.setAttribute("student", student);
+        } else {
+        	request.setAttribute("no_results_error", "学生情報が存在しませんでした");
+        }
+        return true; // 正常終了
+    }
+
     private void prepareScreenData(HttpServletRequest request, School school) {
+        // (このメソッドの中身は変更なし)
         try {
             ClassNumDao classNumDao = new ClassNumDao();
             SubjectDao subjectDao = new SubjectDao();

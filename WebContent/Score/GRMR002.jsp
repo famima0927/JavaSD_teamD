@@ -11,8 +11,7 @@
 		</div>
 		<div class="main">
 			<%-- ① 成績参照 --%>
-			<div class="bg-light p-3">
-		        <h5 class="mb-0 fw-bold">成績一覧(科目)</h5>
+			<div class="bg-light border px-3 py-2 mb-3 fw-bold">成績一覧(科目)
 		    </div>
 			<%-- ⑮ 全体を囲むボックス --%>
 			<div class="card p-4 mb-4 border rounded">
@@ -87,7 +86,7 @@
 						<div class="col-md-5">
 							<label for="studentNoInput" class="form-label">学生番号</label>
 							<%-- ⑫ 学生番号入力欄 --%>
-							<input id="studentNoInput" type="text" name="f5_student_no" class="form-control" placeholder="学生番号を入力" value="${f5_student_no}">
+							<input id="studentNoInput" type="text" name="f5_student_no" class="form-control" placeholder="学生番号を入力" required value="${f5_student_no}">
 						</div>
 
 						<%-- ⑬ 検索ボタン --%>
