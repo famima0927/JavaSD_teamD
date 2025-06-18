@@ -52,7 +52,7 @@ public class TestListController extends CommonServlet {
             }
         }
 
-        request.getRequestDispatcher("/Score/GRMR002.jsp").forward(request, response);
+        request.getRequestDispatcher("/Score/GRMR001.jsp").forward(request, response);
     }
 
     @Override
