@@ -5,124 +5,145 @@
 %>
 
 <jsp:include page="../base/header.jsp"></jsp:include>
-	<div class = "container">
-		<div class = "side-bar">
+	<div class="container">
+		<div class="side-bar">
 			<jsp:include page="../base/base.jsp"></jsp:include>
 		</div>
-		<div class = "main">
-			<div class="menu-header">成績参照</div>
+		<div class="main">
+			<%-- ① 成績参照 --%>
+			<div class="bg-light p-3">
+		        <h5 class="mb-0 fw-bold">成績管理</h5>
+		    </div>
+			<%-- ⑮ 全体を囲むボックス --%>
+			<div class="card p-4 mb-4 border rounded">
 
-    			<!-- 科目情報での検索フォーム -->
-    			<form action="TestListController" method="get" class="search-form">
-        		<!-- ② 科目情報 (このセクション全体) -->
-        		<!-- ⑮ 科目情報識別コード -->
-        		<input type="hidden" name="f" value="sj">
+				<%-- 科目情報での検索フォーム --%>
+				<form action="TestListController" method="get">
+					<%-- ⑮ 科目情報識別コード (hidden) --%>
+					<input type="hidden" name="f" value="sj">
 
-				        <table>
-				            <tbody>
-				                <tr>
-				                    <!-- ③ ヘッダー(入学年度) -->
-				                    <th>入学年度</th>
-				                    <!-- ④ ヘッダー(クラス) -->
-				                    <th>クラス</th>
-				                    <!-- ⑤ ヘッダー(科目) -->
-				                    <th>科目</th>
-				                    <td></td> <!-- ボタン用の空きセル -->
-				                </tr>
-				                <tr>
-				                    <td>
-				                        <!-- ⑥ 入学年度セレクトボックス -->
-				                         <select name="f1_ent_year">
-		                                    <option value="0">--------</option>
-		                                    <c:forEach var="y" items="${ent_year_set}"><option value="${y}" <c:if test="${y == ent_year}">selected</c:if>>${y}</option></c:forEach>
-		                                 </select>
-				                    </td>
-				                    <td>
-				                        <!-- ⑦ クラスセレクトボックス -->
-				                        <select name="f2_class_num">
-		                                	<option value="0">--------</option>
-		                                    <c:forEach var="c" items="${class_num_set}"><option value="${c}" <c:if test="${c == class_num}">selected</c:if>>${c}</option></c:forEach>
-                                		</select>
-				                    </td>
-				                    <td>
-				                        <!-- ⑧ 科目セレクトボックス -->
-				                        <select name="f3_subject">
-                                  		    <option value="0">--------</option>
-                                	   	    <c:forEach var="s" items="${subjects}"><option value="${s.cd}" <c:if test="${s.cd == subject_cd}">selected</c:if>>${s.name}</option></c:forEach>
-                                		</select>
-				                    </td>
-				                    <td>
-				                        <!-- ⑨ 検索ボタン (イベント31) -->
-				                        <td><button type="submit" name="search_action" value="subject_search">科目で検索</button></td>
-				                    </td>
-				                </tr>
-				            </tbody>
-				        </table>
-				    </form>
+					<%-- ② 科目情報 ラベル --%>
+					<h5 class="mb-3">科目情報</h5>
 
-			<%-- ② 学生番号検索フォーム --%>
-            <div class="content-box">
-                <h4>学生番号で検索</h4>
-                <form action="TestListController" method="get" class="search-form">
-                    <table>
-                        <thead><tr><th>学生番号</th><th></th></tr></thead>
-                        <tbody><tr>
-                            <td><input type="text" name="f5_student_no" placeholder="学生番号を入力" value="${f5_student_no}"></td>
-                            <td><button type="submit" name="search_action" value="student_search">学生番号で検索</button></td>
-                        </tr></tbody>
-                    </table>
-                </form>
-            </div>
+					<div class="row g-3 align-items-end">
+						<%-- ③ 入学年度 --%>
+						<div class="col-md">
+							<label for="entYearSelect" class="form-label">入学年度</label>
+							<%-- ⑥ 入学年度セレクトボックス --%>
+							<select id="entYearSelect" name="f1_ent_year" class="form-select">
+								<option value="0">--------</option>
+								<c:forEach var="y" items="${ent_year_set}">
+									<option value="${y}" <c:if test="${y == ent_year}">selected</c:if>>${y}</option>
+								</c:forEach>
+							</select>
+						</div>
 
-			<!-- ⑭ 利用方法案内メッセージ -->
-			<p>科目情報を選択または学生情報を入力して検索ボタンをクリックしてください</p>
+						<%-- ④ クラス --%>
+						<div class="col-md">
+							<label for="classNumSelect" class="form-label">クラス</label>
+							<%-- ⑦ クラスセレクトボックス --%>
+							<select id="classNumSelect" name="f2_class_num" class="form-select">
+								<option value="0">--------</option>
+								<c:forEach var="c" items="${class_num_set}">
+									<option value="${c}" <c:if test="${c == class_num}">selected</c:if>>${c}</option>
+								</c:forEach>
+							</select>
+						</div>
 
-			<hr>
+						<%-- ⑤ 科目 --%>
+						<div class="col-md">
+							<label for="subjectSelect" class="form-label">科目</label>
+							<%-- ⑧ 科目セレクトボックス --%>
+							<select id="subjectSelect" name="f3_subject" class="form-select">
+								<option value="0">--------</option>
+								<c:forEach var="s" items="${subjects}">
+									<option value="${s.cd}" <c:if test="${s.cd == subject_cd}">selected</c:if>>${s.name}</option>
+								</c:forEach>
+							</select>
+						</div>
+
+						<%-- ⑨ 検索ボタン --%>
+						<div class="col-md-auto">
+							<button type="submit" name="search_action" value="subject_search" class="btn btn-secondary">検索</button>
+						</div>
+					</div>
+				</form>
+
+				<hr class="my-4">
+
+				<%-- 学生番号での検索フォーム --%>
+				<form action="TestListController" method="get">
+					<%-- ⑩ 学生情報 ラベル --%>
+					<h5 class="mb-3">学生情報</h5>
+					<div class="row g-3 align-items-end">
+						<%-- ⑪ 学生番号 --%>
+						<div class="col-md-5">
+							<label for="studentNoInput" class="form-label">学生番号</label>
+							<%-- ⑫ 学生番号入力欄 --%>
+							<input id="studentNoInput" type="text" name="f5_student_no" class="form-control" placeholder="学生番号を入力" value="${f5_student_no}">
+						</div>
+
+						<%-- ⑬ 検索ボタン --%>
+						<div class="col-md-auto">
+							<button type="submit" name="search_action" value="student_search" class="btn btn-secondary">検索</button>
+						</div>
+					</div>
+				</form>
+			</div>
+
+			<%-- ⑭ 利用方法案内メッセージ --%>
+			<p class="text-info">科目情報を選択または学生情報を入力して検索ボタンをクリックしてください</p>
+
+			<%-- 検索結果がある場合のみ区切り線を表示 --%>
+			<c:if test="${not empty subject_search_results or not empty student_search_results}">
+				<hr>
+			</c:if>
 
 			<%-- ★★★ 科目検索の結果表示エリア ★★★ --%>
 			<c:if test="${not empty subject_search_results}">
-			    <div class="content-box">
-			        <h4>検索結果：科目別成績</h4>
-			        <table class="result-table">
-			            <thead><tr><th>入学年度</th><th>クラス</th><th>学生番号</th><th>氏名</th><th>1回目</th><th>2回目</th></tr></thead>
-			            <tbody>
-			                <c:forEach var="student" items="${subject_search_results}">
-			                    <tr>
-			                        <td>${student.entYear}</td>
-			                        <td>${student.classNum}</td>
-			                        <td>${student.studentNo}</td>
-			                        <td>${student.studentName}</td>
-
-			                        <td>${student.getScore(1) != null ? student.getScore(1) : '-'}</td>
-			                        <td>${student.getScore(2) != null ? student.getScore(2) : '-'}</td>
-			                    </tr>
-			                </c:forEach>
-			            </tbody>
-			        </table>
-			    </div>
+				<div class="content-box">
+					<h4>検索結果：科目別成績</h4>
+					<table class="table table-striped table-hover"> <%-- Bootstrapのテーブルクラスを適用 --%>
+						<thead>
+							<tr><th>入学年度</th><th>クラス</th><th>学生番号</th><th>氏名</th><th>1回目</th><th>2回目</th></tr>
+						</thead>
+						<tbody>
+							<c:forEach var="student" items="${subject_search_results}">
+								<tr>
+									<td>${student.entYear}</td>
+									<td>${student.classNum}</td>
+									<td>${student.studentNo}</td>
+									<td>${student.studentName}</td>
+									<td>${student.getScore(1) != null ? student.getScore(1) : '-'}</td>
+									<td>${student.getScore(2) != null ? student.getScore(2) : '-'}</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
 			</c:if>
 
-            <%-- ★★★ 学生番号検索の結果表示エリア ★★★ --%>
-            <c:if test="${not empty student_search_results}">
-                <div class="content-box">
-                    <h4>検索結果：${student.name}さんの成績</h4>
-                    <table class="result-table">
-                        <thead><tr><th>科目コード</th><th>科目名</th><th>回数</th><th>点数</th></tr></thead>
-                        <tbody>
-                            <c:forEach var="test" items="${student_search_results}">
-                                <tr>
-                                    <td>${test.subjectCd}</td>
-                                    <td>${test.subjectName}</td>
-                                    <td>${test.num}</td>
-                                    <td>${test.point}</td>
-                                </tr>
-                            </c:forEach>
-                        </tbody>
-                    </table>
-                </div>
-            </c:if>
-
-
-    		</div>
-    	</div>
+			<%-- ★★★ 学生番号検索の結果表示エリア ★★★ --%>
+			<c:if test="${not empty student_search_results}">
+				<div class="content-box">
+					<h4>検索結果：${student.name}さんの成績</h4>
+					<table class="table table-striped table-hover"> <%-- Bootstrapのテーブルクラスを適用 --%>
+						<thead>
+							<tr><th>科目コード</th><th>科目名</th><th>回数</th><th>点数</th></tr>
+						</thead>
+						<tbody>
+							<c:forEach var="test" items="${student_search_results}">
+								<tr>
+									<td>${test.subjectCd}</td>
+									<td>${test.subjectName}</td>
+									<td>${test.num}</td>
+									<td>${test.point}</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
+			</c:if>
+		</div>
+	</div>
 <jsp:include page="../base/footer.html"></jsp:include>
