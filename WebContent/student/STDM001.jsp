@@ -42,7 +42,7 @@
             </div>
             <div class="actions">
                 <button type="submit" class="btn btn-primary">絞り込み</button>
-                <a href="<c:url value='/StudentCreate.action' />" class="btn btn-success">新規登録</a>
+                <a href="<c:url value='/StudentCreate' />" class="btn btn-success">新規登録</a>
             </div>
         </form>
 
@@ -75,7 +75,7 @@
                         <td>${s.name}</td>
                         <td>${s.classNum}</td>
                         <td>${s.isAttend ? '○' : '×'}</td>
-                        <td><a href="<c:url value='/StudentUpdate.action?no=${s.no}' />">変更</a></td>
+                        <td><a href="<c:url value='/StudentUpdate?no=${s.no}' />">変更</a></td>
                     </tr>
                 </c:forEach>
             </tbody>

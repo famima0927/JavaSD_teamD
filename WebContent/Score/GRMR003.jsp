@@ -12,7 +12,7 @@
 		<div class="main">
 			<%-- ① 成績参照 --%>
 			<div class="bg-light p-3">
-		        <h5 class="mb-0 fw-bold">成績管理</h5>
+		        <h5 class="mb-0 fw-bold">成績管理(学生)</h5>
 		    </div>
 			<%-- ⑮ 全体を囲むボックス --%>
 			<div class="card p-4 mb-4 border rounded">
@@ -107,6 +107,33 @@
 								${no_results_error}
 							</p>
 						</c:if>
+
+			<%-- 検索結果がある場合のみ区切り線を表示 --%>
+			<c:if test="${not empty subject_search_results or not empty student_search_results}">
+				<hr>
+			</c:if>
+
+			<%-- ★★★ 学生番号検索の結果表示エリア ★★★ --%>
+			<c:if test="${not empty student_search_results}">
+				<div class="content-box">
+					<h4>検索結果：${student.name}さんの成績</h4>
+					<table class="table table-hover"> <%-- Bootstrapのテーブルクラスを適用 --%>
+						<thead>
+							<tr><th>科目コード</th><th>科目名</th><th>回数</th><th>点数</th></tr>
+						</thead>
+						<tbody>
+							<c:forEach var="test" items="${student_search_results}">
+								<tr>
+									<td>${test.subjectCd}</td>
+									<td>${test.subjectName}</td>
+									<td>${test.num}</td>
+									<td>${test.point}</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
+			</c:if>
 		</div>
 	</div>
 <jsp:include page="../base/footer.html"></jsp:include>

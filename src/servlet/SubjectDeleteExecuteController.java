@@ -13,8 +13,8 @@ import bean.School;
 import dao.SchoolDao;
 import dao.SubjectDao;
 import tool.CommonServlet;
-@WebServlet("/SubjectDeleteServlet")
-public class SubjectDeleteServlet extends CommonServlet  {
+@WebServlet("/SubjectDeleteExecute")
+public class SubjectDeleteExecuteController extends CommonServlet  {
 	protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 
 // --- 情報の取得 ---
@@ -43,6 +43,13 @@ protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exc
 		// --- ① フォーム情報を取得 ---
 
 		String CD=req.getParameter("cd");
+		 SchoolDao schD = new SchoolDao();
+		    SubjectDao subD = new SubjectDao();
+		    School sch = schD.get("oom"); // 学校IDを固定で取得
+
+		    req.setAttribute("subject", subD.get(CD, sch));
+
+
 
 		System.out.println("cd = " + CD);
 

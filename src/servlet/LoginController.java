@@ -20,6 +20,5 @@ public class LoginController extends CommonServlet {
     @Override
     protected void post(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // 後でログイン処理を書く
     }
 }

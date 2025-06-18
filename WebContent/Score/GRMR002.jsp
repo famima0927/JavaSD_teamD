@@ -12,7 +12,7 @@
 		<div class="main">
 			<%-- ① 成績参照 --%>
 			<div class="bg-light p-3">
-		        <h5 class="mb-0 fw-bold">成績管理</h5>
+		        <h5 class="mb-0 fw-bold">成績一覧(科目)</h5>
 		    </div>
 			<%-- ⑮ 全体を囲むボックス --%>
 			<div class="card p-4 mb-4 border rounded">
@@ -107,6 +107,36 @@
 								${no_results_error}
 							</p>
 						</c:if>
+
+			<%-- 検索結果がある場合のみ区切り線を表示 --%>
+			<c:if test="${not empty subject_search_results or not empty student_search_results}">
+				<hr>
+			</c:if>
+
+			<%-- ★★★ 科目検索の結果表示エリア ★★★ --%>
+			<c:if test="${not empty subject_search_results}">
+				<div class="content-box">
+					<h4>検索結果：科目別成績</h4>
+					<table class="table table-hover"> <%-- Bootstrapのテーブルクラスを適用 --%>
+						<thead>
+							<tr><th>入学年度</th><th>クラス</th><th>学生番号</th><th>氏名</th><th>1回目</th><th>2回目</th></tr>
+						</thead>
+						<tbody>
+							<c:forEach var="student" items="${subject_search_results}">
+								<tr>
+									<td>${student.entYear}</td>
+									<td>${student.classNum}</td>
+									<td>${student.studentNo}</td>
+									<td>${student.studentName}</td>
+									<td>${student.getScore(1) != null ? student.getScore(1) : '-'}</td>
+									<td>${student.getScore(2) != null ? student.getScore(2) : '-'}</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
+			</c:if>
+
 		</div>
 	</div>
 <jsp:include page="../base/footer.html"></jsp:include>

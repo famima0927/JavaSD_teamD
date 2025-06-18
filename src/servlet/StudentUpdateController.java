@@ -14,9 +14,9 @@ import tool.CommonServlet;
 /**
  * 学生情報変更ページを表示するためのサーブレット
  */
-@WebServlet("/StudentUpdate.action")
+@WebServlet("/StudentUpdate")
 // ★★★ 修正点1：abstract を削除 ★★★
-public class StudentUpdateServlet extends CommonServlet {
+public class StudentUpdateController extends CommonServlet {
 
     // ★★★ 修正点2：get メソッドの throws を Exception に修正 & 不要なtry-catchを削除 ★★★
     @Override
