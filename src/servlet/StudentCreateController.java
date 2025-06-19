@@ -29,7 +29,8 @@ public class StudentCreateController extends CommonServlet {
         // 入学年度の選択肢リストを作成
         List<Integer> entYearSet = new ArrayList<>();
         int currentYear = LocalDate.now().getYear();
-        for (int i = currentYear; i >= currentYear - 10; i--) {
+        for (int i =
+        		currentYear; i >= currentYear - 10; i--) {
             entYearSet.add(i);
         }
 

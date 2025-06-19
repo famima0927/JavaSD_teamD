@@ -66,7 +66,6 @@
         <a href="<c:url value='/StudentCreate' />">新規登録</a>
       </div>
 
-<<<<<<< HEAD
         <table class="student-table">
             <thead>
                 <tr>
@@ -93,19 +92,18 @@
                         <td>${s.classNum}</td>
                         <td>${s.isAttend ? '○' : '×'}</td>
                         <%-- ★★★ 修正点3：「変更」のリンクに .action を追加 ★★★ --%>
-                        <td><a href= "<c:url value='/StudentUpdate.action?no=${s.no}'/>">変更></a></td>
+                        <td><a href= "<c:url value='/StudentUpdate.action?no=${s.no}'/>">変更</a></td>
                     </tr>
                 </c:forEach>
             </tbody>
         </table>
         <%-- (ページネーションが必要な場合はここにコードを配置) --%>
-=======
+
       <%-- ③ 検索フォーム --%>
       <div class="p-3 mb-4 border rounded bg-light">
           <form action="<c:url value='/StudentList' />" method="get">
               <div class="row g-3 align-items-end">
                   <%-- 入学年度 --%>
-                  <div class="col-md">
                       <label for="entYear" class="form-label">入学年度</label>
                       <select name="f1" id="entYear" class="form-select">
                           <option value="0">--------</option>

@@ -49,13 +49,10 @@ public class StudentUpdateController extends CommonServlet {
         request.setAttribute("student", student);
         request.setAttribute("class_num_set", classNumSet);
 
-<<<<<<< HEAD
         // ★★★ 修正点：フォワード先を新しい統合JSPに変更 ★★★
         request.getRequestDispatcher("/student/STDM004.jsp").forward(request, response);
-=======
         // 5. 学生情報変更ページ (student_update.jsp) にフォワード
         request.getRequestDispatcher("/student/STDM002.jsp").forward(request, response);
->>>>>>> branch 'master' of https://github.com/famima0927/JavaSD_teamD.git
     }
 
     @Override
