@@ -14,11 +14,10 @@ import tool.CommonServlet;
 /**
  * 学生情報変更ページを表示するためのサーブレット
  */
-@WebServlet("/StudentUpdate")
-// ★★★ 修正点1：abstract を削除 ★★★
+@WebServlet("/StudentUpdate.action")
+// クラス名はご自身のファイル名に合わせてください (StudentUpdateServlet または StudentUpdateController)
 public class StudentUpdateController extends CommonServlet {
 
-    // ★★★ 修正点2：get メソッドの throws を Exception に修正 & 不要なtry-catchを削除 ★★★
     @Override
     public void get(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
@@ -41,21 +40,19 @@ public class StudentUpdateController extends CommonServlet {
             classNumSet = classNumDao.filter(student.getSchool());
         } else {
             // 学生が見つからなかった場合（手動でURLを書き換えた場合など）
-            // エラーメッセージをセットしてエラーページにフォワード
             request.setAttribute("error", "指定された学生は存在しません。");
             request.getRequestDispatcher("/error.jsp").forward(request, response);
-            return; // 処理を中断
+            return;
         }
 
         // 4. JSPに渡すために、取得した情報をリクエストスコープにセット
         request.setAttribute("student", student);
         request.setAttribute("class_num_set", classNumSet);
 
-        // 5. 学生情報変更ページ (student_update.jsp) にフォワード
-        request.getRequestDispatcher("/student/student_update.jsp").forward(request, response);
+        // ★★★ 修正点：フォワード先を新しい統合JSPに変更 ★★★
+        request.getRequestDispatcher("/student/STDM004.jsp").forward(request, response);
     }
 
-    // ★★★ 修正点3：post メソッドを空で実装 ★★★
     @Override
     public void post(HttpServletRequest request, HttpServletResponse response)
             throws Exception {

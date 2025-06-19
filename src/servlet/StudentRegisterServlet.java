@@ -54,13 +54,11 @@ public class StudentRegisterServlet extends CommonServlet {
             hasError = true;
             request.setAttribute("nameError", "氏名を入力してください。");
         } else {
-            // ★★★ ここから氏名重複チェックを追加 ★★★
             StudentDao dao = new StudentDao();
             if (dao.getByName(name) != null) {
                 hasError = true;
                 request.setAttribute("nameDuplicateError", "その氏名は既に登録されています。");
             }
-            // ★★★ ここまで追加 ★★★
         }
 
         // ----- エラーがある場合はフォームに戻す -----
@@ -70,7 +68,8 @@ public class StudentRegisterServlet extends CommonServlet {
             request.setAttribute("entYearStr", entYearStr);
             request.setAttribute("classNum", classNum);
 
-            RequestDispatcher rd = request.getRequestDispatcher("/student/student_create.jsp");
+            // ★★★ 修正点1：戻り先を新しいJSP名に変更 ★★★
+            RequestDispatcher rd = request.getRequestDispatcher("/student/STDM002.jsp");
             rd.forward(request, response);
             return;
         }
@@ -90,13 +89,15 @@ public class StudentRegisterServlet extends CommonServlet {
         StudentDao dao = new StudentDao();
         dao.save(student);
 
-        response.sendRedirect("StudentList");
+        // ★★★ 修正点2：登録完了ページにリダイレクトするように変更 ★★★
+        response.sendRedirect("StudentRegisterDone.action");
     }
 
     @Override
     public void get(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        // GETリクエストの場合はPOSTに処理を渡す
+        // GETリクエストの場合は登録フォーム表示のサーブレットにフォワードする、などの処理も考えられるが
+        // ここではPOSTに処理を渡す
         post(request, response);
     }
 }

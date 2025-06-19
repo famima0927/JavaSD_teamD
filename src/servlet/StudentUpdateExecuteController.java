@@ -7,14 +7,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.School;
 import bean.Student;
 import dao.ClassNumDao;
 import dao.StudentDao;
 import tool.CommonServlet;
 
-// 正しいURLでマッピング
 @WebServlet("/StudentUpdateExecute.action")
-// クラス名を新しいファイル名に合わせる
 public class StudentUpdateExecuteController extends CommonServlet {
 
     @Override
@@ -39,18 +38,22 @@ public class StudentUpdateExecuteController extends CommonServlet {
 
         if (!errors.isEmpty()) {
             // エラーがあった場合
+            // フォームに値を復元するために情報を再取得・設定
             Student student = studentDao.get(no);
+            // ユーザーが入力した値で上書きしてフォームに表示
             student.setName(name);
             student.setClassNum(classNum);
             student.setIsAttend(isAttend);
 
+            // クラス一覧も再度取得
             List<String> classNumSet = classNumDao.filter(student.getSchool());
 
             request.setAttribute("errors", errors);
             request.setAttribute("student", student);
             request.setAttribute("class_num_set", classNumSet);
 
-            request.getRequestDispatcher("/student/student_update.jsp").forward(request, response);
+            // ★★★ 修正点：戻り先を新しい統合JSPに変更 ★★★
+            request.getRequestDispatcher("/student/STDM004.jsp").forward(request, response);
 
         } else {
             // エラーがなければ更新
@@ -60,8 +63,14 @@ public class StudentUpdateExecuteController extends CommonServlet {
             studentToUpdate.setClassNum(classNum);
             studentToUpdate.setIsAttend(isAttend);
 
+            // saveメソッドで学校情報が必要な場合に備えてセットしておく
+            School school = new School();
+            school.setCd("oom"); // 仮の学校コード
+            studentToUpdate.setSchool(school);
+
             studentDao.save(studentToUpdate);
 
+            // 処理完了後、完了ページにリダイレクト
             response.sendRedirect("StudentUpdateDone.action");
         }
     }
@@ -69,6 +78,6 @@ public class StudentUpdateExecuteController extends CommonServlet {
     @Override
     public void get(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        // GETリクエストは受け付けない（またはPOSTに処理を渡す）
+        // GETリクエストは受け付けない
     }
 }

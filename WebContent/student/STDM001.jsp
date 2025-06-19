@@ -42,7 +42,8 @@
             </div>
             <div class="actions">
                 <button type="submit" class="btn btn-primary">絞り込み</button>
-                <a href="<c:url value='/StudentCreate' />" class="btn btn-success">新規登録</a>
+                <%-- ★★★ 修正点1：「新規登録」のリンクに .action を追加 ★★★ --%>
+                <a href="<c:url value='/StudentCreate.action' />" class="btn btn-success">新規登録</a>
             </div>
         </form>
 
@@ -53,9 +54,9 @@
         <table class="student-table">
             <thead>
                 <tr>
-                    <%-- ▼▼▼ 原因切り分けのため、一時的にシンプルな表示に変更 ▼▼▼ --%>
-                    <th>入学年度</th>
-                    <th>学生番号</th>
+                    <%-- ★★★ 修正点2：並び替え機能を正しいURLで復活 ★★★ --%>
+                    <th><a href="<c:url value='/StudentList?f1=${f1}&f2=${f2}&f3=${f3}&sort=ent_year_${sort_order == 'asc' ? 'desc' : 'asc'}' />">入学年度 ${sort_key == 'ent_year' ? (sort_order == 'asc' ? '▲' : '▼') : ''}</a></th>
+                    <th><a href="<c:url value='/StudentList?f1=${f1}&f2=${f2}&f3=${f3}&sort=no_${sort_order == 'asc' ? 'desc' : 'asc'}' />">学生番号 ${sort_key == 'no' ? (sort_order == 'asc' ? '▲' : '▼') : ''}</a></th>
                     <th>氏名</th>
                     <th>クラス</th>
                     <th>在学中</th>
@@ -75,12 +76,13 @@
                         <td>${s.name}</td>
                         <td>${s.classNum}</td>
                         <td>${s.isAttend ? '○' : '×'}</td>
-                        <td><a href="<c:url value='/StudentUpdate?no=${s.no}' />">変更</a></td>
+                        <%-- ★★★ 修正点3：「変更」のリンクに .action を追加 ★★★ --%>
+                        <td><a href= "<c:url value='/StudentUpdate.action?no=${s.no}'/>">変更></a></td>
                     </tr>
                 </c:forEach>
             </tbody>
         </table>
-        <%-- (ページネーション部分は省略) --%>
+        <%-- (ページネーションが必要な場合はここにコードを配置) --%>
     </div>
 </div>
-<jsp:include page="../base/footer.html"></jsp:include>
+<%@ include file="../base/footer.html" %>

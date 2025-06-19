@@ -10,11 +10,10 @@ import bean.Student;
 import dao.StudentDao;
 import tool.CommonServlet;
 
-@WebServlet("/StudentCreaterExecute")
-// ★★★ 修正点1：abstract を削除 ★★★
+// ★★★ 修正点：URLをフォームの送信先と一致させる ★★★
+@WebServlet("/StudentRegister.action")
 public class StudentCreateExecuteController extends CommonServlet {
 
-    // ★★★ 修正点2：post メソッドの throws を Exception に修正 & 不要なtry-catchを削除 ★★★
     @Override
     public void post(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
@@ -46,7 +45,6 @@ public class StudentCreateExecuteController extends CommonServlet {
             request.setAttribute("noError", "学生番号を入力してください。");
         } else {
             StudentDao dao = new StudentDao();
-            // DB関連のエラーは親のCommonServletがcatchしてくれる
             if (dao.get(no) != null) {
                 hasError = true;
                 request.setAttribute("noDuplicateError", "その学生番号は既に使われています。");
@@ -56,6 +54,12 @@ public class StudentCreateExecuteController extends CommonServlet {
         if (name == null || name.isEmpty()) {
             hasError = true;
             request.setAttribute("nameError", "氏名を入力してください。");
+        } else {
+            StudentDao dao = new StudentDao();
+            if (dao.getByName(name) != null) {
+                hasError = true;
+                request.setAttribute("nameDuplicateError", "その氏名は既に登録されています。");
+            }
         }
 
         // ----- エラーがある場合はフォームに戻す -----
@@ -85,14 +89,14 @@ public class StudentCreateExecuteController extends CommonServlet {
         StudentDao dao = new StudentDao();
         dao.save(student);
 
-        // 登録完了後、学生一覧ページにリダイレクト
-        response.sendRedirect("StudentList");
+        // 登録完了ページにリダイレクト
+        response.sendRedirect("StudentRegisterDone.action");
     }
 
-    // ★★★ 修正点3：get メソッドを空で実装 ★★★
     @Override
     public void get(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        // このサーブレットは登録処理専用なので、GETの処理は不要
+        // GETでアクセスされた場合は、登録処理(POST)にそのまま処理を渡す
+        post(request, response);
     }
 }
