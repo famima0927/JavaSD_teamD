@@ -15,8 +15,7 @@
 
 		<div class="main">
 		    <%-- ① タイトル部分 --%>
-		    <div class="bg-light p-3">
-		        <h5 class="mb-0 fw-bold">成績管理</h5>
+			<div class="bg-light border px-3 py-2 mb-3 fw-bold">成績管理
 		    </div>
 
 		    <%-- ② 検索フォーム部分 --%>
