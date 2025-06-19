@@ -5,7 +5,7 @@
 <jsp:include page="../base/header.jsp"></jsp:include>
 
 <%-- ★ mb-5 を追加して、フッターとの間に余白を設けます --%>
-<div class="container-fluid mb-5">
+<div class="container-fluid">
   <div class="row">
     <!-- サイドバー（変更なし） -->
     <div class="col-md-2 bg-white border-end py-3">
