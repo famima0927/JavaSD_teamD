@@ -52,7 +52,7 @@ public class StudentUpdateController extends CommonServlet {
         request.setAttribute("class_num_set", classNumSet);
 
         // 5. 学生情報変更ページ (student_update.jsp) にフォワード
-        request.getRequestDispatcher("/student/student_update.jsp").forward(request, response);
+        request.getRequestDispatcher("/student/STDM002.jsp").forward(request, response);
     }
 
     // ★★★ 修正点3：post メソッドを空で実装 ★★★
