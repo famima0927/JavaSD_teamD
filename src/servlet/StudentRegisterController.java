@@ -11,7 +11,7 @@ import dao.StudentDao;
 import tool.CommonServlet;
 
 @WebServlet("/StudentRegister.action")
-public class StudentRegisterServlet extends CommonServlet {
+public class StudentRegisterController extends CommonServlet {
 
     @Override
     public void post(HttpServletRequest request, HttpServletResponse response)
