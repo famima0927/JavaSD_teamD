@@ -10,7 +10,7 @@
 
 </head>
 <body class="<%= request.getAttribute("bodyClass") != null ? request.getAttribute("bodyClass") : "" %> ">
-<div class = ""
+
   <header class="header">
     <div class="header-title">得点管理システム</div>
     <div class="header-user">
