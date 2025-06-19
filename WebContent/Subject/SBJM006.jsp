@@ -30,7 +30,7 @@
       <!-- 送信ボタン -->
       <input type="submit" value="削除">
     </form>
-    <a href="${pageContext.request.contextPath}/SubjectListServlet">戻る</a>
+    <a href="${pageContext.request.contextPath}/SubjectListController">戻る</a>
 
 <c:if test="${not empty error}">
       <p style="color: red">${error}</p>

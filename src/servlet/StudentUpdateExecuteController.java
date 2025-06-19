@@ -12,11 +12,11 @@ import dao.ClassNumDao;
 import dao.StudentDao;
 import tool.CommonServlet;
 
-@WebServlet("/StudentUpdateExecute")
-// ★★★ 修正点1：abstract を削除 ★★★
+// 正しいURLでマッピング
+@WebServlet("/StudentUpdateExecute.action")
+// クラス名を新しいファイル名に合わせる
 public class StudentUpdateExecuteController extends CommonServlet {
 
-    // ★★★ 修正点2：post メソッドの throws を Exception に修正 & 不要なtry-catchを削除 ★★★
     @Override
     public void post(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
@@ -38,8 +38,7 @@ public class StudentUpdateExecuteController extends CommonServlet {
         }
 
         if (!errors.isEmpty()) {
-            // エラーがあった場合、フォームに値を復元して戻す
-            // DBアクセスでエラーが起きてもCommonServletがcatchしてくれる
+            // エラーがあった場合
             Student student = studentDao.get(no);
             student.setName(name);
             student.setClassNum(classNum);
@@ -54,7 +53,7 @@ public class StudentUpdateExecuteController extends CommonServlet {
             request.getRequestDispatcher("/student/student_update.jsp").forward(request, response);
 
         } else {
-            // エラーがなければ、データベースを更新
+            // エラーがなければ更新
             Student studentToUpdate = new Student();
             studentToUpdate.setNo(no);
             studentToUpdate.setName(name);
@@ -63,15 +62,13 @@ public class StudentUpdateExecuteController extends CommonServlet {
 
             studentDao.save(studentToUpdate);
 
-            // 処理完了後、完了ページにリダイレクト
-            response.sendRedirect("${pageContext.request.contextPath}/student/STDM005.jsp");
+            response.sendRedirect("StudentUpdateDone.action");
         }
     }
 
-    // ★★★ 修正点3：get メソッドを空で実装 ★★★
     @Override
     public void get(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        // このサーブレットは更新処理専用なので、GETの処理は不要
+        // GETリクエストは受け付けない（またはPOSTに処理を渡す）
     }
 }
