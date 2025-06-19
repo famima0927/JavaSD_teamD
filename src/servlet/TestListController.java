@@ -126,7 +126,6 @@ public class TestListController extends CommonServlet {
     }
 
     private void prepareScreenData(HttpServletRequest request, School school) {
-        // (このメソッドの中身は変更なし)
         try {
             ClassNumDao classNumDao = new ClassNumDao();
             SubjectDao subjectDao = new SubjectDao();

@@ -20,7 +20,7 @@
 
   <div class="main">
   <div class="menu-header">科目情報変更</div>
-  <form action="SubjectEditServlet" method="post">
+  <form action="SubjectEditExecute" method="post">
   <label>科目コード</label><br>
   <input type="text" name="cd"value="${subject.cd}"readonly ><br>
   <%-- コース選択（必須） --%>

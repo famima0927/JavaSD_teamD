@@ -5,27 +5,10 @@
 %>
 <style>
 
- table {
-    border-collapse: collapse;
-    width: 100%;
-  }
-  th, td {
-      padding: 5px;
-    border: 1px solid #ccc;
-    border-left: none;
-    border-right: none;
-  }
-   th {
-    text-align: left; /* ← ここで見出しを左寄せ */
-  }
-
-
     .right-align {
       text-align: right; /* テキストを右寄せ */
     }
-    .right-align a {
-      display: inline-block; /* インラインブロック要素として表示 */
-    }
+
   </style>
 <jsp:include page="../base/header.jsp"></jsp:include>
 
@@ -35,7 +18,7 @@
   </div>
 
   <div class="main">
-  <div class="menu-header">科目一覧</div>
+<div class="menu-header">科目管理</div>
    <div class="right-align">
   <a href="<%= request.getContextPath() %>/SubjectCreate">新規登録</a></div>
     <!-- 一覧表のテーブル（見出し） -->
@@ -55,8 +38,8 @@
       <tr>
         <td>${subj.cd}</td>
         <td>${subj.name}</td>
-        <td><a href="<%= request.getContextPath() %>/SubjectEditServlet?id=${subj.cd}">変更</a></td>
-        <td><a href="<%= request.getContextPath() %>/SubjectDeleteServlet?id=${subj.cd}">削除</a></td>
+        <td><a href="<%= request.getContextPath() %>/SubjectEdit?id=${subj.cd}">変更</a></td>
+        <td><a href="<%= request.getContextPath() %>/SubjectDelete?id=${subj.cd}">削除</a></td>
 
 
 
