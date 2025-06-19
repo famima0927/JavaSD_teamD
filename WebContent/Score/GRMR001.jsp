@@ -17,7 +17,7 @@
 			<div class="card p-4 mb-4 border rounded">
 
 				<%-- 科目情報での検索フォーム --%>
-				<form action="TestListController" method="get">
+				<form action="<c:url value='/servlet/TestListController' />" method="get">
 					<%-- ⑮ 科目情報識別コード (hidden) --%>
 					<input type="hidden" name="f" value="sj">
 
@@ -78,7 +78,7 @@
 				<hr class="my-4">
 
 				<%-- 学生番号での検索フォーム --%>
-				<form action="TestListController" method="get">
+				<form action="<c:url value='/servlet/TestListController' />" method="get">
 					<%-- ⑩ 学生情報 ラベル --%>
 					<h5 class="mb-3">学生情報</h5>
 					<div class="row g-3 align-items-end">

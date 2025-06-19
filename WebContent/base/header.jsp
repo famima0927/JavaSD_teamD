@@ -9,8 +9,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
-<body class="<%= request.getAttribute("bodyClass") != null ? request.getAttribute("bodyClass") : "" %>">
-
+<body class="<%= request.getAttribute("bodyClass") != null ? request.getAttribute("bodyClass") : "" %> ">
+<div class = ""
   <header class="header">
     <div class="header-title">得点管理システム</div>
     <div class="header-user">
