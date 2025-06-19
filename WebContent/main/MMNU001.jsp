@@ -52,4 +52,4 @@
   </div>
 </div>
 
-<jsp:include page="../base/footer.jsp"></jsp:include>
+<jsp:include page="../base/footer.html"></jsp:include>
