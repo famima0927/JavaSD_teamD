@@ -116,6 +116,9 @@ public class TestRegistController extends CommonServlet {
             return;
         }
 
+        // ★★★ 押されたボタンの種類を取得 ★★★
+        String action = request.getParameter("action");
+
         School school = teacher.getSchool();
         String subjectCd = request.getParameter("subject_cd");
         String testNoStr = request.getParameter("test_no");
@@ -123,53 +126,39 @@ public class TestRegistController extends CommonServlet {
 
         TestDao testDao = new TestDao();
 
-        // ★★★ 1. 削除処理 ★★★
-        // 削除用チェックボックスでチェックされた学生番号の配列を取得
+        // --- 1. 削除処理 ---
         String[] deleteStudentNos = request.getParameterValues("delete");
         List<Test> testsToDelete = new ArrayList<>();
-
         if (deleteStudentNos != null) {
             for (String studentNo : deleteStudentNos) {
                 Test test = new Test();
                 Student student = new Student();
                 Subject subject = new Subject();
-
                 student.setNo(studentNo);
                 subject.setCd(subjectCd);
-
                 test.setStudent(student);
                 test.setSubject(subject);
                 test.setSchool(school);
                 test.setNo(testNo);
-
                 testsToDelete.add(test);
             }
-            // TestDaoのdeleteメソッドを呼び出し
-            testDao.delete(testsToDelete);
         }
 
-        // ★★★ 2. 登録・更新処理 ★★★
+        // --- 2. 登録・更新処理 ＆ バリデーション ---
         Map<String, String> errors = new HashMap<>();
         Map<String, String> originalPoints = new HashMap<>();
         List<Test> testsToSave = new ArrayList<>();
         Enumeration<String> parameterNames = request.getParameterNames();
-
-        // 削除対象の学生リスト（効率的な検索のため）
         List<String> deleteList = (deleteStudentNos != null) ? Arrays.asList(deleteStudentNos) : new ArrayList<>();
 
         while (parameterNames.hasMoreElements()) {
             String paramName = parameterNames.nextElement();
             if (paramName.startsWith("point_")) {
                 String studentNo = paramName.substring("point_".length());
-
-                // ★ もし削除対象に含まれていたら、登録・更新処理はスキップ
-                if (deleteList.contains(studentNo)) {
-                    continue;
-                }
+                if (deleteList.contains(studentNo)) continue;
 
                 String pointStr = request.getParameter(paramName);
                 originalPoints.put(studentNo, pointStr);
-
                 if (pointStr != null && !pointStr.isEmpty()) {
                     try {
                         int point = Integer.parseInt(pointStr);
@@ -195,17 +184,32 @@ public class TestRegistController extends CommonServlet {
             }
         }
 
+        // --- 3. エラーの有無で処理を分岐 ---
         if (!errors.isEmpty()) {
+            // (A) エラーがあった場合：元の画面に必要な情報をすべてセットして戻す
             request.setAttribute("errors", errors);
             request.setAttribute("originalPoints", originalPoints);
-            // エラーがあった場合は、GETの処理を再実行して画面を再表示
-            get(request, response);
+            get(request, response); // GETの処理を再実行して画面を再表示
         } else {
-            // エラーがなければ、登録・更新処理を実行
-            if (!testsToSave.isEmpty()) {
-                testDao.save(testsToSave);
+            // (B) エラーがなかった場合：DB操作を実行
+            if (!testsToDelete.isEmpty()) {
+                testDao.delete(testsToDelete); // 削除実行
             }
-            request.getRequestDispatcher("/Score/GRMU002.jsp").forward(request, response);
+            if (!testsToSave.isEmpty()) {
+                testDao.save(testsToSave); // 登録・更新実行
+            }
+
+            // ★★★ ★★★
+            // ★★★ ボタンの種類によって遷移先を切り替える ★★★
+            if (action != null && action.equals("update")) {
+                // (B-1) 「リストを更新」ボタンが押された場合
+                // GETの処理を再実行して、更新されたリストを同じ画面に表示
+                get(request, response);
+            } else {
+                // (B-2) 「登録して終了」ボタンが押された場合 (またはデフォルト)
+                // 完了ページにフォワード
+                request.getRequestDispatcher("/Score/GRMU002.jsp").forward(request, response);
+            }
         }
     }
 }
