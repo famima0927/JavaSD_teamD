@@ -60,7 +60,7 @@ public class SubjectCreateExecuteController extends CommonServlet {
 
 			if (num >0) {
 				// 正常登録メッセージをセット
-				req.getRequestDispatcher("/Subject/SBJM003.jsp").forward(req, resp);
+				req.getRequestDispatcher("/Subject/student_create_done.jsp").forward(req, resp);
 
 
 			} else {

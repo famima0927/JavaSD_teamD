@@ -71,7 +71,7 @@ public class StudentUpdateExecuteController extends CommonServlet {
             studentDao.save(studentToUpdate);
 
             // 処理完了後、完了ページにリダイレクト
-            response.sendRedirect("StudentUpdateDone.action");
+            response.sendRedirect("/student/student_update_done.jsp");
         }
     }
 

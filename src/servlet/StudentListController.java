@@ -29,6 +29,7 @@ public class StudentListController extends CommonServlet {
         ClassNumDao classNumDao = new ClassNumDao();
         SchoolDao schoolDao = new SchoolDao();
 
+
         List<Student> studentList = new ArrayList<>();
         List<String> classNumSet = new ArrayList<>();
         List<Integer> entYearSet = new ArrayList<>();
@@ -74,7 +75,7 @@ public class StudentListController extends CommonServlet {
         request.setAttribute("f2", classNum);
         request.setAttribute("f3", isAttend);
 
-        request.getRequestDispatcher("/student/STDM001.jsp").forward(request, response);
+        request.getRequestDispatcher("/student/student_list.jsp").forward(request, response);
     }
 
     // ★★★ 修正点3：postメソッドも実装する（中身は空でOK） ★★★

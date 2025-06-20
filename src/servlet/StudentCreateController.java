@@ -12,7 +12,7 @@ import bean.School;
 import dao.ClassNumDao;
 import tool.CommonServlet;
 
-@WebServlet("/StudentCreate.action")
+@WebServlet("/StudentCreate")
 public class StudentCreateController extends CommonServlet {
 
     @Override
@@ -38,8 +38,8 @@ public class StudentCreateController extends CommonServlet {
         request.setAttribute("class_num_set", classNumSet);
         request.setAttribute("ent_year_set", entYearSet);
 
-        // ★★★ 修正点：フォワード先を登録専用のSTDM002.jspに変更 ★★★
-        request.getRequestDispatcher("/student/STDM002.jsp").forward(request, response);
+        // ★★★ 修正点：フォワード先を登録専用の.jspに変更 ★★★
+        request.getRequestDispatcher("/student/student_create.jsp").forward(request, response);
     }
 
     @Override

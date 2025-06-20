@@ -90,7 +90,7 @@ public class StudentCreateExecuteController extends CommonServlet {
         dao.save(student);
 
         // 登録完了ページにリダイレクト
-        response.sendRedirect("StudentRegisterDone.action");
+        response.sendRedirect("/student/student_create_done.jsp");
     }
 
     @Override
