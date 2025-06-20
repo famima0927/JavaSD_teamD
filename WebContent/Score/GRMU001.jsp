@@ -20,13 +20,6 @@
                 成績管理
             </div>
 
-            <%-- エラーメッセージ表示エリア --%>
-            <c:if test="${not empty error}">
-                <div class="alert alert-danger" role="alert">
-                    ${error}
-                </div>
-            </c:if>
-
             <%-- ② 検索フォーム部分 --%>
             <div class="border rounded-bottom p-4 mb-4">
                 <form action="TestRegistController" method="get" class="search-form">
@@ -73,6 +66,11 @@
                     </div>
                 </form>
             </div>
+            <c:if test="${not empty error}">
+                <div class="alert alert-danger" role="alert">
+                    ${error}
+                </div>
+            </c:if>
 
             <%-- ③ 検索結果表示 & 成績入力・削除フォーム --%>
             <c:if test="${not empty test_list}">
@@ -84,7 +82,7 @@
                     </c:forEach>
                     <h5 class="mb-3">科目：${selectedSubjectName} (${test_no}回)</h5>
 
-                    <form action="manage" method="post" class="result-form">
+                    <form action="TestRegistController" method="post" class="result-form">
                         <input type="hidden" name="ent_year" value="${ent_year}">
                         <input type="hidden" name="class_num" value="${class_num}">
                         <input type="hidden" name="subject_cd" value="${subject_cd}">
@@ -129,7 +127,7 @@
                             </tbody>
                         </table>
 
-                        <div class="mt-3 d-flex justify-content-center gap-3">
+                        <div class="mt-3 d-flex justify-content-start gap-3">
                             <button type="submit" name="action" value="regist" class="btn btn-primary px-4">登録して終了</button>
                             <button type="submit" name="action" value="update" class="btn btn-secondary px-4">リストを更新</button>
                         </div>
