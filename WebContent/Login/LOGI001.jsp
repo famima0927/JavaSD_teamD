@@ -3,7 +3,7 @@
     request.setAttribute("bodyClass", "login-body");
 %>
 <jsp:include page="../base/header.jsp"></jsp:include>
-
+<div class = "allpad">
 <%-- 修正点1: 画面上部に余白(py-5)を持たせ、フォームが下に寄りすぎないように調整 --%>
 <div class="container-fluid bg-white d-flex justify-content-center py-5">
 
@@ -47,6 +47,7 @@
             </form>
         </div>
     </div>
+</div>
 </div>
 
 <!-- パスワード・ID表示切替 (変更なし) -->
