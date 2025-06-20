@@ -99,7 +99,7 @@ public class TestRegistController extends CommonServlet {
         request.getRequestDispatcher("/Score/GRMU001.jsp").forward(request, response);
     }
 
-    /**
+    /***
      * POSTリクエストを処理するメソッド。
      * CommonServletのルールに従い、doPostではなくpostメソッドに処理を記述します。
      */
