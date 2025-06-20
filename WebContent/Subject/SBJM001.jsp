@@ -18,7 +18,7 @@
   </div>
 
   <div class="main">
-<div class="menu-header">科目管理</div>
+<div class="bg-light border px-3 py-2 mb-3 fw-bold">科目管理</div>
    <div class="right-align">
   <a href="<%= request.getContextPath() %>/SubjectCreate">新規登録</a></div>
     <!-- 一覧表のテーブル（見出し） -->

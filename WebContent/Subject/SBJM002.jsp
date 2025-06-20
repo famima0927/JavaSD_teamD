@@ -18,31 +18,43 @@
     <jsp:include page="../base/base.jsp"></jsp:include>
   </div>
 
-  <div class="main">
-  <div class="menu-header">科目情報登録</div>
+<div class="main p-4">
 
-   <form action="${pageContext.request.contextPath}/SubjectCreateExecute" method="post" >
-<%-- 学生番号 --%>
-      <%-- 学生名の入力（必須） --%>
-      <label>科目コード</label><br>
-      <label><input type="text" name="cd" placeholder="科目コードを入力してください" required></label><br>
-      <%-- コース選択（必須） --%>
-      <label>科目名</label><br>
-      <label><input type="text" name="name" placeholder="科目名を入力してください" required></label><br>
-      <%-- 送信ボタン --%><br>
-      <button type="submit">登録</button>
+  <%-- ① 見出し --%>
+  <h3 class="p-3 mb-4 bg-light border-bottom">科目情報登録</h3>
+
+  <form action="${pageContext.request.contextPath}/SubjectCreateExecute" method="post">
+
+    <%-- ②, ③ 科目コード（縦並び） --%>
+    <div class="mb-3">
+      <label for="subjectCd" class="form-label">科目コード</label>
+      <input type="text" class="form-control" id="subjectCd" name="cd" placeholder="科目コードを入力してください" required>
+    </div>
+
+    <%-- ④, ⑤ 科目名（縦並び） --%>
+    <div class="mb-3">
+      <label for="subjectName" class="form-label">科目名</label>
+      <input type="text" class="form-control" id="subjectName" name="name" placeholder="科目名を入力してください" required>
+    </div>
+
+    <%-- ⑥ 登録ボタン（左寄せ） --%>
+    <div class="mt-4">
+      <button type="submit" class="btn btn-primary">登録</button>
+    </div>
+
+    <%-- ⑦ 戻るリンク（左寄せ） --%>
+    <div class="mt-2">
+      <a href="${pageContext.request.contextPath}/SubjectListController">戻る</a>
+    </div>
 
   </form>
-  <a href="${pageContext.request.contextPath}/SubjectListController">戻る</a>
 
+  <%-- エラーメッセージ --%>
+  <c:if test="${not empty error}">
+    <div class="alert alert-danger mt-4" role="alert">
+      ${error}
+    </div>
+  </c:if>
 
-    <%--
-      エラーメッセージ表示。
-      error が存在する場合に表示（主にバリデーションエラーや例外時）。
-    --%>
-    <c:if test="${not empty error}">
-      <p style="color: red">${error}</p>
-    </c:if>
-
- </div>
- </div>
+</div>
+</div>
