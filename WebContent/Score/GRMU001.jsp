@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
-    // このページ専用のCSSクラスをリクエストスコープにセッ
+    // このページ専用のCSSクラスをリクエストスコープにセット
     request.setAttribute("bodyClass", "menu-body");
 %>
 <jsp:include page="../base/header.jsp"></jsp:include>
@@ -13,7 +13,8 @@
         <jsp:include page="../base/testtest.jsp" />
 
         <%-- メインコンテンツ --%>
-        <div class="main col-md-10 py-4">
+        <%-- ↓↓↓↓↓↓ ここに mb-5 を追加 ↓↓↓↓↓↓ --%>
+        <div class="main col-md-10 py-4 " style="margin-bottom: 18rem;">
 
             <%-- ① タイトル部分 --%>
             <div class="bg-light border px-3 py-2 mb-3 fw-bold">
