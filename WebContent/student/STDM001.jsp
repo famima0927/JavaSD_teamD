@@ -19,7 +19,6 @@
       </ul>
     </div>
 
-<<<<<<< HEAD
         <form action="<c:url value='/StudentList' />" method="get" class="filter-form">
             <input type="hidden" name="sort" value="${sort}">
             <div class="form-group">
@@ -50,7 +49,7 @@
                 <a href="<c:url value='/StudentCreate.action' />" class="btn btn-success">新規登録</a>
             </div>
         </form>
-=======
+
     <%-- メインコンテンツエリア --%>
     <div class="col-md-10 py-3">
       <%-- ① 「学生管理」タイトルバー --%>
@@ -58,7 +57,6 @@
       <div class="bg-light border px-3 py-2 mb-3 fw-bold">
         学生管理
       </div>
->>>>>>> branch 'master' of https://github.com/famima0927/JavaSD_teamD.git
 
       <%-- ② 「新規登録」ボタンを右寄せで配置 --%>
       <%-- text-endで右寄せし、下の検索フォームとの間隔を mb-4 で確保 --%>
@@ -171,13 +169,9 @@
               </c:forEach>
           </tbody>
       </table>
->>>>>>> branch 'master' of https://github.com/famima0927/JavaSD_teamD.git
+
     </div>
   </div>
 </div>
-<<<<<<< HEAD
-<%@ include file="../base/footer.html" %>
-=======
-
 <jsp:include page="../base/footer.html"></jsp:include>
->>>>>>> branch 'master' of https://github.com/famima0927/JavaSD_teamD.git
+
