@@ -99,23 +99,27 @@
 		                    </tr>
 		                </thead>
 		                <tbody>
-		                    <c:forEach var="student" items="${test_list}">
-		                        <tr>
-		                            <td>${student.entYear}</td>
-		                            <td>${student.classNum}</td>
-		                            <td>${student.studentNo}</td>
-		                            <td>${student.studentName}</td>
-		                            <td>
-		                                <input type="text" class="form-control" name="point_${student.studentNo}"
-		                                       value="${not empty originalPoints ? originalPoints[student.studentNo] : student.points[test_no]}"
-		                                       maxlength="3" style="max-width: 100px;">
-		                                <c:if test="${not empty errors[student.studentNo]}">
-		                                    <div class="text-danger small mt-1">${errors[student.studentNo]}</div>
-		                                </c:if>
-		                            </td>
-		                        </tr>
-		                    </c:forEach>
-		                </tbody>
+						    <c:forEach var="student" items="${test_list}">
+						        <tr>
+						            <td>${student.entYear}</td>
+						            <td>${student.classNum}</td>
+						            <td>${student.studentNo}</td>
+						            <td>${student.studentName}</td>
+						            <td>
+						                <input type="text" class="form-control" name="point_${student.studentNo}"
+						                    value="${not empty originalPoints ? originalPoints[student.studentNo] : student.getScore(test_no)}"
+						                    maxlength="3" style="max-width: 100px;">
+						                <c:if test="${not empty errors[student.studentNo]}">
+						                    <div class="text-danger small mt-1">${errors[student.studentNo]}</div>
+						                </c:if>
+						            </td>
+						            <%-- ★★★ 削除用チェックボックスの列を追加 ★★★ --%>
+						            <td class="text-center">
+						                <input type="checkbox" class="form-check-input" name="delete" value="${student.studentNo}">
+						            </td>
+						        </tr>
+						    </c:forEach>
+						</tbody>
 		            </table>
 
 		            <div class="mt-3">

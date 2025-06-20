@@ -17,7 +17,11 @@
         <li class="nav-item ms-3"><a class="nav-link text-primary" href="${pageContext.request.contextPath}/servlet/TestListController">成績参照</a></li>
         <li class="nav-item"><a class="nav-link text-primary" href="${pageContext.request.contextPath}/SubjectListController">科目管理</a></li>
       </ul>
+<<<<<<< HEAD
     </div>
+=======
+    </div>
+>>>>>>> branch 'master' of https://github.com/famima0927/JavaSD_teamD.git
 
         <form action="<c:url value='/StudentList' />" method="get" class="filter-form">
             <input type="hidden" name="sort" value="${sort}">
@@ -64,8 +68,12 @@
       <%-- text-endで右寄せし、下の検索フォームとの間隔を mb-4 で確保 --%>
       <div class="text-end mb-4">
         <a href="<c:url value='/StudentCreate' />">新規登録</a>
+<<<<<<< HEAD
       </div>
 
+=======
+      </div>
+>>>>>>> branch 'master' of https://github.com/famima0927/JavaSD_teamD.git
         <table class="student-table">
             <thead>
                 <tr>
@@ -171,18 +179,14 @@
               </c:forEach>
           </tbody>
       </table>
-<<<<<<< HEAD
-=======
 
->>>>>>> branch 'master' of https://github.com/famima0927/JavaSD_teamD.git
     </div>
   </div>
-<<<<<<< HEAD
+
 </div>
 
 <%@ include file="../base/footer.html" %>
-=======
+
 
 <jsp:include page="../base/footer.html"></jsp:include>
 
->>>>>>> branch 'master' of https://github.com/famima0927/JavaSD_teamD.git
