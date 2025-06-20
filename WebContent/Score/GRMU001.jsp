@@ -71,7 +71,7 @@
 		    </div> <%-- フォーム部分の囲みここまで --%>
 
 
-		<%-- 検索結果表示ブロック --%>
+			<%-- 検索結果表示ブロック --%>
 		<c:if test="${not empty test_list}">
 		    <div class="mt-5">
 		        <%-- 科目と回数を表示 --%>
@@ -96,40 +96,52 @@
 		                        <th>学生番号</th>
 		                        <th>氏名</th>
 		                        <th>点数</th>
-		                        <th>削除</th>
+		                        <%-- ★★★ 修正点1: ヘッダーを中央揃えにする ★★★ --%>
+		                        <th class="text-center">点数の削除</th>
 		                    </tr>
 		                </thead>
 		                <tbody>
-						    <c:forEach var="student" items="${test_list}">
-						        <tr>
-						            <td>${student.entYear}</td>
-						            <td>${student.classNum}</td>
-						            <td>${student.studentNo}</td>
-						            <td>${student.studentName}</td>
-						            <td>
-						                <input type="text" class="form-control" name="point_${student.studentNo}"
-						                    value="${not empty originalPoints ? originalPoints[student.studentNo] : student.getScore(test_no)}"
-						                    maxlength="3" style="max-width: 100px;">
-						                <c:if test="${not empty errors[student.studentNo]}">
-						                    <div class="text-danger small mt-1">${errors[student.studentNo]}</div>
-						                </c:if>
-						            </td>
-						            <%-- ★★★ 削除用チェックボックスの列を追加 ★★★ --%>
-						            <td class="text-center">
-						                <input type="checkbox" class="form-check-input" name="delete" value="${student.studentNo}">
-						            </td>
-						        </tr>
-						    </c:forEach>
-						</tbody>
+		                    <c:forEach var="student" items="${test_list}">
+		                        <tr>
+		                            <td>${student.entYear}</td>
+		                            <td>${student.classNum}</td>
+		                            <td>${student.studentNo}</td>
+		                            <td>${student.studentName}</td>
+		                            <td>
+		                                <input type="text" class="form-control" name="point_${student.studentNo}"
+		                                    value="${not empty originalPoints ? originalPoints[student.studentNo] : student.getScore(test_no)}"
+		                                    maxlength="3" style="max-width: 100px;">
+		                                <c:if test="${not empty errors[student.studentNo]}">
+		                                    <div class="text-danger small mt-1">${errors[student.studentNo]}</div>
+		                                </c:if>
+		                            </td>
+		                            <td class="text-center">
+		                                <input
+		                                    type="checkbox"
+		                                    class="btn-check"
+		                                    name="delete"
+		                                    id="deleteCheck${student.studentNo}"
+		                                    value="${student.studentNo}"
+		                                    autocomplete="off">
+
+		                                <%-- ★★★ 改善案: ラベルのテキストを「削除」に変更 ★★★ --%>
+		                                <label class="btn btn-outline-danger btn-sm" for="deleteCheck${student.studentNo}">
+		                                    <i class="bi bi-trash"></i> 削除
+		                                </label>
+		                            </td>
+		                        </tr>
+		                    </c:forEach>
+		                </tbody>
 		            </table>
 
 		            <div class="mt-3">
 		                <button type="submit" class="btn btn-secondary">登録して終了</button>
+		                <button type="submit" class="btn btn-info">再度入力する</button>
 		            </div>
 		        </form>
 		    </div>
 		</c:if>
-            <%-- ★★★ 検索結果ブロックここまで ★★★ --%>
+		<%-- ★★★ 検索結果ブロックここまで ★★★ --%>
 
 		</div> <%-- div.main の閉じタグ --%>
 
