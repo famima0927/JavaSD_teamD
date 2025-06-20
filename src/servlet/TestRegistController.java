@@ -117,20 +117,59 @@ public class TestRegistController extends CommonServlet {
         }
 
         School school = teacher.getSchool();
-        Map<String, String> errors = new HashMap<>();
-        Map<String, String> originalPoints = new HashMap<>();
         String subjectCd = request.getParameter("subject_cd");
         String testNoStr = request.getParameter("test_no");
         int testNo = Integer.parseInt(testNoStr);
+
+        TestDao testDao = new TestDao();
+
+        // ★★★ 1. 削除処理 ★★★
+        // 削除用チェックボックスでチェックされた学生番号の配列を取得
+        String[] deleteStudentNos = request.getParameterValues("delete");
+        List<Test> testsToDelete = new ArrayList<>();
+
+        if (deleteStudentNos != null) {
+            for (String studentNo : deleteStudentNos) {
+                Test test = new Test();
+                Student student = new Student();
+                Subject subject = new Subject();
+
+                student.setNo(studentNo);
+                subject.setCd(subjectCd);
+
+                test.setStudent(student);
+                test.setSubject(subject);
+                test.setSchool(school);
+                test.setNo(testNo);
+
+                testsToDelete.add(test);
+            }
+            // TestDaoのdeleteメソッドを呼び出し
+            testDao.delete(testsToDelete);
+        }
+
+        // ★★★ 2. 登録・更新処理 ★★★
+        Map<String, String> errors = new HashMap<>();
+        Map<String, String> originalPoints = new HashMap<>();
         List<Test> testsToSave = new ArrayList<>();
         Enumeration<String> parameterNames = request.getParameterNames();
+
+        // 削除対象の学生リスト（効率的な検索のため）
+        List<String> deleteList = (deleteStudentNos != null) ? Arrays.asList(deleteStudentNos) : new ArrayList<>();
 
         while (parameterNames.hasMoreElements()) {
             String paramName = parameterNames.nextElement();
             if (paramName.startsWith("point_")) {
                 String studentNo = paramName.substring("point_".length());
+
+                // ★ もし削除対象に含まれていたら、登録・更新処理はスキップ
+                if (deleteList.contains(studentNo)) {
+                    continue;
+                }
+
                 String pointStr = request.getParameter(paramName);
                 originalPoints.put(studentNo, pointStr);
+
                 if (pointStr != null && !pointStr.isEmpty()) {
                     try {
                         int point = Integer.parseInt(pointStr);
@@ -139,8 +178,8 @@ public class TestRegistController extends CommonServlet {
                         } else {
                             Test test = new Test();
                             Student student = new Student();
-                            student.setNo(studentNo);
                             Subject subject = new Subject();
+                            student.setNo(studentNo);
                             subject.setCd(subjectCd);
                             test.setStudent(student);
                             test.setSubject(subject);
@@ -162,9 +201,10 @@ public class TestRegistController extends CommonServlet {
             // エラーがあった場合は、GETの処理を再実行して画面を再表示
             get(request, response);
         } else {
-            // エラーがなかった場合はDBに保存して完了ページへ
-            TestDao testDao = new TestDao();
-            testDao.save(testsToSave);
+            // エラーがなければ、登録・更新処理を実行
+            if (!testsToSave.isEmpty()) {
+                testDao.save(testsToSave);
+            }
             request.getRequestDispatcher("/Score/GRMU002.jsp").forward(request, response);
         }
     }
