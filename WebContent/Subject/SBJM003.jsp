@@ -9,11 +9,12 @@
 			<jsp:include page="../base/base.jsp"></jsp:include>
 		</div>
 		<div class = "main">
-			<div class="menu-header">科目情報管理</div>
+			<div class="bg-light border px-3 py-2 mb-3 fw-bold">科目情報管理</div>
 			<%-- ここに処理を書き込む --%>
-		<div class="success"><p>登録が完了しました。</p></div>
+		<div class="card shadow-sm text-center border-0 mb-4" style="width: auto; background-color: #cde3cd;">登録が完了しました。
+		</div>
 
-		<a href="${pageContext.request.contextPath}/SubjectRegisterServlet">戻る</a><%--科目登録画面に戻る --%>
+		<a href="<%= request.getContextPath() %>/SubjectCreate">戻る</a><%--科目登録画面に戻る --%>
 		<a href="${pageContext.request.contextPath}/SubjectListController">科目一覧</a><%--科目一覧画面に移動 --%>
 		</div>
 	</div>

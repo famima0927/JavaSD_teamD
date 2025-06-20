@@ -3,14 +3,7 @@
 <%
   request.setAttribute("bodyClass", "menu-body");
 %>
-<style>
-    .right-align {
-      text-align: right; /* テキストを右寄せ */
-    }
-    .right-align a {
-      display: inline-block; /* インラインブロック要素として表示 */
-    }
-  </style>
+<%-- header.jspでBootstrapのCSSが読み込まれていることを前提とします --%>
 <jsp:include page="../base/header.jsp"></jsp:include>
 
 <div class="container">
@@ -18,22 +11,42 @@
     <jsp:include page="../base/base.jsp"></jsp:include>
   </div>
 
-  <div class="main">
-  <div class="menu-header">科目情報変更</div>
-  <form action="SubjectEditExecute" method="post">
-  <label>科目コード</label><br>
-  <input type="text" name="cd"value="${subject.cd}"readonly ><br>
-  <%-- コース選択（必須） --%>
-      <label>科目名：</label><br>
-      <input type="text" name="name" Value="${subject.name}"required><br>
-      <%-- 送信ボタン --%>
-      <input type="submit" value="変更">
-  </form>
-<a href="${pageContext.request.contextPath}/SubjectListController">戻る</a><%--科目一覧画面に移動 --%>
- <c:if test="${not empty error}">
-      <p style="color: red">${error}</p>
-    </c:if>
+<div class="main">
+  <div class="bg-light border px-3 py-2 mb-3 fw-bold">科目情報変更
+	</div>
+    <form action="SubjectEditExecute" method="post">
 
+      <%-- 科目コード (表示のみ) --%>
+      <div class="mb-3">
+        <label for="cd" class="form-label">科目コード</label>
+        <%-- ★ここを変更★ classを "form-control" から "form-control-plaintext" に変更 --%>
+        <input type="text" class="form-control-plaintext" id="cd" name="cd" value="${subject.cd}" readonly>
+      </div>
+
+      <%-- 科目名 (入力必須) --%>
+      <div class="mb-3">
+        <label for="name" class="form-label">科目名</label>
+        <input type="text" class="form-control" id="name" name="name" value="${subject.name}" required>
+      </div>
+
+      <%-- エラーメッセージ表示 --%>
+      <c:if test="${not empty error}">
+        <div class="mb-3">
+          <p class="text-danger">${error}</p>
+        </div>
+      </c:if>
+
+      <%-- 変更ボタン --%>
+      <button type="submit" class="btn btn-primary">変更</button>
+    </form>
+
+    <%-- 戻るリンク (フォームの外に配置) --%>
+    <div class="mt-3">
+        <a href="${pageContext.request.contextPath}/SubjectListController">戻る</a>
+    </div>
 
   </div>
-  </div>
+</div>
+
+<%-- フッターがある場合は、ここにフッターのincludeを記述します --%>
+<%-- <jsp:include page="../base/footer.jsp"></jsp:include> --%>
