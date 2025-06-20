@@ -96,6 +96,7 @@
 		                        <th>学生番号</th>
 		                        <th>氏名</th>
 		                        <th>点数</th>
+		                        <th>削除</th>
 		                    </tr>
 		                </thead>
 		                <tbody>
