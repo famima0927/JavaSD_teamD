@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
-    // このページ専用のCSSクラスをリクエストスコープにセッ
     request.setAttribute("bodyClass", "menu-body");
 %>
 <jsp:include page="../base/header.jsp"></jsp:include>
@@ -20,11 +19,17 @@
                 成績管理
             </div>
 
+            <%-- エラーメッセージ表示エリア --%>
+            <c:if test="${not empty error}">
+                <div class="alert alert-danger" role="alert">
+                    ${error}
+                </div>
+            </c:if>
+
             <%-- ② 検索フォーム部分 --%>
             <div class="border rounded-bottom p-4 mb-4">
-                <form action="manage" method="get" class="search-form">
+                <form action="TestRegistController" method="get" class="search-form">
                     <div class="row g-3 align-items-end">
-                        <%-- 入学年度 --%>
                         <div class="col">
                             <label for="ent-year-select" class="form-label">入学年度</label>
                             <select name="ent_year" id="ent-year-select" class="form-select">
@@ -34,7 +39,6 @@
                                 </c:forEach>
                             </select>
                         </div>
-                        <%-- クラス --%>
                         <div class="col">
                             <label for="class-num-select" class="form-label">クラス</label>
                             <select name="class_num" id="class-num-select" class="form-select">
@@ -44,7 +48,6 @@
                                 </c:forEach>
                             </select>
                         </div>
-                        <%-- 科目 --%>
                         <div class="col">
                             <label for="subject-cd-select" class="form-label">科目</label>
                             <select name="subject_cd" id="subject-cd-select" class="form-select">
@@ -54,7 +57,6 @@
                                 </c:forEach>
                             </select>
                         </div>
-                        <%-- 回数 --%>
                         <div class="col">
                             <label for="test-no-select" class="form-label">回数</label>
                             <select name="test_no" id="test-no-select" class="form-select">
@@ -64,7 +66,6 @@
                                 </c:forEach>
                             </select>
                         </div>
-                        <%-- 検索ボタン --%>
                         <div class="col-auto">
                             <button type="submit" class="btn btn-secondary">検索</button>
                         </div>
@@ -75,7 +76,6 @@
             <%-- ③ 検索結果表示 & 成績入力・削除フォーム --%>
             <c:if test="${not empty test_list}">
                 <div class="mt-4">
-                    <%-- 科目と回数を表示 --%>
                     <c:forEach var="subject" items="${subjects}">
                         <c:if test="${subject.cd == subject_cd}">
                             <c:set var="selectedSubjectName" value="${subject.name}" />
@@ -84,7 +84,6 @@
                     <h5 class="mb-3">科目：${selectedSubjectName} (${test_no}回)</h5>
 
                     <form action="manage" method="post" class="result-form">
-                        <%-- エラー時に画面を再表示するために、元の検索条件をhiddenで送信 --%>
                         <input type="hidden" name="ent_year" value="${ent_year}">
                         <input type="hidden" name="class_num" value="${class_num}">
                         <input type="hidden" name="subject_cd" value="${subject_cd}">
@@ -116,8 +115,13 @@
                                                 <div class="text-danger small mt-1">${errors[student.studentNo]}</div>
                                             </c:if>
                                         </td>
+                                        <%-- ★★★ ご指示のデザインを忠実に再現した削除ボタン ★★★ --%>
                                         <td class="text-center">
-                                            <input type="checkbox" class="form-check-input" name="delete" value="${student.studentNo}">
+                                            <input type="checkbox" class="btn-check" name="delete"
+                                                   id="deleteCheck${student.studentNo}" value="${student.studentNo}" autocomplete="off">
+                                            <label class="btn btn-outline-danger btn-sm" for="deleteCheck${student.studentNo}">
+                                                <i class="bi bi-trash"></i> 削除
+                                            </label>
                                         </td>
                                     </tr>
                                 </c:forEach>

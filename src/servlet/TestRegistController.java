@@ -1,5 +1,6 @@
 package servlet;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,19 +25,14 @@ import dao.ClassNumDao;
 import dao.SubjectDao;
 import dao.TestDao;
 import dao.TestListSubjectDao;
-import tool.CommonServlet; // ★ 継承するクラスをインポート
+import tool.CommonServlet;
 
-// ★ 継承元を HttpServlet から CommonServlet 変更
 @WebServlet(urlPatterns = {"/servlet/TestRegistController"})
 public class TestRegistController extends CommonServlet {
 
-    /**
-     * GETリクエストを処理するメソッド。
-     * CommonServletのルールに従い、doGetではなくgetメソッドに処理を記述します。
-     */
     @Override
     public void get(HttpServletRequest request, HttpServletResponse response)
-            throws Exception {
+            throws ServletException, IOException {
 
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
@@ -47,12 +44,11 @@ public class TestRegistController extends CommonServlet {
         }
 
         School school = teacher.getSchool();
-        ClassNumDao classNumDao = new ClassNumDao();
-        SubjectDao subjectDao = new SubjectDao();
-        TestListSubjectDao testListSubjectDao = new TestListSubjectDao();
 
-        // ドロップダウンリスト用のデータを準備
+        // --- ▼▼▼ ドロップダウンリスト用のデータ準備（ここから展開）▼▼▼ ---
         try {
+            ClassNumDao classNumDao = new ClassNumDao();
+            SubjectDao subjectDao = new SubjectDao();
             request.setAttribute("class_num_set", classNumDao.filter(school));
             request.setAttribute("subjects", subjectDao.filter(school));
             List<Integer> yearList = new ArrayList<>();
@@ -64,48 +60,42 @@ public class TestRegistController extends CommonServlet {
             e.printStackTrace();
             request.setAttribute("error", "データの初期化中にエラーが発生しました。");
         }
+        // --- ▲▲▲ ドロップダウンリスト用のデータ準備（ここまで展開）▲▲▲ ---
 
-        // 検索条件を取得
         String entYearStr = request.getParameter("ent_year");
         String classNum = request.getParameter("class_num");
         String subjectCd = request.getParameter("subject_cd");
         String testNoStr = request.getParameter("test_no");
-        int entYear = 0;
-        int testNo = 0;
 
-        if (entYearStr != null && !entYearStr.isEmpty()) entYear = Integer.parseInt(entYearStr);
-        if (testNoStr != null && !testNoStr.isEmpty()) testNo = Integer.parseInt(testNoStr);
-
-        // 検索条件が有効ならDAOを呼び出す
-        if (entYear != 0 && classNum != null && !classNum.equals("0") && subjectCd != null && !subjectCd.equals("0")) {
-            Subject subject = new Subject();
-            subject.setCd(subjectCd);
-            try {
-                List<TestListSubject> testList = testListSubjectDao.filter(entYear, classNum, subject, school);
-                request.setAttribute("test_list", testList);
-            } catch (Exception e) {
-                e.printStackTrace();
-                request.setAttribute("error", "検索中にエラーが発生しました。");
+        if (entYearStr != null) {
+            if ("0".equals(entYearStr) || "0".equals(classNum) || "0".equals(subjectCd) || "0".equals(testNoStr)) {
+                request.setAttribute("error", "入学年度とクラスと科目と回数を選択してください");
+            } else {
+                int entYear = Integer.parseInt(entYearStr);
+                TestListSubjectDao testListSubjectDao = new TestListSubjectDao();
+                Subject subject = new Subject();
+                subject.setCd(subjectCd);
+                try {
+                    List<TestListSubject> testList = testListSubjectDao.filter(entYear, classNum, subject, school);
+                    request.setAttribute("test_list", testList);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    request.setAttribute("error", "検索中にエラーが発生しました。");
+                }
             }
+
+            request.setAttribute("ent_year", Integer.parseInt(entYearStr));
+            request.setAttribute("class_num", classNum);
+            request.setAttribute("subject_cd", subjectCd);
+            request.setAttribute("test_no", Integer.parseInt(testNoStr));
         }
 
-        // 選択された検索条件をJSPに戻す
-        request.setAttribute("ent_year", entYear);
-        request.setAttribute("class_num", classNum);
-        request.setAttribute("subject_cd", subjectCd);
-        request.setAttribute("test_no", testNo);
-
-        // JSPにフォワード
         request.getRequestDispatcher("/Score/GRMU001.jsp").forward(request, response);
     }
 
-    /***
-     * POSTリクエストを処理するメソッド。
-     * CommonServletのルールに従い、doPostではなくpostメソッドに処理を記述します。
-     */
     @Override
-    public void post(HttpServletRequest request, HttpServletResponse response)
-            throws Exception {
+    protected void post(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
@@ -116,17 +106,13 @@ public class TestRegistController extends CommonServlet {
             return;
         }
 
-        // ★★★ 押されたボタンの種類を取得 ★★★
-        String action = request.getParameter("action");
-
         School school = teacher.getSchool();
         String subjectCd = request.getParameter("subject_cd");
         String testNoStr = request.getParameter("test_no");
         int testNo = Integer.parseInt(testNoStr);
-
+        String action = request.getParameter("action");
         TestDao testDao = new TestDao();
 
-        // --- 1. 削除処理 ---
         String[] deleteStudentNos = request.getParameterValues("delete");
         List<Test> testsToDelete = new ArrayList<>();
         if (deleteStudentNos != null) {
@@ -144,7 +130,6 @@ public class TestRegistController extends CommonServlet {
             }
         }
 
-        // --- 2. 登録・更新処理 ＆ バリデーション ---
         Map<String, String> errors = new HashMap<>();
         Map<String, String> originalPoints = new HashMap<>();
         List<Test> testsToSave = new ArrayList<>();
@@ -156,7 +141,6 @@ public class TestRegistController extends CommonServlet {
             if (paramName.startsWith("point_")) {
                 String studentNo = paramName.substring("point_".length());
                 if (deleteList.contains(studentNo)) continue;
-
                 String pointStr = request.getParameter(paramName);
                 originalPoints.put(studentNo, pointStr);
                 if (pointStr != null && !pointStr.isEmpty()) {
@@ -184,30 +168,56 @@ public class TestRegistController extends CommonServlet {
             }
         }
 
-        // --- 3. エラーの有無で処理を分岐 ---
         if (!errors.isEmpty()) {
-            // (A) エラーがあった場合：元の画面に必要な情報をすべてセットして戻す
             request.setAttribute("errors", errors);
             request.setAttribute("originalPoints", originalPoints);
-            get(request, response); // GETの処理を再実行して画面を再表示
-        } else {
-            // (B) エラーがなかった場合：DB操作を実行
-            if (!testsToDelete.isEmpty()) {
-                testDao.delete(testsToDelete); // 削除実行
+
+            // --- ▼▼▼ ドロップダウンリスト用のデータ準備（ここから展開）▼▼▼ ---
+            try {
+                ClassNumDao classNumDao = new ClassNumDao();
+                SubjectDao subjectDao = new SubjectDao();
+                request.setAttribute("class_num_set", classNumDao.filter(school));
+                request.setAttribute("subjects", subjectDao.filter(school));
+                List<Integer> yearList = new ArrayList<>();
+                int currentYear = LocalDate.now().getYear();
+                for (int i = currentYear; i > currentYear - 10; i--) { yearList.add(i); }
+                request.setAttribute("ent_year_set", yearList);
+                request.setAttribute("test_no_set", Arrays.asList(1, 2));
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            if (!testsToSave.isEmpty()) {
-                testDao.save(testsToSave); // 登録・更新実行
+            // --- ▲▲▲ ドロップダウンリスト用のデータ準備（ここまで展開）▲▲▲ ---
+
+            // エラー時の画面再表示に必要なデータをセット
+            try {
+                int entYear = Integer.parseInt(request.getParameter("ent_year"));
+                String classNum = request.getParameter("class_num");
+                TestListSubjectDao testListSubjectDao = new TestListSubjectDao();
+                Subject subject = new Subject();
+                subject.setCd(subjectCd);
+                List<TestListSubject> testList = testListSubjectDao.filter(entYear, classNum, subject, school);
+                request.setAttribute("test_list", testList);
+                request.setAttribute("ent_year", entYear);
+                request.setAttribute("class_num", classNum);
+                request.setAttribute("subject_cd", subjectCd);
+                request.setAttribute("test_no", testNo);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
 
-            // ★★★ ★★★
-            // ★★★ ボタンの種類によって遷移先を切り替える ★★★
+            request.getRequestDispatcher("/Score/GRMU001.jsp").forward(request, response);
+
+        } else {
+            try {
+                if (!testsToDelete.isEmpty()) testDao.delete(testsToDelete);
+                if (!testsToSave.isEmpty()) testDao.save(testsToSave);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
             if (action != null && action.equals("update")) {
-                // (B-1) 「リストを更新」ボタンが押された場合
-                // GETの処理を再実行して、更新されたリストを同じ画面に表示
-                get(request, response);
+                doGet(request, response);
             } else {
-                // (B-2) 「登録して終了」ボタンが押された場合 (またはデフォルト)
-                // 完了ページにフォワード
                 request.getRequestDispatcher("/Score/GRMU002.jsp").forward(request, response);
             }
         }
