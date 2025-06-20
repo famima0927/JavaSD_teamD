@@ -99,7 +99,7 @@
 
       <%-- ③ 検索フォーム --%>
       <div class="p-3 mb-4 border rounded bg-light">
-          <form action="<c:url value='/StudentList' />" method="get">
+      <form action="<c:url value='/StudentList' />" method="get">
               <div class="row g-3 align-items-end">
                   <%-- 入学年度 --%>
                       <label for="entYear" class="form-label">入学年度</label>
@@ -132,7 +132,7 @@
                       <button type="submit" class="btn btn-primary">絞り込み</button>
                   </div>
               </div>
-          </form>
+              </form>
       </div>
 
       <%-- ④ 結果表示エリア --%>
@@ -172,6 +172,6 @@
 
     </div>
   </div>
-</div>
+
 <jsp:include page="../base/footer.html"></jsp:include>
 
