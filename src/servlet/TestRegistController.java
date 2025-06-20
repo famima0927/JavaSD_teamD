@@ -25,7 +25,7 @@ import dao.TestDao;
 import dao.TestListSubjectDao;
 import tool.CommonServlet; // ★ 継承するクラスをインポート
 
-// ★ 継承元を HttpServlet から CommonServlet に変更
+// ★ 継承元を HttpServlet から CommonServlet 変更
 @WebServlet(urlPatterns = {"/servlet/TestRegistController"})
 public class TestRegistController extends CommonServlet {
 
@@ -99,7 +99,7 @@ public class TestRegistController extends CommonServlet {
         request.getRequestDispatcher("/Score/GRMU001.jsp").forward(request, response);
     }
 
-    /**
+    /***
      * POSTリクエストを処理するメソッド。
      * CommonServletのルールに従い、doPostではなくpostメソッドに処理を記述します。
      */
