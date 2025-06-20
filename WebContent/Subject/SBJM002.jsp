@@ -21,7 +21,7 @@
 <div class="main p-4">
 
   <%-- ① 見出し --%>
-  <h3 class="p-3 mb-4 bg-light border-bottom">科目情報登録</h3>
+  <div class="bg-light border px-3 py-2 mb-3 fw-bold">科目情報登録</div>
 
   <form action="${pageContext.request.contextPath}/SubjectCreateExecute" method="post">
 
