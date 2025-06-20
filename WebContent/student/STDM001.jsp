@@ -18,10 +18,6 @@
         <li class="nav-item"><a class="nav-link text-primary" href="${pageContext.request.contextPath}/SubjectListController">科目管理</a></li>
       </ul>
     </div>
-<<<<<<< HEAD
-
-=======
->>>>>>> branch 'master' of https://github.com/famima0927/JavaSD_teamD.git
 
         <form action="<c:url value='/StudentList' />" method="get" class="filter-form">
             <input type="hidden" name="sort" value="${sort}">
@@ -60,22 +56,15 @@
       <%-- ボタンとの間隔を調整するため、下のマージンを mb-3 に変更 --%>
       <div class="bg-light border px-3 py-2 mb-3 fw-bold">
         学生管理
-<<<<<<< HEAD
       </div>
-=======
+
       </div>
->>>>>>> branch 'master' of https://github.com/famima0927/JavaSD_teamD.git
 
       <%-- ② 「新規登録」ボタンを右寄せで配置 --%>
       <%-- text-endで右寄せし、下の検索フォームとの間隔を mb-4 で確保 --%>
       <div class="text-end mb-4">
         <a href="<c:url value='/StudentCreate' />">新規登録</a>
       </div>
-<<<<<<< HEAD
-
-=======
->>>>>>> branch 'master' of https://github.com/famima0927/JavaSD_teamD.git
-
         <table class="student-table">
             <thead>
                 <tr>
@@ -181,18 +170,14 @@
               </c:forEach>
           </tbody>
       </table>
-<<<<<<< HEAD
-=======
 
->>>>>>> branch 'master' of https://github.com/famima0927/JavaSD_teamD.git
     </div>
   </div>
-<<<<<<< HEAD
+
 </div>
 
 <%@ include file="../base/footer.html" %>
-=======
+
 
 <jsp:include page="../base/footer.html"></jsp:include>
 
->>>>>>> branch 'master' of https://github.com/famima0927/JavaSD_teamD.git
