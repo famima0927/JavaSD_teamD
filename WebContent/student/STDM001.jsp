@@ -68,12 +68,12 @@
       <%-- text-endで右寄せし、下の検索フォームとの間隔を mb-4 で確保 --%>
       <div class="text-end mb-4">
         <a href="<c:url value='/StudentCreate' />">新規登録</a>
-<<<<<<< HEAD
+
       </div>
 
-=======
+
       </div>
->>>>>>> branch 'master' of https://github.com/famima0927/JavaSD_teamD.git
+
         <table class="student-table">
             <thead>
                 <tr>
@@ -100,7 +100,7 @@
                         <td>${s.classNum}</td>
                         <td>${s.isAttend ? '○' : '×'}</td>
                         <%-- ★★★ 修正点3：「変更」のリンクに .action を追加 ★★★ --%>
-                        <td><a href= "<c:url value='/StudentUpdate.action?no=${s.no}'/>">変更</a></td>
+                        <td><a href= "<c:url value='/StudentUpdate.action?no=${s.no}'/>">>変更</a></td>
                     </tr>
                 </c:forEach>
             </tbody>
