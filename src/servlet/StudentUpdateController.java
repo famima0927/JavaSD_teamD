@@ -51,8 +51,10 @@ public class StudentUpdateController extends CommonServlet {
 
         // ★★★ 修正点：フォワード先を新しい統合JSPに変更 ★★★
         request.getRequestDispatcher("/student/STDM004.jsp").forward(request, response);
+        request.getRequestDispatcher("/student/STDM004.jsp").forward(request, response);
 
         // 5. 学生情報変更ページ (student_update.jsp) にフォワード
+        request.getRequestDispatcher("/student/STDM002.jsp").forward(request, response);
         request.getRequestDispatcher("/student/STDM002.jsp").forward(request, response);
 
     }
