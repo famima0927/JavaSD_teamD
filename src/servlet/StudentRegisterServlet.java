@@ -10,7 +10,7 @@ import bean.Student;
 import dao.StudentDao;
 import tool.CommonServlet;
 
-@WebServlet("/StudentRegister.action")
+@WebServlet("/StudentRegi")
 public class StudentRegisterServlet extends CommonServlet {
 
     @Override
