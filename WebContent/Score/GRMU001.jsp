@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
-    // このページ専用のCSSクラスをリクエストスコープにセット
+    // このページ専用のCSSクラスをリクエストスコープにセッ
     request.setAttribute("bodyClass", "menu-body");
 %>
 <jsp:include page="../base/header.jsp"></jsp:include>
