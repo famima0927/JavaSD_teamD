@@ -5,12 +5,16 @@
   request.setAttribute("bodyClass", "ここにボディ名を書き込む");
 %>
 <jsp:include page="../base/header.jsp"></jsp:include>
+
 <div class="container-fluid">
     <div class="row">
-        <%-- サイドバー --%>
+        <%-- サイドバをインクルード --%>
+        <%-- この testtest.jsp の中身が <div class="col-md-2 ..."> で始まっている想定です --%>
         <jsp:include page="../base/base.jsp" />
-		<div class = "main">
-		<div class="bg-light border px-3 py-2 mb-3 fw-bold">成績管理</div>
+
+        <%-- ★★★ 修正点: mainクラスに col-md-10 を追加 ★★★ --%>
+        <div class="main col-md-10 py-4">
+            <div class="bg-light border px-3 py-2 mb-3 fw-bold">成績参照</div>
 			<%-- ここに処理を書き込む --%>
 			<%-- 登録完了メッセージをBootstrapのAlertで表示 --%>
 			<div class="card shadow-sm text-center border-0 mb-4" style="width: auto; background-color: #cde3cd;">
