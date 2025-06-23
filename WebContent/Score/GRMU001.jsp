@@ -8,7 +8,7 @@
 
 <div class="container-fluid">
     <div class="row">
-        <%-- サイドバー --%>
+        <%-- サイドバーあ --%>
         <jsp:include page="../base/testtest.jsp" />
 
         <%-- メインコンテンツ --%>
