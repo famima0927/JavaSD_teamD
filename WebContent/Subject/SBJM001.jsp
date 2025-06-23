@@ -13,9 +13,11 @@
 <jsp:include page="../base/header.jsp"></jsp:include>
 
 <div class="container">
-  <div class="side-bar">
-    <jsp:include page="../base/base.jsp"></jsp:include>
-  </div>
+	<div class="row">
+
+    	<jsp:include page="../base/testtest.jsp"></jsp:include>
+
+  	</div>
 
   <div class="main">
 <div class="bg-light border px-3 py-2 mb-3 fw-bold">科目管理</div>
