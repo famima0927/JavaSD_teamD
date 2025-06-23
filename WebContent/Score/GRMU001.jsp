@@ -8,11 +8,10 @@
 
 <div class="container-fluid">
     <div class="row">
-        <%-- サイドバーあ --%>
+        <%-- サイドバー --%>
         <jsp:include page="../base/testtest.jsp" />
 
         <%-- メインコンテンツ --%>
-        <%-- ↓↓↓↓↓↓ ここに mb-5 を追加 ↓↓↓↓↓↓ --%>
         <div class="main col-md-10 py-4 " style="margin-bottom: 18rem;">
 
             <%-- ① タイトル部分 --%>
@@ -23,6 +22,7 @@
             <%-- ② 検索フォーム部分 --%>
             <div class="border rounded-bottom p-4 mb-4">
                 <form action="TestRegistController" method="get" class="search-form">
+                    <%-- (フォームの中身は変更なし) --%>
                     <div class="row g-3 align-items-end">
                         <div class="col">
                             <label for="ent-year-select" class="form-label">入学年度</label>
@@ -88,15 +88,19 @@
                         <input type="hidden" name="subject_cd" value="${subject_cd}">
                         <input type="hidden" name="test_no" value="${test_no}">
 
-                        <table class="table table-hover">
+                        <table class="table table-hover" style="table-layout: fixed; width: 100%;">
                             <thead>
                                 <tr>
-                                    <th>入学年度</th>
-                                    <th>クラス</th>
-                                    <th>学生番号</th>
-                                    <th>氏名</th>
-                                    <th>点数</th>
-                                    <th class="text-center">削除</th>
+                                    <%-- ▼▼▼▼▼ ここから修正 ▼▼▼▼▼ --%>
+                                    <%-- 各列の幅のバランスを調整します。合計が100%になるようにしてください。--%>
+                                    <%-- この値はあくまで一例です。お好みの見た目になるように調整してください。 --%>
+                                    <th style="width: 10%;">入学年度</th>
+                                    <th style="width: 10%;">クラス</th>
+                                    <th style="width: 15%;">学生番号</th>
+                                    <th style="width: 20%;">氏名</th>      <%-- ← 氏名列を広く --%>
+                                    <th style="width: 20%;">点数</th>      <%-- ← 点数列を狭く --%>
+                                    <th class="text-center" style="width: 15%;">削除</th>
+                                    <%-- ▲▲▲▲▲ ここまで修正 ▲▲▲▲▲ --%>
                                 </tr>
                             </thead>
                             <tbody>
@@ -110,11 +114,13 @@
                                             <input type="text" class="form-control" name="point_${student.studentNo}"
                                                    value="${not empty originalPoints ? originalPoints[student.studentNo] : student.getScore(test_no)}"
                                                    maxlength="3" style="max-width: 100px;">
-                                            <c:if test="${not empty errors[student.studentNo]}">
-                                                <div class="text-danger small mt-1">${errors[student.studentNo]}</div>
-                                            </c:if>
+
+                                            <div class="small mt-1" style="min-height: 1.3em;">
+                                                <c:if test="${not empty errors[student.studentNo]}">
+                                                    <span class="text-danger">${errors[student.studentNo]}</span>
+                                                </c:if>
+                                            </div>
                                         </td>
-                                        <%-- ★★★ ご指示のデザインを忠実に再現した削除ボタン ★★★ --%>
                                         <td class="text-center">
                                             <input type="checkbox" class="btn-check" name="delete"
                                                    id="deleteCheck${student.studentNo}" value="${student.studentNo}" autocomplete="off">
