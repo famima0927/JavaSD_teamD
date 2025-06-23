@@ -6,19 +6,14 @@
 <jsp:include page="../base/header.jsp"></jsp:include>
 
 <div class="container-fluid">
-  <div class="row">
-    <!-- サイドバー -->
-    <div class="col-md-2 bg-white border-end py-3">
-      <h6 class="text-primary fw-bold mb-3">メニュー</h6>
-      <ul class="nav flex-column small">
-        <li class="nav-item"><a class="nav-link text-primary" href="${pageContext.request.contextPath}/StudentList">学生管理</a></li>
-        <li class="nav-item fw-bold">成績管理</li>
+    <div class="row">
+        <%-- サイドバをインクルード --%>
+        <%-- この testtest.jsp の中身が <div class="col-md-2 ..."> で始まっている想定です --%>
+        <jsp:include page="../base/base.jsp" />
 
-        <li class="nav-item ms-3"><a class="nav-link text-primary" href="${pageContext.request.contextPath}/servlet/TestRegistController">成績登録</a></li>
-        <li class="nav-item ms-3"><a class="nav-link text-primary" href="${pageContext.request.contextPath}/servlet/TestListController">成績参照</a></li>
-        <li class="nav-item"><a class="nav-link text-primary" href="${pageContext.request.contextPath}/SubjectListController">科目管理</a></li>
-      </ul>
-    </div>
+        <%-- ★★★ 修正点: mainクラスに col-md-10 を追加 ★★★ --%>
+        <div class="main col-md-10 py-4">
+            <div class="bg-light border px-3 py-2 mb-3 fw-bold">成績参照</div>
 
     <!-- メイン -->
 	   <div class="col-md-10 py-4" style="min-height: 65vh;">
@@ -51,5 +46,5 @@
 	    </div>
   </div>
 </div>
-
+</div>
 <jsp:include page="../base/footer.html"></jsp:include>
