@@ -72,12 +72,12 @@ protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exc
 
 		if (num >0) {
 			// 正常削除メッセージをセット
-			req.getRequestDispatcher("/Subject/SBJM007.jsp").forward(req, resp);
+			req.getRequestDispatcher("/Subject/SBJM004.jsp").forward(req, resp);
 
 
 		} else {
 			// 削除に失敗した場合のメッセージ
-			req.setAttribute("error", "登録に失敗しました。");
+			req.setAttribute("error", "削除に失敗しました。");
 		}
 
 	     } catch (Exception e) {
