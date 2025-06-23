@@ -27,8 +27,8 @@
 	        <div class="card shadow-sm border-0" style="width: 180px; height: 100px; background-color: #cde3cd;">
 	          <div class="card-body d-flex flex-column align-items-center justify-content-center">
 	            <div class="fw-bold">成績管理</div>
-	            <a href="${pageContext.request.contextPath}/servlet/TestRegistController" class="text-decoration-none text-primary">成績登録</a>
-	            <a href="${pageContext.request.contextPath}/servlet/TestListController" class="text-decoration-none text-primary">成績参照</a>
+	            <a href="${pageContext.request.contextPath}/servlet/TestRegistController" class="stretched-link fw-bold text-decoration-none text-primary">成績登録</a>
+	            <a href="${pageContext.request.contextPath}/servlet/TestListController" class="stretched-link fw-bold text-decoration-none text-primary">成績参照</a>
 	          </div>
 	        </div>
 

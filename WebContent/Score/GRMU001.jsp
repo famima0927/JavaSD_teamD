@@ -12,7 +12,7 @@
         <jsp:include page="../base/base.jsp" />
 
         <%-- メインコンテンツ --%>
-        <div class="main col-md-10 py-4 fw-bold" style="margin-bottom: 18rem;">
+        <div class="main col-md-10 py-4" style="margin-bottom: 18rem;">
 
             <%-- ① タイトル部分 --%>
             <div class="bg-light border px-3 py-2 mb-3 fw-bold">
