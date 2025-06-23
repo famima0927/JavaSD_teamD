@@ -23,7 +23,7 @@
 
         <div class="actions">
             <%-- リンクをボタン風に表示 --%>
-            <a href="<c:url value='/StudentCreate.action' />" class="btn btn-primary">続けて登録する</a>
+            <a href="<c:url value='/StudentCreate' />" class="btn btn-primary">続けて登録する</a>
             <a href="<c:url value='/StudentList' />" class="btn btn-secondary">学生一覧へ</a>
         </div>
     </div>
