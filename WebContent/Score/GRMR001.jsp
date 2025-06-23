@@ -10,7 +10,7 @@
     <div class="row">
         <%-- サイドバーをインクルード --%>
         <%-- 以前作成した sidebar.jsp を使う場合は、ファイル名を変更してください --%>
-        <jsp:include page="../base/testtest.jsp" />
+        <jsp:include page="../base/base.jsp" />
 
         <%-- ★★★ 修正点2: mainクラスに col-md-10 を追加 ★★★ --%>
         <div class="main col-md-10 py-4">
