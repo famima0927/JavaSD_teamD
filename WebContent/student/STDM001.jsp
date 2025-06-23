@@ -1,37 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<% request.setAttribute("bodyClass", "menu-body"); %>
 
 <jsp:include page="../base/header.jsp" />
 
 <div class="container-fluid mb-5">
   <div class="row">
-    <!-- サイドバー -->
     <div class="col-md-2 bg-white border-end py-3">
       <h6 class="text-primary fw-bold mb-3">メニュー</h6>
       <ul class="nav flex-column small">
         <li class="nav-item"><a class="nav-link text-primary" href="${pageContext.request.contextPath}/StudentList">学生管理</a></li>
-        <li class="nav-item fw-bold">成績管理</li>
-        <li class="nav-item ms-3"><a class="nav-link text-primary" href="${pageContext.request.contextPath}/servlet/TestRegistController">成績登録</a></li>
-        <li class="nav-item ms-3"><a class="nav-link text-primary" href="${pageContext.request.contextPath}/servlet/TestListController">成績参照</a></li>
-        <li class="nav-item"><a class="nav-link text-primary" href="${pageContext.request.contextPath}/SubjectListController">科目管理</a></li>
       </ul>
     </div>
 
-    <!-- メインコンテンツ -->
     <div class="col-md-10 py-3">
-      <!-- タイトル -->
       <div class="bg-light border px-3 py-2 mb-3 fw-bold">
         学生管理
       </div>
 
-      <!-- 新規登録ボタン -->
       <div class="text-end mb-4">
-        <a href="<c:url value='/StudentCreate' />" class="btn btn-success">新規登録</a>
+        <a href="${pageContext.request.contextPath}/StudentCreate" class="btn btn-success">新規登録</a>
       </div>
 
-      <!-- 絞り込みフォーム -->
-      <form action="<c:url value='/StudentList' />" method="get" class="mb-4">
+      <form action="${pageContext.request.contextPath}/StudentList" method="get" class="mb-4">
         <div class="row g-3 align-items-end">
           <div class="col-md">
             <label for="entYear" class="form-label">入学年度</label>
@@ -63,46 +53,32 @@
         </div>
       </form>
 
-      <!-- 検索結果件数 -->
       <div class="mb-3">
         <span class="text-muted">検索結果：${not empty studentList ? studentList.size() : 0}件</span>
       </div>
 
-      <!-- 学生一覧テーブル -->
       <table class="table table-hover student-table">
         <thead>
           <tr>
-            <th>
-              <a href="<c:url value='/StudentList?f1=${f1}&f2=${f2}&f3=${f3}&sort=ent_year_${sort_order == 'asc' ? 'desc' : 'asc'}' />">
-                入学年度 ${sort_key == 'ent_year' ? (sort_order == 'asc' ? '▲' : '▼') : ''}
-              </a>
-            </th>
-            <th>
-              <a href="<c:url value='/StudentList?f1=${f1}&f2=${f2}&f3=${f3}&sort=no_${sort_order == 'asc' ? 'desc' : 'asc'}' />">
-                学生番号 ${sort_key == 'no' ? (sort_order == 'asc' ? '▲' : '▼') : ''}
-              </a>
-            </th>
+            <th>入学年度</th>
+            <th>学生番号</th>
             <th>氏名</th>
             <th>クラス</th>
-            <th>在学中</th>
-            <th></th>
+            <th>状態</th>
           </tr>
         </thead>
         <tbody>
-          <c:if test="${empty studentList}">
-            <tr>
-              <td colspan="6">該当する学生が見つかりませんでした。</td>
-            </tr>
-          </c:if>
           <c:forEach var="s" items="${studentList}">
             <tr>
               <td>${s.entYear}</td>
               <td>${s.no}</td>
               <td>${s.name}</td>
               <td>${s.classNum}</td>
-              <td>${s.isAttend ? '○' : '×'}</td>
               <td>
-                <a href=<c:url value='/StudentUpdate.action?no=${s.no}' />>変更</a>
+                <c:choose>
+                  <c:when test="${s.isAttend}">在学中</c:when>
+                  <c:otherwise>退学</c:otherwise>
+                </c:choose>
               </td>
             </tr>
           </c:forEach>

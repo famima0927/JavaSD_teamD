@@ -13,7 +13,7 @@ import dao.ClassNumDao;
 import dao.StudentDao;
 import tool.CommonServlet;
 
-@WebServlet("/StudentUpdateExecute.action")
+@WebServlet("/StudentUpdateExecute")
 public class StudentUpdateExecuteController extends CommonServlet {
 
     @Override
@@ -53,7 +53,7 @@ public class StudentUpdateExecuteController extends CommonServlet {
             request.setAttribute("class_num_set", classNumSet);
 
             // ★★★ 修正点：戻り先を新しい統合JSPに変更 ★★★
-            request.getRequestDispatcher("/student/STDM004.jsp").forward(request, response);
+            request.getRequestDispatcher("/student/STDM001.jsp").forward(request, response);
 
         } else {
             // エラーがなければ更新
@@ -71,7 +71,7 @@ public class StudentUpdateExecuteController extends CommonServlet {
             studentDao.save(studentToUpdate);
 
             // 処理完了後、完了ページにリダイレクト
-            response.sendRedirect("/student/student_update_done.jsp");
+            response.sendRedirect("/student/STDM005.jsp");
         }
     }
 
