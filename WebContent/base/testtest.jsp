@@ -12,10 +12,10 @@
             成績管理
         </li>
         <li class="nav-item ms-3">
-            <a class="nav-link text-primary" href="${pageContext.request.contextPath}/score_management/manage">成績登録</a>
+            <a class="nav-link text-primary" href="${pageContext.request.contextPath}/TestRegistController">成績登録</a>
         </li>
         <li class="nav-item ms-3">
-            <a class="nav-link text-primary" href="${pageContext.request.contextPath}/score_reference/list">成績参照</a>
+            <a class="nav-link text-primary" href="${pageContext.request.contextPath}/TestListController">成績参照</a>
         </li>
         <li class="nav-item mt-2">
             <a class="nav-link text-primary" href="${pageContext.request.contextPath}/SubjectListServlet">科目管理</a>
