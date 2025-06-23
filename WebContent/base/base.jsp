@@ -4,7 +4,7 @@
 <%-- サイドバ本体 --%>
 <div class="col-md-2 bg-white border-end py-3">
     <%-- <h6 class="text-primary fw-bold mb-3">メニュー</h6>--%>
-    <a class="nav-link text-primary" href="${pageContext.request.contextPath}/main/MMNU001.jsp">メニュー</a>
+    <a class="nav-link text-primary fw-bold" href="${pageContext.request.contextPath}/main/MMNU001.jsp">メニュー</a>
     <ul class="nav flex-column small">
         <li class="nav-item">
             <a class="nav-link text-primary" href="${pageContext.request.contextPath}/StudentList">学生管理</a>
