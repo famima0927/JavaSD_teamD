@@ -1,0 +1,98 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%
+    request.setAttribute("bodyClass", "menu-body");
+%>
+
+<jsp:include page="../base/header.jsp" />
+
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+
+<div class="d-flex">
+    <!-- サイドバー -->
+    <div class="side-bar">
+        <jsp:include page="../base/base.jsp" />
+    </div>
+
+    <!-- メインコンテンツ -->
+    <div class="main container p-4">
+        <h2>学生新規登録</h2>
+
+        <!-- エラー表示 -->
+        <c:if test="${not empty errors}">
+            <div class="error-message">
+                <ul>
+                    <c:forEach var="e" items="${errors}">
+                        <li>${e}</li>
+                    </c:forEach>
+                </ul>
+            </div>
+        </c:if>
+
+
+        <div class="form-container">
+            <form action="StudentCreateExecute" method="post">
+
+                <!-- 入学年度 -->
+                <div class="mb-3">
+                    <label for="entYear" class="form-label fw-bold">入学年度</label>
+                    <select class="form-select" id="entYear" name="entYear" required>
+                        <option value="">-------</option>
+                        <c:forEach var="year" items="${ent_year_set}">
+                            <option value="${year}" <c:if test="${year == entYear}">selected</c:if>>${year}</option>
+                        </c:forEach>
+                    </select>
+                    <c:if test="${not empty entYearError}">
+                        <div class="text-danger mt-1">${entYearError}</div>
+                    </c:if>
+                </div>
+
+                <!-- 学生番号 -->
+                <div class="mb-3">
+                    <label for="studentNo" class="form-label fw-bold">学生番号</label>
+                    <input type="text" class="form-control" id="studentNo" name="no" placeholder="学生番号を入力してください" value="${no}" required>
+                    <c:if test="${not empty noError}">
+                        <div class="text-danger mt-1">${noError}</div>
+                    </c:if>
+                    <c:if test="${not empty noDuplicateError}">
+                        <div class="text-danger mt-1">${noDuplicateError}</div>
+                    </c:if>
+                </div>
+
+                <!-- 氏名 -->
+                <div class="mb-3">
+                    <label for="studentName" class="form-label fw-bold">氏名</label>
+                    <input type="text" class="form-control" id="studentName" name="name" placeholder="氏名を入力してください" value="${name}" required>
+                    <c:if test="${not empty nameError}">
+                        <div class="text-danger mt-1">${nameError}</div>
+                    </c:if>
+                </div>
+
+                <!-- クラス -->
+                <div class="mb-3">
+                    <label for="classNum" class="form-label fw-bold">クラス</label>
+                    <select class="form-select" id="classNum" name="classNum" required>
+                        <option value="">--------</option>
+                        <c:forEach var="num" items="${class_num_set}">
+                            <option value="${num}" <c:if test="${num == classNum}">selected</c:if>>${num}</option>
+                        </c:forEach>
+                    </select>
+                </div>
+
+                <!-- 登録ボタン -->
+                <div class="form-buttons">
+                    <button type="submit" class="btn btn-primary">登録</button>
+                    <a href="StudentList" class="btn btn-secondary">戻る</a>
+                </div>
+            </form>
+
+            <!-- 戻るリンク（フォーム外） -->
+            <div class="mt-4">
+                <a href="${pageContext.request.contextPath}/main/MMNU001.jsp">戻る</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<jsp:include page="../base/footer.html" />
