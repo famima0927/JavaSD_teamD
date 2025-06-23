@@ -13,12 +13,12 @@
 <jsp:include page="../base/header.jsp"></jsp:include>
 
 <div class="container-fluid">
-<<<<<<< HEAD
+
     <div class="row">
         <%-- サイドバをインクルード --%>
         <%-- この testtest.jsp の中身が <div class="col-md-2 ..."> で始まっている想定です --%>
         <jsp:include page="../base/base.jsp" />
-=======
+
 	<div class="row">
 	    <!-- サイドバー -->
     <div class="col-md-2 bg-white border-end py-3">
@@ -70,8 +70,6 @@
   </div>
 </div>
 </div>
-<<<<<<< HEAD
-=======
 
->>>>>>> branch 'master' of https://github.com/famima0927/JavaSD_teamD.git
+
 <jsp:include page="../base/footer.html"></jsp:include>
