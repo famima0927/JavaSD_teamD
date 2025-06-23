@@ -1,32 +1,24 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<!DOCTYPE HTML>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<title>Servlet/JSP Samples</title>
-		<link rel="stylesheet" href="<%= request.getContextPath() %>/css/styles.css">
-	</head>
-	<body>
-
-
-
-
-		<a href = "${pageContext.request.contextPath}/main/MMNU001.jsp">メニュー</a><br><br>
-		<a href = "${pageContext.request.contextPath}/StudentList">学生管理</a>
-		<br>
-
-		<p>成績管理</p>
-		<ul>
-
-			<li><a href = "${pageContext.request.contextPath}/servlet/TestRegistController">成績登録</a></li>
-			<li><a href = "${pageContext.request.contextPath}/servlet/TestListController">成績参照</a></li>
-		</ul>
-
-		<a href="${pageContext.request.contextPath}/SubjectListController">科目管理</a>
-
-	</body>
-</html>
-
-
+<%-- サイドバー本体 --%>
+<div class="col-md-2 bg-white border-end py-3">
+    <h6 class="text-primary fw-bold mb-3">メニュー</h6>
+    <ul class="nav flex-column small">
+        <li class="nav-item">
+            <a class="nav-link text-primary" href="${pageContext.request.contextPath}/servlet/StudentListServlet">学生管理</a>
+        </li>
+        <li class="nav-item fw-bold mt-2">
+            成績管理
+        </li>
+        <li class="nav-item ms-3">
+            <a class="nav-link text-primary" href="${pageContext.request.contextPath}/servlet/TestRegistController">成績登録</a>
+        </li>
+        <li class="nav-item ms-3">
+            <a class="nav-link text-primary" href="${pageContext.request.contextPath}/servlet/TestListController">成績参照</a>
+        </li>
+        <li class="nav-item mt-2">
+            <a class="nav-link text-primary" href="${pageContext.request.contextPath}/servlet/SubjectListServlet">科目管理</a>
+        </li>
+    </ul>
+</div>
