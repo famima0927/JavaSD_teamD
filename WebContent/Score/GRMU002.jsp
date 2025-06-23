@@ -8,7 +8,7 @@
 <div class="container-fluid">
     <div class="row">
         <%-- サイドバー --%>
-        <jsp:include page="../base/testtest.jsp" />
+        <jsp:include page="../base/base.jsp" />
 		<div class = "main">
 		<div class="bg-light border px-3 py-2 mb-3 fw-bold">成績管理</div>
 			<%-- ここに処理を書き込む --%>
