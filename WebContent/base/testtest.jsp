@@ -18,7 +18,7 @@
             <a class="nav-link text-primary" href="${pageContext.request.contextPath}/servlet/TestListController">成績参照</a>
         </li>
         <li class="nav-item mt-2">
-            <a class="nav-link text-primary" href="${pageContext.request.contextPath}/servlet/SubjectListController">科目管理</a>
+            <a class="nav-link text-primary" href="${pageContext.request.contextPath}/SubjectListController">科目管理</a>
         </li>
     </ul>
 </div>
