@@ -9,7 +9,7 @@
 <div class="container-fluid">
     <div class="row">
         <%-- サイドバー --%>
-        <jsp:include page="../base/testtest.jsp" />
+        <jsp:include page="../base/base.jsp" />
 
         <%-- メインコンテンツ --%>
         <div class="main col-md-10 py-4 " style="margin-bottom: 18rem;">
