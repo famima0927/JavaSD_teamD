@@ -5,11 +5,16 @@
 %>
 
 <jsp:include page="../base/header.jsp"></jsp:include>
-	<div class="container">
-		<div class="side-bar">
-			<jsp:include page="../base/base.jsp"></jsp:include>
-		</div>
-		<div class="main">
+	<div class="container-fluid">
+    <%-- ★★★ 修正点1: サイドバーとメインコンテンツを囲む「行」を定義 ★★★ --%>
+    <div class="row">
+
+        <%-- サイドバーをインクルード --%>
+        <%-- この testtest.jsp の中身が <div class="col-md-2 ..."> で始まっている想定です --%>
+        <jsp:include page="../base/testtest.jsp" />
+
+        <%-- ★★★ 修正点2: mainクラスに col-md-10 と余白クラスを追加 ★★★ --%>
+        <div class="main col-md-10 py-4">
 			<%-- ① 成績参照 --%>
 			<div class="bg-light border px-3 py-2 mb-3 fw-bold">成績管理(学生)
 		    </div>
@@ -133,6 +138,9 @@
 					</table>
 				</div>
 			</c:if>
+			</div>
 		</div>
 	</div>
+</div>
+
 <jsp:include page="../base/footer.html"></jsp:include>

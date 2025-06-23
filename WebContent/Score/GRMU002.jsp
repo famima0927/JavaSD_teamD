@@ -5,10 +5,10 @@
   request.setAttribute("bodyClass", "ここにボディ名を書き込む");
 %>
 <jsp:include page="../base/header.jsp"></jsp:include>
-	<div class = "container">
-		<div class = "side-bar">
-			<jsp:include page="../base/base.jsp"></jsp:include>
-		</div>
+<div class="container-fluid">
+    <div class="row">
+        <%-- サイドバー --%>
+        <jsp:include page="../base/testtest.jsp" />
 		<div class = "main">
 		<div class="bg-light border px-3 py-2 mb-3 fw-bold">成績管理</div>
 			<%-- ここに処理を書き込む --%>
@@ -22,4 +22,6 @@
 
 		</div>
 	</div>
+</div>
+
 <jsp:include page="../base/footer.html"></jsp:include>
