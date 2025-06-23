@@ -3,7 +3,10 @@
 <%
   request.setAttribute("bodyClass", "menu-body");
 %>
-<%-- header.jspでBootstrapのCSSが読み込まれていることを前提とします --%>
+<%--
+  header.jsp でBootstrapのCSSが読み込まれていることを前提としています。
+  不要になったstyleタグは削除しました。
+--%>
 <jsp:include page="../base/header.jsp"></jsp:include>
 
 <div class="container">
@@ -11,42 +14,35 @@
     <jsp:include page="../base/base.jsp"></jsp:include>
   </div>
 
-<div class="main">
-  <div class="bg-light border px-3 py-2 mb-3 fw-bold">科目情報変更
-	</div>
-    <form action="SubjectEditExecute" method="post">
+  <div class="main">
+    <%-- ① ヘッダー部分 --%>
+    <div class="bg-light border px-3 py-2 mb-3 fw-bold">科目情報削除</div>
 
-      <%-- 科目コード (表示のみ) --%>
-      <div class="mb-3">
-        <label for="cd" class="form-label">科目コード</label>
-        <%-- ★ここを変更★ classを "form-control" から "form-control-plaintext" に変更 --%>
-        <input type="text" class="form-control-plaintext" id="cd" name="cd" value="${subject.cd}" readonly>
-      </div>
+    <%-- ② 確認メッセージ --%>
+    <p>「<strong>${subject.name}</strong>」（<strong>${subject.cd}</strong>）を削除してもよろしいでしょうか？</p>
 
-      <%-- 科目名 (入力必須) --%>
-      <div class="mb-3">
-        <label for="name" class="form-label">科目名</label>
-        <input type="text" class="form-control" id="name" name="name" value="${subject.name}" required>
-      </div>
+    <form action="SubjectDeleteExecute" method="post" class="mt-3">
+      <%-- 削除対象の情報をhiddenで送信 --%>
+      <input type="hidden" name="cd" value="${subject.cd}">
+      <input type="hidden" name="name" value="${subject.name}">
 
-      <%-- エラーメッセージ表示 --%>
-      <c:if test="${not empty error}">
-        <div class="mb-3">
-          <p class="text-danger">${error}</p>
-        </div>
-      </c:if>
-
-      <%-- 変更ボタン --%>
-      <button type="submit" class="btn btn-primary">変更</button>
+      <%-- ③ 削除ボタン --%>
+      <input type="submit" value="削除" class="btn btn-danger">
     </form>
 
-    <%-- 戻るリンク (フォームの外に配置) --%>
+    <%-- ④ 戻るリンク --%>
     <div class="mt-3">
         <a href="${pageContext.request.contextPath}/SubjectListController">戻る</a>
     </div>
 
+    <%-- エラーメッセージ表示 (Bootstrapのalertコンポーネントを使用) --%>
+    <c:if test="${not empty error}">
+      <div class="alert alert-danger mt-4" role="alert">
+        ${error}
+      </div>
+    </c:if>
   </div>
 </div>
 
-<%-- フッターがある場合は、ここにフッターのincludeを記述します --%>
+<%-- フッターがあればここにインクルードします --%>
 <%-- <jsp:include page="../base/footer.jsp"></jsp:include> --%>
