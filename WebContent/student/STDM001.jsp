@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%
+    request.setAttribute("bodyClass", "menu-body");
+%>
 <jsp:include page="../base/header.jsp" />
 <div class="container-fluid">
     <div class="row">
