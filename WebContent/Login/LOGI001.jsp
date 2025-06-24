@@ -18,7 +18,7 @@
         <div class="card-body p-4">
             <!-- エラー表示 (変更なし) -->
             <% if ("true".equals(request.getParameter("error"))) { %>
-                <div class="alert alert-danger text-center py-2" role="alert">
+                <div class="text-danger text-center mb-3">
                     IDまたはパスワードが間違っています。
                 </div>
             <% } %>
