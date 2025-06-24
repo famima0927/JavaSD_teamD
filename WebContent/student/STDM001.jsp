@@ -4,7 +4,7 @@
 <jsp:include page="../base/header.jsp" />
 <div class="container-fluid">
     <div class="row">
-        <%-- サイドバをインクルード --%>
+        <%-- .サイドバをインクルード --%>
         <%-- この testtest.jsp の中身が <div class="col-md-2 ..."> で始まっている想定です --%>
         <jsp:include page="../base/base.jsp" />
 

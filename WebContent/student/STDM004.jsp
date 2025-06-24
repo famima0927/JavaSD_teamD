@@ -29,7 +29,7 @@
             </c:otherwise>
         </c:choose>
 
-        <%-- エラーメッセージ表示欄 --%>
+        <%-- .エラーメッセージ表示欄 --%>
         <c:if test="${not empty errors}">
             <div class="error-message">
                 <ul><c:forEach var="e" items="${errors}"><li>${e}</li></c:forEach></ul>

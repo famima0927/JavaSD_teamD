@@ -20,7 +20,7 @@
       <div class="bg-light border px-3 py-2 mb-3 fw-bold">
         学生管理
       </div>
-        <%-- ★★★ 修正点：他のページとクラス名を統一 ★★★ --%>
+        <%-- ★★★ .修正点：他のページとクラス名を統一 ★★★ --%>
         <div class="success-message">
             変更が完了しました。
         </div>
