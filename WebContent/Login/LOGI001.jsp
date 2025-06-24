@@ -3,11 +3,15 @@
     request.setAttribute("bodyClass", "login-body");
 %>
 <jsp:include page="../base/header.jsp"></jsp:include>
-<div class = "allpad">
-<%-- 修正点1: 画面上部に余白(py-5)を持たせ、フォームが下に寄りすぎないように調整 --%>
-<div class="container-fluid bg-white d-flex justify-content-center py-5">
 
-    <%-- 修正点2: カードの最大幅を広げ(max-width: 420px)、入力欄を横長にする --%>
+<div class="d-flex align-items-center justify-content-center" style="min-height:60vh;">
+
+    <%--
+      修正点2:
+      - 元のコードのカード構造をそのまま使います。
+      - `max-width`でフォームの最大幅を設計書に合わせて指定します。
+      - `w-100`クラスで、小さな画面でも親要素に合わせて幅が広がるようにします。
+    --%>
     <div class="card shadow-sm" style="max-width: 420px; width: 100%;">
         <div class="card-header text-center fw-bold bg-light">ログイン</div>
 
@@ -32,7 +36,7 @@
                     <label for="passwordField">パスワード</label>
                 </div>
 
-                <%-- 修正点3: チェックボックスを中央揃え --%>
+                <%-- チェックボックス (元のコードの中央揃えを維持) --%>
                 <div class="text-center mb-3">
                     <div class="form-check d-inline-flex align-items-center">
                         <input class="form-check-input me-2" type="checkbox" id="showCredentials">
@@ -40,14 +44,17 @@
                     </div>
                 </div>
 
-                <%-- 修正点3: ログインボタンを中央揃え --%>
-                <div class="text-center">
-                    <button type="submit" class="btn btn-primary rounded px-5">ログイン</button>
+                <%--
+                  修正点3:
+                  - ログインボタンを`d-grid`で囲むことで、横幅いっぱいに広がるモダンなボタンにします。
+                    設計書に近づける場合は元の<div class="text-center">に戻してください。
+                --%>
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary">ログイン</button>
                 </div>
             </form>
         </div>
     </div>
-</div>
 </div>
 
 <!-- パスワード・ID表示切替 (変更なし) -->
@@ -57,8 +64,6 @@
         const passwordField = document.getElementById("passwordField");
         const show = this.checked;
 
-        // IDは常にtextですが、念のため切替に対応
-        // idField.type = show ? "text" : "text";
         passwordField.type = show ? "text" : "password";
     });
 </script>
