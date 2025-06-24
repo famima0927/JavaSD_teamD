@@ -14,7 +14,7 @@ import tool.CommonServlet;
 /**
  * 学生情報変更ページを表示するためのサーブレット
  */
-@WebServlet("/StudentUpdate.action")
+@WebServlet("/StudentUpdate")
 // クラス名はご自身のファイル名に合わせてください (StudentUpdateServlet または StudentUpdateController)
 public class StudentUpdateController extends CommonServlet {
 

@@ -2,17 +2,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <jsp:include page="../base/header.jsp" />
+<div class="container-fluid">
+    <div class="row">
+        <%-- サイドバをインクルード --%>
+        <%-- この testtest.jsp の中身が <div class="col-md-2 ..."> で始まっている想定です --%>
+        <jsp:include page="../base/base.jsp" />
 
-<div class="container-fluid mb-5">
-  <div class="row">
-    <div class="col-md-2 bg-white border-end py-3">
-      <h6 class="text-primary fw-bold mb-3">メニュー</h6>
-      <ul class="nav flex-column small">
-        <li class="nav-item"><a class="nav-link text-primary" href="${pageContext.request.contextPath}/StudentList">学生管理</a></li>
-      </ul>
-    </div>
-
-    <div class="col-md-10 py-3">
+        <%-- ★★★ 修正点: mainクラスに col-md-10 を追加 ★★★ --%>
+        <div class="main col-md-10 py-4">
       <div class="bg-light border px-3 py-2 mb-3 fw-bold">
         学生管理
       </div>
@@ -64,7 +61,8 @@
             <th>学生番号</th>
             <th>氏名</th>
             <th>クラス</th>
-            <th>状態</th>
+            <th>在学中</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -76,10 +74,11 @@
               <td>${s.classNum}</td>
               <td>
                 <c:choose>
-                  <c:when test="${s.isAttend}">在学中</c:when>
-                  <c:otherwise>退学</c:otherwise>
+                  <c:when test="${s.isAttend}">○</c:when>
+                  <c:otherwise>×</c:otherwise>
                 </c:choose>
               </td>
+              <td><a href="${pageContext.request.contextPath}/StudentUpdate?no=${s.no}">変更</a></td>
             </tr>
           </c:forEach>
         </tbody>

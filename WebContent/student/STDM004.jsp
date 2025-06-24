@@ -11,19 +11,21 @@
 
 <jsp:include page="../base/header.jsp"></jsp:include>
 <link rel="stylesheet" href="<c:url value='/css/style.css' />">
+<div class="container-fluid">
+    <div class="row">
+        <%-- サイドバをインクルード --%>
+        <%-- この testtest.jsp の中身が <div class="col-md-2 ..."> で始まっている想定です --%>
+        <jsp:include page="../base/base.jsp" />
 
-<div class="container">
-    <div class="side-bar">
-        <jsp:include page="../base/base.jsp"></jsp:include>
-    </div>
-    <div class="main">
-        <%-- モードによってタイトルを変更 --%>
+        <%-- ★★★ 修正点: mainクラスに col-md-10 を追加 ★★★ --%>
+        <div class="main col-md-10 py-4">
+         <%-- モードによってタイトルを変更 --%>
         <c:choose>
             <c:when test="${isUpdateMode}">
-                <h2>学生情報変更</h2>
-            </c:when>
+            <div class="bg-light border px-3 py-2 mb-3 fw-bold">学生情報変更</div>
+       		</c:when>
             <c:otherwise>
-                <h2>学生新規登録</h2>
+                <div class="bg-light border px-3 py-2 mb-3 fw-bold">学生新規変更</div>
             </c:otherwise>
         </c:choose>
 
@@ -39,11 +41,11 @@
             <%-- モードによってフォームの送信先(action)を切り替える --%>
             <c:choose>
                 <c:when test="${isUpdateMode}">
-                    <form action="<c:url value='/StudentUpdateExecute.action' />" method="post">
+                    <form action="<c:url value='/StudentUpdateExecute' />" method="post">
                 </c:when>
                 <c:otherwise>
                     <%-- 新規登録時は StudentRegister.action を指定 --%>
-                    <form action="<c:url value='/StudentRegister.action' />" method="post">
+                    <form action="<c:url value='/StudentCreate' />" method="post">
                 </c:otherwise>
             </c:choose>
 
@@ -93,10 +95,10 @@
 
                 <c:if test="${isUpdateMode}">
                     <div class="form-row">
-                        <label>在学状況</label>
+                        <label>在学中</label>
                         <div class="is-attend-group">
                             <input type="checkbox" id="isAttend" name="is_attend" value="true" <c:if test="${student.isAttend}">checked</c:if>>
-                            <label for="isAttend">在学中</label>
+                            <label for="isAttend">○</label>
                         </div>
                     </div>
                 </c:if>

@@ -9,15 +9,17 @@
 <%-- ★★★ 修正点：includeのパスを絶対パスに変更 ★★★ --%>
 <jsp:include page="/base/header.jsp"></jsp:include>
 <link rel="stylesheet" href="<c:url value='/css/style.css' />">
+<div class="container-fluid">
+    <div class="row">
+        <%-- サイドバをインクルード --%>
+        <%-- この testtest.jsp の中身が <div class="col-md-2 ..."> で始まっている想定です --%>
+        <jsp:include page="../base/base.jsp" />
 
-<div class="container">
-    <div class="side-bar">
-        <jsp:include page="/base/base.jsp"></jsp:include>
-    </div>
-    <div class="main">
-        <%-- ★★★ 修正点：タイトルをh2タグに変更 ★★★ --%>
-        <h2>学生情報変更</h2>
-
+        <%-- ★★★ 修正点: mainクラスに col-md-10 を追加 ★★★ --%>
+        <div class="main col-md-10 py-4">
+      <div class="bg-light border px-3 py-2 mb-3 fw-bold">
+        学生管理
+      </div>
         <%-- ★★★ 修正点：他のページとクラス名を統一 ★★★ --%>
         <div class="success-message">
             変更が完了しました。
