@@ -5,7 +5,7 @@
 %>
 <jsp:include page="../base/header2.jsp"/>
 
-<%-- ★★★ 修正点: メインコンテンツを.containerで囲み、上下に余白(py-4)を追加 ★★★ --%>
+<%-- ★★ 修正点: メインコンテンツを.containerで囲み、上下に余白(py-4)を追加 ★★★ --%>
 <div class="container py-4">
     <div class="row">
         <%-- サイドバーをインクルード --%>

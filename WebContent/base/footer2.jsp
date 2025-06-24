@@ -3,7 +3,7 @@
 </main> <%-- header.jspで開始した<main>タグを閉じる --%>
 
 <footer class="footer bg-light text-center py-3 mt-auto">
-    <%-- ★★★ 修正点: フッターの中身を.containerで囲む ★★★ --%>
+    <%-- ★★ 修正点: フッターの中身を.containerで囲む ★★★ --%>
     <div class="container">
         <span>© 2025 TIC | 大原学園</span>
     </div>

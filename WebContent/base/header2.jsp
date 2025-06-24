@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="<c:url value='/base/css/styles.css' />">
 </head>
-<%-- ★★★ 修正点1: bodyタグにFlexboxクラスを設定 ★★★ --%>
+<%-- ★★ 修正点1: bodyタグにFlexboxクラスを設定 ★★★ --%>
 <body class="d-flex flex-column vh-100 ${bodyClass}">
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
