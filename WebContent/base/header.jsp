@@ -13,23 +13,22 @@
 
   <header class="header">
     <h2 class="">得点管理システム</h2>
-    <div class="header-user">
-      <%-- ログインユーザー名の表示 --%>
-      	<%
-		    HttpSession UserSession = request.getSession(false); // セッションがあれば取得、なければnull
-		    String teacherID = null;
-		    if (session != null) {
-		        teacherID = (String) session.getAttribute("teacherName");
-		    }
-		%>
+	    <div class="header-user">
+	  <%-- ログインユーザー名の表示 --%>
+	  <%
+	    HttpSession UserSession = request.getSession(false);
+	    String teacherID = null;
+	    if (session != null) {
+	        teacherID = (String) session.getAttribute("teacherName");
+	    }
+	  %>
 
-		<% if (teacherID != null) { %>
-		    <!-- ログインしている場合の表示 -->
-		    <p>ようこそ、<%= teacherID %> さん</p>
-		    <a href="<%= request.getContextPath() %>/LogoutServlet" class="logout-link">ログアウト</a>
-		<% } else { %>
-		    <!-- ログインしていない場合の表示 -->
-		<% } %>
-
-    </div>
+	  <% if (teacherID != null) { %>
+	    <!-- ログインしている場合の表示 -->
+	    <span>ようこそ、<%= teacherID %> さん</span>
+	    <a href="<%= request.getContextPath() %>/LogoutServlet" class="logout-link">ログアウト</a>
+	  <% } else { %>
+	    <!-- ログインしていない場合の表示 -->
+	  <% } %>
+	</div>
   </header>
