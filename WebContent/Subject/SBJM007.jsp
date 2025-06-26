@@ -3,7 +3,10 @@
     <%
   request.setAttribute("bodyClass", "ここにボディ名を書き込む");
 %>
-<jsp:include page="../base/header.jsp"></jsp:include>
+<div style="margin-right: 200px; margin-left: 200px; overflow: auto;">
+    <jsp:include page="../base/header.jsp" />
+</div>
+
 	<div class="container-fluid">
     <div class="row">
         <%-- サイドバをインクルード --%>
@@ -22,4 +25,6 @@
 		</div>
 	</div>
 	</div>
-<jsp:include page="../base/footer.html"></jsp:include>
+<div style="margin-right: 200px; margin-left: 200px; overflow: auto;">
+    <jsp:include page="../base/footer.jsp" />
+</div>

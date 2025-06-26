@@ -3,9 +3,13 @@
 <%
     request.setAttribute("bodyClass", "menu-body");
 %>
-<jsp:include page="../base/header.jsp"></jsp:include>
+<div style="margin-right: 200px; margin-left: 200px; overflow: auto;">
+    <jsp:include page="../base/header.jsp" />
+</div>
+
 
 <%-- ★★★ ページ全体のレイアウト構造 ★★★ --%>
+
 <div class="container-fluid">
     <div class="row">
         <%-- サイドバーをインクルード --%>
@@ -123,4 +127,9 @@
     </div>
 </div>
 
-<jsp:include page="../base/footer.html"></jsp:include>
+<div style="margin-right: 200px; margin-left: 200px; overflow: auto;">
+    <jsp:include page="../base/footer.jsp" />
+</div>
+<div style="margin-right: 200px; margin-left: 200px; overflow: auto;">
+    <jsp:include page="../base/footer.jsp" />
+</div>
