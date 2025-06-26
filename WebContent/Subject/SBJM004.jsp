@@ -8,7 +8,7 @@
     <jsp:include page="../base/header.jsp" />
 </div>
 
-
+<div class = "allpad">
 <div class="container-fluid">
     <div class="row">
         <%-- サイドバをインクルード --%>
@@ -51,6 +51,7 @@
     </div>
 
   </div>
+</div>
 </div>
 </div>
 <%-- フッターがある場合は、ここにフッターのincludeを記述します --%>
