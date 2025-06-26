@@ -2,6 +2,7 @@
 <%
     request.setAttribute("bodyClass", "login-body");
 %>
+<div class = "sukima">
 <jsp:include page="../base/header.jsp"></jsp:include>
 
 <div class="d-flex align-items-center justify-content-center" style="min-height:60vh;">
@@ -55,6 +56,7 @@
             </form>
         </div>
     </div>
+</div>
 </div>
 
 <!-- パスワード・ID表示切替 (変更なし) -->
