@@ -15,7 +15,7 @@
       - `max-width`でフォームの最大幅を設計書に合わせて指定します。
       - `w-100`クラスで、小さな画面でも親要素に合わせて幅が広がるようにします。
     --%>
-    <div class = "allpad">
+<div style="margin-right: 200px; margin-left: 200px; overflow: auto;">
     <div class="card shadow-sm" style="max-width: 420px; width: 100%;">
         <div class="card-header text-center fw-bold bg-light">ログイン</div>
 
