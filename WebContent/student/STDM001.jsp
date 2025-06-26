@@ -6,7 +6,7 @@
 <div style="margin-right: 200px; margin-left: 200px; overflow: auto;">
     <jsp:include page="../base/header.jsp" />
 </div>
-<div class = "allpad">
+<div style="margin-right: 200px; margin-left: 200px; overflow: auto;">
 <div class="container-fluid">
     <div class="row">
         <%-- .サイドバをインクルード --%>

@@ -7,8 +7,12 @@
 %>
 
 <%-- ★★★ 修正点：includeのパスを絶対パスに変更 ★★★ --%>
-<jsp:include page="/base/header.jsp"></jsp:include>
+<div style="margin-right: 200px; margin-left: 200px; overflow: auto;">
+    <jsp:include page="../base/header.jsp" />
+</div>
+
 <link rel="stylesheet" href="<c:url value='/css/style.css' />">
+<div style="margin-right: 200px; margin-left: 200px; overflow: auto;">
 <div class="container-fluid">
     <div class="row">
         <%-- サイドバをインクルード --%>
@@ -31,5 +35,7 @@
         </div>
     </div>
 </div>
-
-<jsp:include page="/base/footer.html"></jsp:include>
+</div>
+<div style="margin-right: 200px; margin-left: 200px; overflow: auto;">
+    <jsp:include page="../base/header.jsp" />
+</div>

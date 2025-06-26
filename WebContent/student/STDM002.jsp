@@ -5,8 +5,11 @@
     request.setAttribute("bodyClass", "menu-body");
 %>
 
-<jsp:include page="../base/header.jsp" />
+<div style="margin-right: 200px; margin-left: 200px; overflow: auto;">
+    <jsp:include page="../base/header.jsp" />
+</div>
 
+<div style="margin-right: 200px; margin-left: 200px; overflow: auto;">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <div class="container-fluid">
     <div class="row">
@@ -93,5 +96,7 @@
         </div>
     </div>
 </div>
-
-<jsp:include page="../base/footer.html" />
+</div>
+<div style="margin-right: 200px; margin-left: 200px; overflow: auto;">
+    <jsp:include page="../base/footer.jsp" />
+</div>
