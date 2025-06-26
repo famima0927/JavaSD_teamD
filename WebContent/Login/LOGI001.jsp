@@ -70,4 +70,4 @@
     });
 </script>
 
-<jsp:include page="../base/footer.html"></jsp:include>
+<jsp:include page="../base/footer.jsp"></jsp:include>

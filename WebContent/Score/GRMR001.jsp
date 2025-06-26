@@ -7,7 +7,6 @@
     <jsp:include page="../base/header.jsp" />
 </div>
 
-
 <%-- ★★★ 修正点1: 全体を container-fluid と row で囲む ★★★ --%>
 <div class = "allpad">
 <div class="container-fluid">
