@@ -32,7 +32,7 @@ public class LoginExecuteController extends CommonServlet {
              // 2. ★★★その保管庫に "user" という名前で先生の情報を預ける★★★
                 session.setAttribute("user", teacher);
                 response.sendRedirect(request.getContextPath() + "/main/MMNU001.jsp");
-            } else {
+            }else{
                 // ログイン失敗
                 response.sendRedirect(request.getContextPath() + "/Login/LOGI001.jsp?error=true");
             }
