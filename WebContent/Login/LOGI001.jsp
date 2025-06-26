@@ -3,7 +3,9 @@
     request.setAttribute("bodyClass", "login-body");
 %>
 <div class = "sukima">
-<jsp:include page="../base/header.jsp"></jsp:include>
+<div style="margin-right: 200px; margin-left: 200px; overflow: auto;">
+    <jsp:include page="../base/header.jsp" />
+</div>
 
 <div class="d-flex align-items-center justify-content-center" style="min-height:60vh;">
 
@@ -13,6 +15,7 @@
       - `max-width`でフォームの最大幅を設計書に合わせて指定します。
       - `w-100`クラスで、小さな画面でも親要素に合わせて幅が広がるようにします。
     --%>
+    <div class = "allpad">
     <div class="card shadow-sm" style="max-width: 420px; width: 100%;">
         <div class="card-header text-center fw-bold bg-light">ログイン</div>
 
@@ -58,7 +61,7 @@
     </div>
 </div>
 </div>
-
+</div>
 <!-- パスワード・ID表示切替 (変更なし) -->
 <script>
     document.getElementById("showCredentials").addEventListener("change", function () {
@@ -70,4 +73,6 @@
     });
 </script>
 
-<jsp:include page="../base/footer.html"></jsp:include>
+<div style="margin-right: 200px; margin-left: 200px; overflow: auto;">
+    <jsp:include page="../base/footer.jsp" />
+</div>

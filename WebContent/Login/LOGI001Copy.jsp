@@ -3,8 +3,10 @@
     <%
   request.setAttribute("bodyClass", "login-body");
 %>
-<jsp:include page="../base/header.jsp"></jsp:include>
-
+<div style="margin-right: 200px; margin-left: 200px; overflow: auto;">
+    <jsp:include page="../base/header.jsp" />
+</div>
+<div class = "allpad">
 		    <div class="login-container">
 		        <h2>ログイン</h2>
 
@@ -37,5 +39,7 @@
 		            passwordField.type = this.checked ? "text" : "password";
 		        });
 		    </script>
-
-<jsp:include page="../base/footer.html"></jsp:include>
+</div>
+<div style="margin-right: 200px; margin-left: 200px; overflow: auto;">
+    <jsp:include page="../base/footer.jsp" />
+</div>

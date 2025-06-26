@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<jsp:include page="../base/header.jsp"></jsp:include>
-				<%
+<div style="margin-right: 200px; margin-left: 200px; overflow: auto;">
+    <jsp:include page="../base/header.jsp" />
+</div>
+<div class = "allpad"><%
 		    HttpSession UserLoginSession = request.getSession(false);
 		    String errorMessage = null;
 		    if (session != null) {
@@ -13,5 +15,7 @@
 			<% if (errorMessage != null) { %>
 			    <div class="error-message"><%= errorMessage %></div>
 			<% } %>
-
-<jsp:include page="../base/footer.html"></jsp:include>
+</div>
+<div style="margin-right: 200px; margin-left: 200px; overflow: auto;">
+    <jsp:include page="../base/footer.jsp" />
+</div>
