@@ -9,7 +9,7 @@
 
 
 <%-- ★★★ ページ全体のレイアウト構造 ★★★ --%>
-
+<div class="allpad">
 <div class="container-fluid">
     <div class="row">
         <%-- サイドバーをインクルード --%>
@@ -125,6 +125,7 @@
             </c:if>
         </div>
     </div>
+</div>
 </div>
 
 <div style="margin-right: 200px; margin-left: 200px; overflow: auto;">
