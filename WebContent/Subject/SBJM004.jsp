@@ -4,7 +4,10 @@
   request.setAttribute("bodyClass", "menu-body");
 %>
 <%-- header.jspでBootstrapのCSSが読み込まれていることを前提とします --%>
-<jsp:include page="../base/header.jsp"></jsp:include>
+<div style="margin-right: 200px; margin-left: 200px; overflow: auto;">
+    <jsp:include page="../base/header.jsp" />
+</div>
+
 
 <div class="container-fluid">
     <div class="row">
@@ -52,3 +55,7 @@
 </div>
 <%-- フッターがある場合は、ここにフッターのincludeを記述します --%>
 <%-- <jsp:include page="../base/footer.jsp"></jsp:include> --%>
+<div style="margin-right: 200px; margin-left: 200px; overflow: auto;">
+    <jsp:include page="../base/footer.jsp" />
+</div>
+
