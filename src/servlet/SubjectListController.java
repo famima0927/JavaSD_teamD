@@ -41,6 +41,9 @@ public class SubjectListController extends CommonServlet  {
 				"SELECT SCHOOL_CD FROM TEACHER WHERE ID=?");
 				 st1.setString(1, teacher.getId());
 				 ResultSet rs1=st1.executeQuery();
+				 if (rs1.next()) {
+				 System.out.println(rs1);
+				 }
 		PreparedStatement st2=con.prepareStatement(
 		"SELECT * FROM SUBJECT WHERE SCHOOL_CD=?");
 		st2.setString(1,rs1.getString("SCHOOL_CD"));
