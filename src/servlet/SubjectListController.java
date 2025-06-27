@@ -36,22 +36,31 @@ public class SubjectListController extends CommonServlet  {
 			"java:/comp/env/jdbc/JavaSDDB");
 		Connection con=ds.getConnection();
 
-		PreparedStatement st=con.prepareStatement(
-		"SELECT * FROM SUBJECT");
-		ResultSet rs=st.executeQuery();
+
+		PreparedStatement st1=con.prepareStatement(
+				"SELECT SCHOOL_CD FROM TEACHER WHERE ID=?");
+				 st1.setString(1, teacher.getId());
+				 ResultSet rs1=st1.executeQuery();
+		PreparedStatement st2=con.prepareStatement(
+		"SELECT * FROM SUBJECT WHERE SCHOOL_CD=?");
+		st2.setString(1,rs1.getString("SCHOOL_CD"));
+
+		ResultSet rs2=st2.executeQuery();
 		List<Subject> subjects = new ArrayList<>();
 
 
 
-		while (rs.next()) {
+		while (rs2.next()) {
 		    Subject subject = new Subject();
-		    subject.setCd(rs.getString("cd"));
-		    subject.setName(rs.getString("name"));
+		    subject.setCd(rs2.getString("cd"));
+		    subject.setName(rs2.getString("name"));
 
 		    subjects.add(subject);}
 
-		rs.close();
-		st.close();
+		rs1.close();
+		st1.close();
+		rs2.close();
+		st2.close();
 		con.close();
 
 		// JSPへ渡す
