@@ -28,7 +28,7 @@
             <% } %>
 
             <form action="${pageContext.request.contextPath}/LoginServlet" method="post">
-                <!-- ID欄 (変更なし) -->
+                <!-- ID欄 (変更なしe) -->
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="idField" name="id" value="admin" placeholder="ID">
                     <label for="idField">ID</label>

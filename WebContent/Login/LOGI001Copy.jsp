@@ -16,7 +16,7 @@
 					<% } %>
 
 
-					<!-- LoginServlet名前変更予定 -->
+					<!-- LoginServlet名前変更予定e -->
 		        <form action="${pageContext.request.contextPath}/LoginServlet" method="post">
 		            <div class="form-group">
 		                <input type="text" name="id" value="admin" placeholder="ID">

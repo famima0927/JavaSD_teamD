@@ -8,7 +8,7 @@
 		    String errorMessage = null;
 		    if (session != null) {
 		        errorMessage = (String) UserLoginSession.getAttribute("loginError");
-		        session.removeAttribute("loginError"); // 一度表示したら消す
+		        session.removeAttribute("loginError"); // 一度表示したら消すsi
 		    }
 			%>
 
