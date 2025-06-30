@@ -21,7 +21,7 @@
 
 		      <div class="d-flex gap-4 justify-content-start">
 		        <!-- 学生管理 -->
-		        <div class="card shadow-sm border-0" style="width: 180px; height: 100px; background-color: #eacaca;">
+		        <div class="card shadow-sm border-0" style="width: 200px; height: 100px; background-color: #eacaca;">
 		          <div class="card-body d-flex align-items-center justify-content-center">
 		            <a href="${pageContext.request.contextPath}/StudentList" class="fw-bold text-decoration-none text-primary">学生管理</a>
 		          </div>
@@ -47,7 +47,7 @@
 </div>
 
 		        <!-- 科目管理 -->
-		        <div class="card shadow-sm border-0" style="width: 180px; height: 100px; background-color: #cfcfe7;">
+		        <div class="card shadow-sm border-0" style="width: 200px; height: 100px; background-color: #cfcfe7;">
 		          <div class="card-body d-flex align-items-center justify-content-center">
 		            <a href="${pageContext.request.contextPath}/SubjectListController" class="fw-bold text-decoration-none text-primary">科目管理</a>
 		          </div>
