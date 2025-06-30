@@ -39,7 +39,7 @@ public class SubjectEditController extends CommonServlet  {
 		 System.out.println("cd = " + req.getParameter("cd"));
 		    SchoolDao schD = new SchoolDao();
 		    SubjectDao subD = new SubjectDao();
-		    School sch = schD.get(ID); // 学校IDを固定で取得
+		    School sch = schD.get(ID); // 学校ID取得
 
 		    req.setAttribute("subject", subD.get(cd, sch));
 		    System.out.println("cd = " + req.getParameter("cd"));
