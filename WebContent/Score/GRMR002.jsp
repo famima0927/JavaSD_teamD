@@ -76,8 +76,6 @@
                 </form>
             </div>
 
-            <p class="text-info">科目情報を選択または学生情報を入力して検索ボタンをクリックしてください</p>
-
             <c:if test="${not empty subject_search_results or not empty student_search_results}">
                 <hr>
             </c:if>
