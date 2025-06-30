@@ -25,6 +25,7 @@ public class StudentCreateExecuteController extends CommonServlet {
         String no = request.getParameter("no");
         String name = request.getParameter("name");
         String classNum = request.getParameter("classNum");
+        String CD = request.getParameter("cd");
         int entYear = 0;
 
         // ----- 入力値のチェック -----
@@ -83,7 +84,7 @@ public class StudentCreateExecuteController extends CommonServlet {
         student.setIsAttend(true);
 
         School school = new School();
-        school.setCd("oom");
+        school.setCd(CD);
         student.setSchool(school);
 
         StudentDao dao = new StudentDao();

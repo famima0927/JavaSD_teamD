@@ -28,13 +28,23 @@
 		        </div>
 
 		        <!-- 成績管理 -->
-		        <div class="card shadow-sm border-0" style="width: 180px; height: 100px; background-color: #cde3cd;">
-		          <div class="card-body d-flex flex-column align-items-center justify-content-center">
-		            <div class="fw-bold">成績管理</div>
-		            <a href="${pageContext.request.contextPath}/servlet/TestRegistController" class="stretched-link fw-bold text-decoration-none text-primary">成績登録</a>
-		            <a href="${pageContext.request.contextPath}/servlet/TestListController" class="fw-bold text-decoration-none text-primary">成績参照</a>
-		          </div>
-		        </div>
+		<div class="card shadow-sm border-0" style="width: 200px; background-color: #cde3cd;">
+		  <div class="card-body d-flex flex-column align-items-center">
+		    <div class="fw-bold mb-2">成績管理</div>
+
+		    <!-- 成績登録リンク -->
+		    <a href="${pageContext.request.contextPath}/servlet/TestRegistController"
+		       class="fw-bold text-decoration-none text-primary mb-1">
+		      成績登録
+		    </a>
+
+		    <!-- 成績参照リンク -->
+		    <a href="${pageContext.request.contextPath}/servlet/TestListController"
+		       class="fw-bold text-decoration-none text-primary">
+		      成績参照
+    </a>
+  </div>
+</div>
 
 		        <!-- 科目管理 -->
 		        <div class="card shadow-sm border-0" style="width: 180px; height: 100px; background-color: #cfcfe7;">
