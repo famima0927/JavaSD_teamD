@@ -35,7 +35,7 @@ public class SubjectListController extends CommonServlet  {
 		DataSource ds=(DataSource)ic.lookup(
 			"java:/comp/env/jdbc/JavaSDDB");
 		Connection con=ds.getConnection();
-
+//DB接続
 
 		PreparedStatement st1=con.prepareStatement(
 				"SELECT SCHOOL_CD FROM TEACHER WHERE ID=?");
@@ -44,14 +44,13 @@ public class SubjectListController extends CommonServlet  {
 				 if (rs1.next()) {
 				 System.out.println(rs1);
 				 }
+//SCHOOL＿CD取得
 		PreparedStatement st2=con.prepareStatement(
 		"SELECT * FROM SUBJECT WHERE SCHOOL_CD=?");
 		st2.setString(1,rs1.getString("SCHOOL_CD"));
-
+//SCHOOL_CDごとのSUBJECT一覧取得
 		ResultSet rs2=st2.executeQuery();
 		List<Subject> subjects = new ArrayList<>();
-
-
 
 		while (rs2.next()) {
 		    Subject subject = new Subject();
@@ -59,7 +58,7 @@ public class SubjectListController extends CommonServlet  {
 		    subject.setName(rs2.getString("name"));
 
 		    subjects.add(subject);}
-
+//渡すデータ作成
 		rs1.close();
 		st1.close();
 		rs2.close();

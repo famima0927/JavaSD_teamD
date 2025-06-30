@@ -1,14 +1,17 @@
 package servlet;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import javax.naming.InitialContext;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import bean.Subject;
+import bean.Teacher;
 import tool.CommonServlet;
 
 @WebServlet("/SubjectCreateExecute")
@@ -25,7 +28,8 @@ public class SubjectCreateExecuteController extends CommonServlet {
 
     @Override
     protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-
+    	 HttpSession session = req.getSession();
+         Teacher teacher = (Teacher) session.getAttribute("user");
     	try {
 			// --- ① フォーム入力から学生情報を取得 ---
 			Subject Subject = new Subject();
@@ -41,21 +45,29 @@ public class SubjectCreateExecuteController extends CommonServlet {
 			DataSource ds=(DataSource)ic.lookup(
 				"java:/comp/env/jdbc/JavaSDDB");
 			Connection con=ds.getConnection();
+			PreparedStatement st1=con.prepareStatement(
+					"SELECT SCHOOL_CD FROM TEACHER WHERE ID=?");
+					 st1.setString(1, teacher.getId());
+					 ResultSet rs1=st1.executeQuery();
+					 if (rs1.next()) {
+						 System.out.println(rs1);
+					 }
+
 			//SQL文の準備
-			PreparedStatement st = con.prepareStatement("INSERT INTO SUBJECT VALUES (?,?,?)");
+			PreparedStatement st2 = con.prepareStatement("INSERT INTO SUBJECT VALUES (?,?,?)");
 //school_idは必要に応じて追加
 
-			String school="oom";
-			st.setString(1, school);
-			st.setString(2, Subject.getCd());
-			st.setString(3, Subject.getName());
+			String ID=rs1.getString("SCHOOL_CD");
+			st2.setString(1, ID);
+			st2.setString(2, Subject.getCd());
+			st2.setString(3, Subject.getName());
 
 
 			//SQL文の実行(DBの更新)
-			int num = st.executeUpdate();
+			int num = st2.executeUpdate();
 
 			//DBとの接続を切る
-			st.close();
+			st2.close();
 			con.close();
 
 			if (num >0) {
