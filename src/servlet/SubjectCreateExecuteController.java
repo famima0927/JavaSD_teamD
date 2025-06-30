@@ -31,7 +31,7 @@ public class SubjectCreateExecuteController extends CommonServlet {
     	 HttpSession session = req.getSession();
          Teacher teacher = (Teacher) session.getAttribute("user");
     	try {
-			// --- ① フォーム入力から学生情報を取得 ---
+			// ---フォーム入力から学生情報を取得 ---
 			Subject Subject = new Subject();
 			Subject.setCd(req.getParameter("cd"));
 			Subject.setName(req.getParameter("name"));
@@ -39,7 +39,7 @@ public class SubjectCreateExecuteController extends CommonServlet {
 			System.out.println("name = " + req.getParameter("name"));
 
 
-			// --- ② 学生情報をDBに登録 ---
+//DB接続、SCHOOL_CDの取得
 
 			InitialContext ic=new InitialContext();
 			DataSource ds=(DataSource)ic.lookup(
@@ -57,7 +57,7 @@ public class SubjectCreateExecuteController extends CommonServlet {
 			PreparedStatement st2 = con.prepareStatement("INSERT INTO SUBJECT VALUES (?,?,?)");
 //school_idは必要に応じて追加
 
-			String ID=rs1.getString("SCHOOL_CD");
+			String ID=rs1.getString("SCHOOL_CD");//school_cd
 			st2.setString(1, ID);
 			st2.setString(2, Subject.getCd());
 			st2.setString(3, Subject.getName());
