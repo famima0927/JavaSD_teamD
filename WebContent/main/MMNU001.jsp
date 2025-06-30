@@ -29,7 +29,7 @@
 
 		        <!-- 成績管理 -->
 		<div class="card shadow-sm border-0" style="width: 200px; background-color: #cde3cd;">
-		  <div class="card-body d-flex flex-column align-items-center">
+		  <div class="card-body d-flex flex-column align-items-center justify-content-center">
 		    <div class="fw-bold mb-1">成績管理</div>
 
 		    <!-- 成績登録リンク -->
