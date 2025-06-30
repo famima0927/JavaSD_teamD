@@ -68,6 +68,6 @@ public class StudentListController extends CommonServlet {
 
     @Override
     public void post(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        // 不要なら空でもOK
+        // 不要なら空でもOKe
     }
 }

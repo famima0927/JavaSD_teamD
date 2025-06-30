@@ -45,7 +45,7 @@ public class StudentCreateController extends CommonServlet {
         // school.setCd("oom"); // ← この行を削除
 
         // ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
-        // ★★★ 修正部分はここまでです ★★★
+        // ★★★ 修正部分はここまでです ★★
         // ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
 
         ClassNumDao classNumDao = new ClassNumDao();

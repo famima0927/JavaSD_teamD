@@ -28,7 +28,7 @@ public class StudentCreateExecuteController extends CommonServlet {
         String CD = request.getParameter("cd");
         int entYear = 0;
 
-        // ----- 入力値のチェック -----
+        // ----- 入力値のチェック ----
         if (entYearStr == null || entYearStr.isEmpty()) {
             hasError = true;
             request.setAttribute("entYearError", "入学年度を選択してください。");
