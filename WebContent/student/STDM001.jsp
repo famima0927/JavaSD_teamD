@@ -24,7 +24,7 @@
         学生管理
       </div>
 
-      <div class="text-end mb-4">
+      <div class="text-end mb-2">
         <a href="${pageContext.request.contextPath}/StudentCreate">新規登録</a>
       </div>
 		<div class="border rounded-bottom p-2 mb-1">
