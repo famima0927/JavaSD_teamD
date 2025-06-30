@@ -18,7 +18,7 @@
         <div class="main col-md-10 py-4" style="margin-bottom: 15rem;">
 
             <%-- ① タイトル部分 --%>
-            <div class="bg-light border px-3 py-2 mb-3 fw-bold">
+            <div class="bg-light border px-3 py-2 mb-3 fw-bold fs-5">
                 成績管理
             </div>
 
