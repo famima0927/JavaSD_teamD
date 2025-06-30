@@ -17,7 +17,7 @@
 
         <%-- ★★★ 修正点: mainクラスに col-md-10 を追加 ★★★ --%>
         <div class="main col-md-10 py-4">
-  <div class="bg-light border px-3 py-2 mb-3 fw-bold">科目情報変更
+  <div class="bg-light border px-3 py-2 mb-3 fw-bold fs-5">科目情報変更
 	</div>
     <form action="SubjectEditExecute" method="post">
 

@@ -15,7 +15,7 @@
 
         <%-- ★★★ 修正点: mainクラスに col-md-10 を追加 ★★★ --%>
         <div class="main col-md-10 py-4">
-		<div class="bg-light border px-3 py-2 mb-3 fw-bold">科目情報変更</div>
+		<div class="bg-light border px-3 py-2 mb-3 fw-bold fs-5">科目情報変更</div>
 			<%-- ここに処理を書き込む --%>
 		<div class="card shadow-sm text-center border-0 mb-4" style="width: auto; background-color: #cde3cd;">変更が完了しました。
 		</div>

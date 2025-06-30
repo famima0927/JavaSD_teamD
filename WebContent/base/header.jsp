@@ -12,7 +12,7 @@
 <body class="<%= request.getAttribute("bodyClass") != null ? request.getAttribute("bodyClass") : "" %> ">
 
   <header class="header">
-    <h2 class="">得点管理システム</h2>
+    <h2 class="px-3">得点管理システム</h2>
 	    <div class="header-user">
 	  <%-- ログインユーザー名の表示 --%>
 	  <%

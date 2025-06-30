@@ -21,7 +21,7 @@
         <%-- ★★★ 修正点: mainクラスに col-md-10 を追加 ★★★ --%>
         <div class="main col-md-10 py-4">
     <%-- ① ヘッダー部分 --%>
-    <div class="bg-light border px-3 py-2 mb-3 fw-bold">科目情報削除</div>
+    <div class="bg-light border px-3 py-2 mb-3 fw-bold fs-5">科目情報削除</div>
 
     <%-- ② 確認メッセージ --%>
     <p>「<strong>${subject.name}</strong>」（<strong>${subject.cd}</strong>）を削除してもよろしいでしょうか？</p>

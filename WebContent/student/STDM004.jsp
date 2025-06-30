@@ -28,7 +28,7 @@
          <%-- モードによってタイトルを変更 --%>
         <c:choose>
             <c:when test="${isUpdateMode}">
-            <div class="bg-light border px-3 py-2 mb-3 fw-bold">学生情報変更</div>
+            <div class="bg-light border px-3 py-2 mb-3 fw-bold fs-5">学生情報変更</div>
        		</c:when>
             <c:otherwise>
                 <div class="bg-light border px-3 py-2 mb-3 fw-bold">学生新規変更</div>

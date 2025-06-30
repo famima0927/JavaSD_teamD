@@ -20,7 +20,7 @@
 
         <%-- ★★★ 修正点: mainクラスに col-md-10 を追加 ★★★ --%>
         <div class="main col-md-10 py-4">
-      <div class="bg-light border px-3 py-2 mb-3 fw-bold">
+      <div class="bg-light border px-3 py-2 mb-3 fw-bold fs-5">
         学生管理
       </div>
 

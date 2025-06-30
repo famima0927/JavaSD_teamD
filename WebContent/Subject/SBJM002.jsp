@@ -26,7 +26,7 @@
         <div class="main col-md-10 py-4">
 
   <%-- ① 見出し --%>
-  <div class="bg-light border px-3 py-2 mb-3 fw-bold">科目情報登録</div>
+  <div class="bg-light border px-3 py-2 mb-3 fw-bold fs-5">科目情報登録</div>
 
   <form action="${pageContext.request.contextPath}/SubjectCreateExecute" method="post">
 

@@ -16,8 +16,8 @@
 	        <jsp:include page="../base/base.jsp" />
 
 	    <!-- メイン -->
-		   <div class="col-md-10 py-4" style="margin-bottom: 18rem;"">
-		      <div class="bg-light border px-3 py-2 mb-4 fw-bold">メニュー</div>
+		   <div class="col-md-10 py-4" style="margin-bottom: 18rem;">
+		      <div class="bg-light border px-3 py-2 mb-4 fw-bold fs-5">メニュー</div>
 
 		      <div class="d-flex gap-4 justify-content-start">
 		        <!-- 学生管理 -->

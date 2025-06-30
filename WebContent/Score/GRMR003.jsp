@@ -19,7 +19,7 @@
         <%-- ★★★ 修正点2: mainクラスに col-md-10 と余白クラスを追加 ★★★ --%>
         <div class="main col-md-10 py-4">
 			<%-- ① 成績参照 --%>
-			<div class="bg-light border px-3 py-2 mb-3 fw-bold">成績管理(学生)
+			<div class="bg-light border px-3 py-2 mb-3 fw-bold fs-5">成績管理(学生)
 		    </div>
 			<%-- ⑮ 全体を囲むボックス --%>
 			<div class="card p-4 mb-4 border rounded">

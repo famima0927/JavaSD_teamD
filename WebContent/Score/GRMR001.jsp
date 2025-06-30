@@ -14,7 +14,7 @@
         <jsp:include page="../base/base.jsp" />
 
         <div class="main col-md-10 py-4" style="margin-bottom: 7rem;">
-            <div class="bg-light border px-3 py-2 mb-3 fw-bold">成績参照</div>
+            <div class="bg-light border px-3 py-2 mb-3 fw-bold fs-5">成績参照</div>
 
             <%-- エラーメッセージ表示エリア --%>
             <c:if test="${not empty criteria_error or not empty no_results_error}">
