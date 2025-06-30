@@ -4,9 +4,11 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import bean.School;
 import bean.Student;
+import bean.Teacher;
 import dao.StudentDao;
 import tool.CommonServlet;
 
@@ -25,7 +27,7 @@ public class StudentCreateExecuteController extends CommonServlet {
         String no = request.getParameter("no");
         String name = request.getParameter("name");
         String classNum = request.getParameter("classNum");
-        String CD = request.getParameter("cd");
+
         int entYear = 0;
 
         // ----- 入力値のチェック ----
@@ -76,6 +78,11 @@ public class StudentCreateExecuteController extends CommonServlet {
         }
 
         // ----- エラーがなければDBに保存 -----
+        // セッションから教師情報を取得し、その学校コードを設定
+        HttpSession session = request.getSession();
+        Teacher teacher = (Teacher) session.getAttribute("user");
+        String schoolCode = teacher != null ? teacher.getSchool().getCd() : "oom"; // デフォルトとして"oom"を設定
+
         Student student = new Student();
         student.setNo(no);
         student.setName(name);
@@ -84,7 +91,7 @@ public class StudentCreateExecuteController extends CommonServlet {
         student.setIsAttend(true);
 
         School school = new School();
-        school.setCd(CD);
+        school.setCd(schoolCode);  // ここで学校コードを設定
         student.setSchool(school);
 
         StudentDao dao = new StudentDao();

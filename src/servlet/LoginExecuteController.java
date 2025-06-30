@@ -24,7 +24,7 @@ public class LoginExecuteController extends CommonServlet {
         try {
             TeacherDao dao = new TeacherDao();
             Teacher teacher = dao.login(id, password); // loginメソッドを呼び出す
-            System.out.println(teacher);
+
             if (teacher != null) {
                 // ログイン成功
                 HttpSession session = request.getSession();
