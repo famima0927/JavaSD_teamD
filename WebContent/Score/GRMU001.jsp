@@ -23,11 +23,11 @@
             </div>
 
             <%-- ② 検索フォーム部分 --%>
-            <div class="border rounded-bottom p-4 mb-4">
+            <div class="border rounded-bottom px-4 p-2 mb-4">
                 <form action="TestRegistController" method="get" class="search-form">
                     <%-- (フォームの中身は変更なし) --%>
                     <div class="row g-3 align-items-end">
-                        <div class="col">
+                        <div class="col-md-2">
                             <label for="ent-year-select" class="form-label">入学年度</label>
                             <select name="ent_year" id="ent-year-select" class="form-select">
                                 <option value="0">--------</option>
@@ -36,7 +36,7 @@
                                 </c:forEach>
                             </select>
                         </div>
-                        <div class="col">
+                        <div class="col-md-2">
                             <label for="class-num-select" class="form-label">クラス</label>
                             <select name="class_num" id="class-num-select" class="form-select">
                                 <option value="0">--------</option>
@@ -45,7 +45,7 @@
                                 </c:forEach>
                             </select>
                         </div>
-                        <div class="col">
+                        <div class="col-md-4">
                             <label for="subject-cd-select" class="form-label">科目</label>
                             <select name="subject_cd" id="subject-cd-select" class="form-select">
                                 <option value="0">--------</option>
@@ -54,7 +54,7 @@
                                 </c:forEach>
                             </select>
                         </div>
-                        <div class="col">
+                        <div class="col-md-2">
                             <label for="test-no-select" class="form-label">回数</label>
                             <select name="test_no" id="test-no-select" class="form-select">
                                 <option value="0">--------</option>
@@ -63,7 +63,7 @@
                                 </c:forEach>
                             </select>
                         </div>
-                        <div class="col-auto">
+                        <div class="col-auto px-4 pb-2">
                             <button type="submit" class="btn btn-secondary">検索</button>
                         </div>
                     </div>

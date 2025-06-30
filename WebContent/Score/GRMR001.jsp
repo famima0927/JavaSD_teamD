@@ -24,7 +24,7 @@
             </c:if>
 
             <%-- 科目情報での検索フォーム --%>
-            <div class="card p-4 mb-4 border rounded">
+            <div class="card p-4 mb-3 border rounded">
                 <form action="TestListController" method="get">
                     <div class="row g-3 align-items-end">
                         <%-- ★★★ 修正点1: pb-1 (padding-bottom) を追加してテキストを少し持ち上げる ★★★ --%>
@@ -32,7 +32,7 @@
                             科目情報
                         </div>
                         <%-- 入学年度 --%>
-                        <div class="col-md">
+                        <div class="col-md-2">
                             <label for="entYearSelect" class="form-label">入学年度</label>
                             <select id="entYearSelect" name="f1_ent_year" class="form-select">
                                 <option value="0">--------</option>
@@ -40,7 +40,7 @@
                             </select>
                         </div>
                         <%-- クラス --%>
-                        <div class="col-md">
+                        <div class="col-md-2">
                             <label for="classNumSelect" class="form-label">クラス</label>
                             <select id="classNumSelect" name="f2_class_num" class="form-select">
                                 <option value="0">--------</option>
@@ -48,7 +48,7 @@
                             </select>
                         </div>
                         <%-- 科目 --%>
-                        <div class="col-md">
+                        <div class="col-md-4">
                             <label for="subjectSelect" class="form-label">科目</label>
                             <select id="subjectSelect" name="f3_subject" class="form-select">
                                 <option value="0">--------</option>
@@ -56,7 +56,7 @@
                             </select>
                         </div>
                         <%-- 検索ボタン --%>
-                        <div class="col-md-auto">
+                        <div class="col-md-auto px-4 pb-2">
                             <button type="submit" name="search_action" value="subject_search" class="btn btn-secondary">検索</button>
                         </div>
                     </div>
@@ -77,7 +77,7 @@
                             <input id="studentNoInput" type="text" name="f5_student_no" class="form-control" placeholder="学生番号を入力" value="${f5_student_no}">
                         </div>
                         <%-- 検索ボタン --%>
-                        <div class="col-md-auto">
+                        <div class="col-md-auto px-4 pb-2">
                             <button type="submit" name="search_action" value="student_search" class="btn btn-secondary">検索</button>
                         </div>
                     </div>
