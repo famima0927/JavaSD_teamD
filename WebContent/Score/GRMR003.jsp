@@ -29,10 +29,11 @@
 					<%-- ⑮ 科目情報識別コード (hidden) --%>
 					<input type="hidden" name="f" value="sj">
 
-					<%-- ② 科目情報 ラベル --%>
-					<h5 class="mb-3">科目情報</h5>
 
 					<div class="row g-3 align-items-end">
+						<div class="col-md-2 fw-bold pb-3">
+                            科目情報
+                        </div>
 						<%-- ③ 入学年度 --%>
 						<div class="col-md">
 							<label for="entYearSelect" class="form-label">入学年度</label>
@@ -87,9 +88,11 @@
 
 				<%-- 学生番号での検索フォーム --%>
 				<form action="TestListController" method="get">
-					<%-- ⑩ 学生情報 ラベル --%>
-					<h5 class="mb-3">学生情報</h5>
+
 					<div class="row g-3 align-items-end">
+						<div class="col-md-2 fw-bold pb-3">
+                            学生情報
+                        </div>
 						<%-- ⑪ 学生番号 --%>
 						<div class="col-md-5">
 							<label for="studentNoInput" class="form-label">学生番号</label>

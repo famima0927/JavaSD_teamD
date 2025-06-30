@@ -30,8 +30,10 @@
             <div class="card p-4 mb-4 border rounded">
                 <%-- 科目情報での検索フォーム --%>
                 <form action="TestListController" method="get">
-                    <h5 class="mb-3">科目情報</h5>
                     <div class="row g-3 align-items-end">
+                        <div class="col-md-2 fw-bold pb-3">
+                            科目情報
+                        </div>
                         <div class="col-md">
                             <label for="entYearSelect" class="form-label">入学年度</label>
                             <select id="entYearSelect" name="f1_ent_year" class="form-select">
@@ -63,8 +65,10 @@
 
                 <%-- 学生番号での検索フォーム --%>
                 <form action="TestListController" method="get">
-                    <h5 class="mb-3">学生情報</h5>
                     <div class="row g-3 align-items-end">
+                    	<div class="col-md-2 fw-bold pb-3">
+                            学生情報
+                        </div>
                         <div class="col-md-5">
                             <label for="studentNoInput" class="form-label">学生番号</label>
                             <input id="studentNoInput" type="text" name="f5_student_no" class="form-control" placeholder="学生番号を入力" value="${f5_student_no}">
