@@ -30,7 +30,7 @@
 		<div class="border rounded-bottom p-2 mb-1">
       <form action="${pageContext.request.contextPath}/StudentList" method="get" class="mb-4">
         <div class="row g-3 align-items-end">
-          <div class="col-md">
+          <div class="col-md-4">
             <label for="entYear" class="form-label">入学年度</label>
             <select name="f1" id="entYear" class="form-select">
               <option value="0">--------</option>
@@ -39,7 +39,7 @@
               </c:forEach>
             </select>
           </div>
-          <div class="col-md">
+          <div class="col-md-4">
             <label for="classNum" class="form-label">クラス</label>
             <select name="f2" id="classNum" class="form-select">
               <option value="">--------</option>
@@ -48,14 +48,14 @@
               </c:forEach>
             </select>
           </div>
-          <div class="col-md-auto d-flex align-items-end">
+          <div class="col-md-2 ms-3">
             <div class="form-check">
               <input type="checkbox" name="f3" id="isAttend" value="true" class="form-check-input" <c:if test="${f3}">checked</c:if>>
               <label for="isAttend" class="form-check-label">在学中</label>
             </div>
           </div>
           <div class="col-md-auto">
-            <button type="submit" class="btn btn-secondary">絞り込み</button>
+            <button type="submit" class="btn btn-secondary">絞込み</button>
           </div>
         </div>
       </form>
