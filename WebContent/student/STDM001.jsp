@@ -55,7 +55,7 @@
             </div>
           </div>
           <div class="col-md-auto">
-            <button type="submit" class="btn btn-primary">絞り込み</button>
+            <button type="submit" class="btn btn-secondary">絞り込み</button>
           </div>
         </div>
       </form>
