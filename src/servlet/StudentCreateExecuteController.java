@@ -50,7 +50,7 @@ public class StudentCreateExecuteController extends CommonServlet {
             StudentDao dao = new StudentDao();
             if (dao.get(no) != null) {
                 hasError = true;
-                request.setAttribute("noDuplicateError", "その学生番号は既に使われています。");
+                request.setAttribute("noDuplicateError", "学生番号が重複しています。");
             }
         }
 
