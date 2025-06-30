@@ -2,10 +2,10 @@
 
 </main> <%-- header.jspで開始した<main>タグを閉じる --%>
 
-<footer class="footer bg-light text-center py-3 mt-auto">
+<footer class="footer bg-light text-center py-2 mt-auto">
     <%-- ★★ 修正点: フッターの中身を.containerで囲む ★★★ --%>
     <div class="container">
-        <span>© 2025 TIC | 大原学園</span>
+        <span>© 2025 TIC <br> 大原学園</span>
     </div>
 </footer>
 
