@@ -25,9 +25,9 @@
       </div>
 
       <div class="text-end mb-4">
-        <a href="${pageContext.request.contextPath}/StudentCreate" class="btn btn-success">新規登録</a>
+        <a href="${pageContext.request.contextPath}/StudentCreate">新規登録</a>
       </div>
-
+		<div class="border rounded-bottom p-2 mb-1">
       <form action="${pageContext.request.contextPath}/StudentList" method="get" class="mb-4">
         <div class="row g-3 align-items-end">
           <div class="col-md">
@@ -59,6 +59,7 @@
           </div>
         </div>
       </form>
+      </div>
 
       <div class="mb-3">
         <span class="text-muted">検索結果：${not empty studentList ? studentList.size() : 0}件</span>
