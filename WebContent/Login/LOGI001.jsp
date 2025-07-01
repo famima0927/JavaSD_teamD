@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-    request.setAttribute("bodyClass", "login-body");
+    request.setAttribute("bodyClass", "");
 %>
 <div class = "sukima">
 <div style="margin-right: 200px; margin-left: 200px; overflow: auto;">
@@ -16,10 +16,10 @@
       - `w-100`クラスで、小さな画面でも親要素に合わせて幅が広がるようにします。
     --%>
 <div style="margin-right: 200px; margin-left: 200px; overflow: auto;">
-    <div class="card shadow-sm" style="max-width: 420px; width: 100%;">
+    <div class="card shadow-sm" style="width: 500px">
         <div class="card-header text-center fw-bold bg-light">ログイン</div>
 
-        <div class="card-body p-4">
+        <div class="card-body p-3">
             <!-- エラー表示 (変更なし) -->
             <% if ("true".equals(request.getParameter("error"))) { %>
                 <div class="text-danger text-center mb-3">
@@ -36,7 +36,7 @@
 
                 <!-- パスワード欄 (変更なし) -->
                 <div class="form-floating mb-3">
-                    <input type="password" class="form-control" id="passwordField" name="password" value="*****" placeholder="パスワード">
+                    <input type="password" class="form-control" id="passwordField" name="password" placeholder="パスワード">
                     <label for="passwordField">パスワード</label>
                 </div>
 
@@ -53,8 +53,8 @@
                   - ログインボタンを`d-grid`で囲むことで、横幅いっぱいに広がるモダンなボタンにします。
                     設計書に近づける場合は元の<div class="text-center">に戻してください。
                 --%>
-                <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-primary">ログイン</button>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary px-5">ログイン</button>
                 </div>
             </form>
         </div>

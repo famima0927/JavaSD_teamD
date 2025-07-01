@@ -4,11 +4,11 @@
   request.setAttribute("bodyClass", "menu-body");
 %>
 <%-- header.jspでBootstrapのCSSが読み込まれていることを前提とします --%>
-<div style="margin-right: 200px; margin-left: 200px; overflow: auto;">
+<div style="margin-right: 200px; margin-left: 200px;">
     <jsp:include page="../base/header.jsp" />
 </div>
 
-<div style="margin-right: 200px; margin-left: 200px; overflow: auto;">
+<div style="margin-right: 200px; margin-left: 200px;">
 <div class="container-fluid">
     <div class="row">
         <%-- サイドバをインクルード --%>
@@ -25,7 +25,7 @@
       <div class="mb-3">
         <label for="cd" class="form-label">科目コード</label>
         <%-- ★ここを変更★ classを "form-control" から "form-control-plaintext" に変更 --%>
-        <input type="text" class="form-control-plaintext" id="cd" name="cd" value="${subject.cd}" readonly>
+        <input type="text" class="form-control-plaintext mx-4" id="cd" name="cd" value="${subject.cd}" readonly>
       </div>
 
       <%-- 科目名 (入力必須) --%>
