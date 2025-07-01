@@ -87,13 +87,13 @@
 
                 <div class="mb-3">
                     <label for="studentName">氏名</label>
-                    <input type="text" class="form-control" id="studentName" name="name" value="${student.name}" required>
+                    <input type="text" class="form-control mt-2" id="studentName" name="name" value="${student.name}" required>
                     <div class="form-error">${nameError} ${nameDuplicateError}</div>
                 </div>
 
                 <div class="mb-3">
                     <label for="classNum">クラス</label>
-                    <select id="classNum" class="form-select" name="class_num" required>
+                    <select id="classNum" class="form-select mt-2" name="class_num" required>
                         <option value="">--------</option>
                         <c:forEach var="num" items="${class_num_set}"><option value="${num}" <c:if test="${num == student.classNum}">selected</c:if>>${num}</option></c:forEach>
                     </select>
