@@ -60,7 +60,7 @@
         </div>
       </form>
       </div>
-      			<%-- .絞り込みで検索かけたときに学生情報がエラーになる仕組み(未完成) --%>
+      			<%-- 絞り込みで検索かけたときに学生情報がエラーになる仕組み(未完成) --%>
       					<c:if test="${not empty no_results_error}">
 							<p>
 								${no_results_error}
