@@ -63,7 +63,7 @@
                 <div class="form-row">
                     <label for="entYear">入学年度</label>
                     <c:choose>
-                        <c:when test="${isUpdateMode}"><p class="static-data px-3 mb-2">${student.entYear}</p></c:when>
+                        <c:when test="${isUpdateMode}"><p class="static-data px-3 mt-2">${student.entYear}</p></c:when>
                         <c:otherwise>
                             <select id="entYear" name="ent_year" required>
                                 <option value="">--------</option>
@@ -77,7 +77,7 @@
                 <div class="mb-3">
                     <label for="studentNo">学生番号</label>
                      <c:choose>
-                        <c:when test="${isUpdateMode}"><p class="static-data px-3 mb-2">${student.no}</p></c:when>
+                        <c:when test="${isUpdateMode}"><p class="static-data px-3 mt-2">${student.no}</p></c:when>
                         <c:otherwise>
                             <input type="text" id="studentNo" name="no" value="${no}" required>
                             <div class="form-error">${noError} ${noDuplicateError}</div>
@@ -110,12 +110,14 @@
 
                 <div class="form-buttons">
                     <c:choose>
-                        <c:when test="${isUpdateMode}"><button type="submit" class="btn btn-primary">変更</button></c:when>
+                        <c:when test="${isUpdateMode}"><button type="submit" class="btn btn-primary mt-2">変更</button></c:when>
                         <c:otherwise><button type="submit" class="btn btn-primary">登録</button></c:otherwise>
                     </c:choose>
-                    <a href="<c:url value='/StudentList' />" class="btn btn-secondary">戻る</a>
                 </div>
             </form>
+            <div class="mt-2">
+		                <a href="StudentList">戻る</a>
+		            </div>
         </div>
     </div>
 </div>
