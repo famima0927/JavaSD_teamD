@@ -39,7 +39,7 @@
 		                <!-- 入学年度 -->
 		                <div class="mb-3">
 		                    <label for="entYear" class="form-label fw-bold">入学年度</label>
-		                    <select class="form-select" id="entYear" name="entYear" required>
+		                    <select class="form-select" id="entYear" name="entYear">
 		                        <option value="">-------</option>
 		                        <c:forEach var="year" items="${ent_year_set}">
 		                            <option value="${year}" <c:if test="${year == entYear}">selected</c:if>>${year}</option>
@@ -84,14 +84,13 @@
 
 		                <!-- 登録ボタン -->
 		                <div class="form-buttons">
-		                    <button type="submit" class="btn btn-primary">登録</button>
-		                    <a href="StudentList" class="btn btn-secondary">戻る</a>
+		                    <button type="submit" class="btn btn-secondary">登録して終了</button>
 		                </div>
 		            </form>
 
 		            <!-- 戻るリンク（フォーム外） -->
 		            <div class="mt-4">
-		                <a href="${pageContext.request.contextPath}/main/MMNU001.jsp">戻る</a>
+		                <a href="StudentList">戻る</a>
 		            </div>
 		        </div>
 		    </div>

@@ -28,7 +28,7 @@
         <a href="${pageContext.request.contextPath}/StudentCreate">新規登録</a>
       </div>
 		<div class="border rounded-bottom p-2 mb-1">
-      <form action="${pageContext.request.contextPath}/StudentList" method="get" class="mb-4">
+      <form action="${pageContext.request.contextPath}/StudentList" method="get" class="mb-2">
         <div class="row g-3 align-items-end">
           <div class="col-md-4">
             <label for="entYear" class="form-label">入学年度</label>
@@ -54,7 +54,7 @@
               <label for="isAttend" class="form-check-label">在学中</label>
             </div>
           </div>
-          <div class="col-md-auto">
+          <div class="col-md-auto pb-2">
             <button type="submit" class="btn btn-secondary">絞込み</button>
           </div>
         </div>

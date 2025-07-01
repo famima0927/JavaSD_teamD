@@ -25,13 +25,13 @@
         学生管理
       </div>
         <%-- ★★★ .修正点：他のページとクラス名を統一 ★★★ --%>
-        <div class="success-message">
+        <div class="card shadow-sm text-center border-0 mb-4" style="width: auto; background-color: #cde3cd;">
             変更が完了しました。
         </div>
 
         <div class="actions">
             <%-- ★★★ 修正点：リンク先を修正し、ボタン風の表示に変更 ★★★ --%>
-            <a href="<c:url value='/StudentList' />" class="btn btn-secondary">学生一覧へ</a>
+            <a href="<c:url value='/StudentList' />" class="btn btn-secondary">学生一覧</a>
         </div>
     </div>
 </div>

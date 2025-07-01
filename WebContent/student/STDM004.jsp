@@ -63,7 +63,7 @@
                 <div class="form-row">
                     <label for="entYear">入学年度</label>
                     <c:choose>
-                        <c:when test="${isUpdateMode}"><p class="static-data">${student.entYear}</p></c:when>
+                        <c:when test="${isUpdateMode}"><p class="static-data px-3 mb-2">${student.entYear}</p></c:when>
                         <c:otherwise>
                             <select id="entYear" name="ent_year" required>
                                 <option value="">--------</option>
@@ -74,10 +74,10 @@
                     </c:choose>
                 </div>
 
-                <div class="form-row">
+                <div class="mb-3">
                     <label for="studentNo">学生番号</label>
                      <c:choose>
-                        <c:when test="${isUpdateMode}"><p class="static-data">${student.no}</p></c:when>
+                        <c:when test="${isUpdateMode}"><p class="static-data px-3 mb-2">${student.no}</p></c:when>
                         <c:otherwise>
                             <input type="text" id="studentNo" name="no" value="${no}" required>
                             <div class="form-error">${noError} ${noDuplicateError}</div>
@@ -85,15 +85,15 @@
                     </c:choose>
                 </div>
 
-                <div class="form-row">
+                <div class="mb-3">
                     <label for="studentName">氏名</label>
-                    <input type="text" id="studentName" name="name" value="${student.name}" required>
+                    <input type="text" class="form-control" id="studentName" name="name" value="${student.name}" required>
                     <div class="form-error">${nameError} ${nameDuplicateError}</div>
                 </div>
 
-                <div class="form-row">
+                <div class="mb-3">
                     <label for="classNum">クラス</label>
-                    <select id="classNum" name="class_num" required>
+                    <select id="classNum" class="form-select" name="class_num" required>
                         <option value="">--------</option>
                         <c:forEach var="num" items="${class_num_set}"><option value="${num}" <c:if test="${num == student.classNum}">selected</c:if>>${num}</option></c:forEach>
                     </select>
@@ -101,11 +101,10 @@
 
                 <c:if test="${isUpdateMode}">
                     <div class="form-row">
-                        <label>在学中</label>
-                        <div class="is-attend-group">
-                            <input type="checkbox" id="isAttend" name="is_attend" value="true" <c:if test="${student.isAttend}">checked</c:if>>
-                            <label for="isAttend">○</label>
-                        </div>
+                        <label>在学中
+							<input type="checkbox" id="isAttend" name="is_attend" value="true" <c:if test="${student.isAttend}">checked</c:if>>
+
+  						</label>
                     </div>
                 </c:if>
 

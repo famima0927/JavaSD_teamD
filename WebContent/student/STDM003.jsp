@@ -26,7 +26,7 @@
 
 
         <%-- 完了メッセージ --%>
-        <div class="success-message">
+        <div class="card shadow-sm text-center border-0 mb-4" style="width: auto; background-color: #cde3cd;">
             登録が完了しました。
         </div>
 
