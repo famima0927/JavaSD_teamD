@@ -20,12 +20,7 @@
         <div class="main col-md-10 py-4">
             <div class="bg-light border px-3 py-2 mb-3 fw-bold fs-5">成績参照</div>
 
-            <%-- エラーメッセージ表示エリア --%>
-            <c:if test="${not empty criteria_error or not empty no_results_error}">
-                <div class="alert alert-danger" role="alert">
-                    ${criteria_error} ${no_results_error}
-                </div>
-            </c:if>
+
 
             <div class="card p-4 mb-4 border rounded">
                 <%-- 科目情報での検索フォーム --%>
@@ -105,6 +100,11 @@
                     </table>
                 </div>
             </c:if>
+
+           <c:if test="${not empty no_results_error}">
+		   <p>${no_results_error}</p>
+			</c:if>
+
 
             <%-- 学生番号検索の結果表示エリア --%>
             <c:if test="${not empty student_search_results}">
