@@ -20,8 +20,8 @@
         <jsp:include page="../base/base.jsp" />
 
         <%-- ★★★ 修正点: mainクラスに col-md-10 を追加 ★★★ --%>
-        <div class="main col-md-10 py-4">
-      <div class="bg-light border px-3 py-2 mb-3 fw-bold fs-5">
+        <div class="main col-md-10 py-4"style="margin-bottom: 10rem;">
+      <div class="bg-light border px-3 py-2 mb-3 fw-bold fs-5" >
         学生管理
       </div>
         <%-- ★★★ .修正点：他のページとクラス名を統一 ★★★ --%>
@@ -31,11 +31,12 @@
 
         <div class="actions">
             <%-- ★★★ 修正点：リンク先を修正し、ボタン風の表示に変更 ★★★ --%>
-            <a href="<c:url value='/StudentList' />" class="btn btn-secondary">学生一覧</a>
+            <a href="<c:url value='/StudentList' />" class="mt-5">学生一覧</a>
         </div>
+    </div>
     </div>
 </div>
 </div>
 <div style="margin-right: 200px; margin-left: 200px; overflow: auto;">
-    <jsp:include page="../base/header.jsp" />
+    <jsp:include page="../base/footer.jsp" />
 </div>

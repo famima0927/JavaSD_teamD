@@ -21,7 +21,7 @@
         <jsp:include page="../base/base.jsp" />
 
         <%-- ★★★ 修正点: mainクラスに col-md-10 を追加 ★★★ --%>
-        <div class="main col-md-10 py-4">
+        <div class="main col-md-10 py-4" style="margin-bottom: 10rem;">
             <div class="bg-light border px-3 py-2 mb-3 fw-bold fs-5">学生情報登録</div>
 
 
@@ -32,10 +32,11 @@
 
         <div class="actions">
             <%-- リンクをボタン風に表示 --%>
-            <a href="<c:url value='/StudentCreate' />" class="btn btn-primary">続けて登録する</a>
-            <a href="<c:url value='/StudentList' />" class="btn btn-secondary">学生一覧へ</a>
+            <a href="<c:url value='/StudentCreate' />" class="mx-2">戻る</a>
+            <a href="<c:url value='/StudentList' />" class="mx-5">学生一覧</a>
         </div>
     </div>
+</div>
 </div>
 </div>
 <div style="margin-right: 200px; margin-left: 200px; overflow: auto;">
