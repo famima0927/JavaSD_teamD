@@ -30,13 +30,13 @@
             <form action="${pageContext.request.contextPath}/LoginServlet" method="post">
                 <!-- ID欄 (変更なしe) -->
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="idField" name="id" value="admin" placeholder="ID">
+                    <input type="text" class="form-control" id="idField" name="id" value="admin" placeholder="ID" required>
                     <label for="idField">ID</label>
                 </div>
 
                 <!-- パスワード欄 (変更なし) -->
                 <div class="form-floating mb-3">
-                    <input type="password" class="form-control" id="passwordField" name="password" placeholder="パスワード">
+                    <input type="password" class="form-control" id="passwordField" name="password" placeholder="パスワード" required>
                     <label for="passwordField">パスワード</label>
                 </div>
 
