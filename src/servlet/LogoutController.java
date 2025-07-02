@@ -28,6 +28,6 @@ public class LogoutController extends HttpServlet {
         }
 
         // ログインページへリダイレクト（パスは必要に応じて調整）
-        response.sendRedirect(request.getContextPath() + "/Login/LOGI001.jsp");
+        response.sendRedirect(request.getContextPath() + "/Login/LOGI002.jsp");
     }
 }
