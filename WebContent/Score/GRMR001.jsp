@@ -76,7 +76,7 @@
                             <label for="studentNoInput" class="form-label">学生番号</label>
                             <input id="studentNoInput" type="text" name="f5_student_no" class="form-control" placeholder="学生番号を入力" value="${f5_student_no}">
                         </div>
-                        <%-- 検索ボタン --%>
+                        <%-- 検索ボタン; --%>
                         <div class="col-md-auto px-4 pb-2">
                             <button type="submit" name="search_action" value="student_search" class="btn btn-secondary">検索</button>
                         </div>
