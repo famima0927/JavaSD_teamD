@@ -12,7 +12,6 @@ import bean.Teacher;
 import dao.StudentDao;
 import tool.CommonServlet;
 
-// ★★★ 修正点：URLをフォームの送信先と一致させる ★★★
 @WebServlet("/StudentCreateExecute")
 public class StudentCreateExecuteController extends CommonServlet {
 
@@ -67,9 +66,10 @@ public class StudentCreateExecuteController extends CommonServlet {
 
         // ----- エラーがある場合はフォームに戻す -----
         if (hasError) {
+            // エラー時に入力内容を保持
             request.setAttribute("no", no);
             request.setAttribute("name", name);
-            request.setAttribute("entYearStr", entYearStr);
+            request.setAttribute("entYearStr", entYearStr);  // 入学年度も保持
             request.setAttribute("classNum", classNum);
 
             RequestDispatcher rd = request.getRequestDispatcher("/student/STDM002.jsp");

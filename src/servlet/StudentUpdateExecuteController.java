@@ -1,5 +1,4 @@
 package servlet;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,24 +29,39 @@ public class StudentUpdateExecuteController extends CommonServlet {
         String no = request.getParameter("no");
         String name = request.getParameter("name");
         String classNum = request.getParameter("class_num");
+        String entYearStr = request.getParameter("ent_year"); // 入学年度
         boolean isAttend = request.getParameter("is_attend") != null;
 
+        // 氏名の入力チェック
         if (name == null || name.trim().isEmpty()) {
             errors.add("氏名を入力してください。");
         }
 
+        // 入学年度が未入力の場合にクラス番号が入力されていたらエラーメッセージ
+        if (classNum != null && !classNum.trim().isEmpty() && (entYearStr == null || entYearStr.trim().isEmpty())) {
+            errors.add("クラスを指定する場合は入学年度も指定してください。");
+        }
+
+        // 入学年度の入力チェック（もし入学年度が必須の場合）
+        if (entYearStr == null || entYearStr.trim().isEmpty()) {
+            errors.add("入学年度を入力してください。");
+        }
+
+        // エラーがあった場合
         if (!errors.isEmpty()) {
-            // エラーがあった場合
             // フォームに値を復元するために情報を再取得・設定
             Student student = studentDao.get(no);
-            // ユーザーが入力した値で上書きしてフォームに表示
             student.setName(name);
             student.setClassNum(classNum);
             student.setIsAttend(isAttend);
 
+            // 入学年度が入力されていた場合、設定
+            student.setEntYear(entYearStr != null ? Integer.parseInt(entYearStr) : 0);
+
             // クラス一覧も再度取得
             List<String> classNumSet = classNumDao.filter(student.getSchool());
 
+            // エラーリスト、学生情報、クラス番号セットをリクエストにセット
             request.setAttribute("errors", errors);
             request.setAttribute("student", student);
             request.setAttribute("class_num_set", classNumSet);
@@ -62,6 +76,11 @@ public class StudentUpdateExecuteController extends CommonServlet {
             studentToUpdate.setName(name);
             studentToUpdate.setClassNum(classNum);
             studentToUpdate.setIsAttend(isAttend);
+
+            // 入学年度があれば設定
+            if (entYearStr != null && !entYearStr.trim().isEmpty()) {
+                studentToUpdate.setEntYear(Integer.parseInt(entYearStr));
+            }
 
             // saveメソッドで学校情報が必要な場合に備えてセットしておく
             School school = new School();
