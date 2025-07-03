@@ -62,10 +62,11 @@
       </div>
       			<%-- 絞り込みで検索かけたときに学生情報がエラーになる仕組み(未完成) --%>
       					<c:if test="${not empty no_results_error}">
-							<p>
-								${no_results_error}
-							</p>
-						</c:if>
+    <div class="alert alert-warning">
+        ${no_results_error}
+    </div>
+</c:if>
+
 
       <div class="mb-3">
         <span class="text-muted">検索結果：${not empty studentList ? studentList.size() : 0}件</span>
